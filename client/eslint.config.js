@@ -33,5 +33,15 @@ export default tseslint.config(
                 },
             ],
         },
+        settings: {
+            "import/resolver": {
+                "eslint-import-resolver-custom-alias": {
+                    alias: {
+                        "@": "./src",
+                    },
+                    extensions: [".ts", ".tsx"],
+                },
+            },
+        },
     },
 );
