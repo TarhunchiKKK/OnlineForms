@@ -7,6 +7,7 @@ import { SignInDto } from "./dto/sign-in.dto";
 import { UserNotFounException } from "src/shared/exceptions/user-not-found.exception";
 import * as argon2 from "argon2";
 import { IncorrectPasswordException } from "src/shared/exceptions/incorrect-password.exception";
+import { AuthWithProviderDto } from "./dto/auth-with-provider.dto";
 
 @Injectable()
 export class AuthService {
@@ -59,6 +60,30 @@ export class AuthService {
 
         return {
             user: userWithoutPassword,
+            access: accessToken,
+        };
+    }
+
+    public async authWithProvider(authDto: AuthWithProviderDto) {
+        const existingUser = await this.usersService.findOneByEmail(authDto.email);
+
+        if (existingUser) {
+            const accessToken = this.generateToken(existingUser);
+
+            const { password, ...userWithoutPassword } = existingUser;
+
+            return {
+                user: userWithoutPassword,
+                access: accessToken,
+            };
+        }
+
+        const user = await this.usersService.create({ ...authDto, password: null });
+
+        const accessToken = this.generateToken(user);
+
+        return {
+            user: user,
             access: accessToken,
         };
     }

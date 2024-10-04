@@ -5,9 +5,12 @@ export class User {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
+    @Column({ nullable: true, default: null })
+    username: string | null;
+
     @Column()
     email: string;
 
-    @Column()
-    password: string;
+    @Column({ nullable: true, default: null })
+    password: string | null;
 }

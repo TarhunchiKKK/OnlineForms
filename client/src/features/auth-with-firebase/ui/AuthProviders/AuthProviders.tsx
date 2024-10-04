@@ -1,4 +1,4 @@
-import { useAuthProviders } from "../../hooks";
+import { useAuthProviders } from "./useAuthProviders";
 import { authProviders } from "../../constants";
 
 export function AuthProviders() {

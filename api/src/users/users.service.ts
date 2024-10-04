@@ -21,7 +21,7 @@ export class UsersService {
             throw new UserExistException(createUserDto.email);
         }
 
-        const password = await argon2.hash(createUserDto.password);
+        const password = createUserDto.password ? await argon2.hash(createUserDto.password) : null;
 
         return await this.usersRepository.save({
             ...createUserDto,

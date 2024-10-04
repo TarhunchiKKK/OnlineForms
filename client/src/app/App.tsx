@@ -1,10 +1,15 @@
 import { StrictMode } from "react";
-import { SignInPage } from "../pages";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routing";
+import { Provider } from "react-redux";
+import { reduxStore } from "./redux";
 
 export function App() {
     return (
         <StrictMode>
-            <SignInPage />
+            <Provider store={reduxStore}>
+                <RouterProvider router={router} />
+            </Provider>
         </StrictMode>
     );
 }
