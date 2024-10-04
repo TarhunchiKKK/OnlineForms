@@ -1,0 +1,1 @@
+export { FirebaseAuthManager } from "./authManager";
