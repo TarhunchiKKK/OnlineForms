@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Template } from "src/templates/entities/template.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -13,4 +14,7 @@ export class User {
 
     @Column({ nullable: true, default: null })
     password: string | null;
+
+    @OneToMany(() => Template, (template: Template) => template.creator)
+    templates: Template[];
 }
