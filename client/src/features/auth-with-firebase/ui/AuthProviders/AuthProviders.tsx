@@ -1,5 +1,5 @@
+import { authProviders } from "./constants";
 import { useAuthProviders } from "./useAuthProviders";
-import { authProviders } from "../../constants";
 
 export function AuthProviders() {
     const { getAuthHandler } = useAuthProviders();

@@ -2,10 +2,10 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { firebaseConfig } from "../constants";
 
-export class AuthManager {
+export class FirebaseAuthManager {
     public auth: firebase.auth.Auth;
 
-    private static instance: AuthManager | null = null;
+    private static instance: FirebaseAuthManager | null = null;
 
     private constructor() {
         firebase.initializeApp(firebaseConfig);
@@ -13,9 +13,9 @@ export class AuthManager {
     }
 
     public static getInstance() {
-        if (AuthManager.instance === null) {
-            AuthManager.instance = new AuthManager();
+        if (FirebaseAuthManager.instance === null) {
+            FirebaseAuthManager.instance = new FirebaseAuthManager();
         }
-        return AuthManager.instance;
+        return FirebaseAuthManager.instance;
     }
 }

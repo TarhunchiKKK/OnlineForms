@@ -1,2 +1,3 @@
 export { firebaseConfig } from "./firebaseConfig";
-export { authProviders } from "./authProviders";
+export { dataTransformersMap } from "./dataTransformersMap";
+export { firebaseProdvidersMap } from "./firebaseProvidersMap";

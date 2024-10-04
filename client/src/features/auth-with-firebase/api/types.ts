@@ -11,3 +11,9 @@ export type TSIgnInResponse = {
 
     access: string;
 };
+
+export interface IGoogleProviderData {
+    displayName: string | null;
+
+    email: string | null;
+}

@@ -1,1 +1,1 @@
-export { AuthManager } from "./authManager";
+export { FirebaseAuthManager } from "./authManager";

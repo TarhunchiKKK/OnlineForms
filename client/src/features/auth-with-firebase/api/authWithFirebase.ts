@@ -1,10 +1,12 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import { AuthManager } from "../lib";
+import { FirebaseAuthManager } from "../lib";
+import { FirebaseAuthProviders } from "../types";
+import { dataTransformersMap, firebaseProdvidersMap } from "../constants";
 
-export async function authWithFirebase(provider: firebase.auth.AuthProvider) {
+export async function authWithFirebase(providerName: FirebaseAuthProviders) {
     try {
-        const auth = AuthManager.getInstance().auth;
+        const provider = firebaseProdvidersMap[providerName];
+
+        const auth = FirebaseAuthManager.getInstance().auth;
 
         const authResponse = await auth.signInWithPopup(provider);
 
@@ -12,10 +14,7 @@ export async function authWithFirebase(provider: firebase.auth.AuthProvider) {
             return null;
         }
 
-        return {
-            username: authResponse.user.displayName,
-            email: authResponse.user.email!,
-        };
+        return dataTransformersMap[providerName](authResponse.user);
     } catch (error: unknown) {
         console.error(error);
         return null;
