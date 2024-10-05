@@ -31,7 +31,7 @@ export function SignInForm() {
             </div>
 
             <div className="flex flex-row justify-center items-center mb-8">
-                <Button content="Sign In" />
+                <Button size="lg" content="Sign In" />
             </div>
 
             <p className="text-center text-white text-lg mb-4">Or continue with:</p>

@@ -1,18 +1,24 @@
-import { SignInPage, SignUpPage } from "@/pages";
-import { routes } from "@/shared/constants";
 import { createBrowserRouter } from "react-router-dom";
+import { routes } from "@/shared/constants";
+import { TemplatesPage, Layout, SignInPage, SignUpPage } from "@/pages";
 
 export const router = createBrowserRouter([
     {
         path: routes.Home,
-        element: <div>Home Page</div>,
-    },
-    {
-        path: routes.SignUp,
-        element: <SignUpPage />,
-    },
-    {
-        path: routes.SignIn,
-        element: <SignInPage />,
+        element: <Layout />,
+        children: [
+            {
+                index: true,
+                element: <TemplatesPage />,
+            },
+            {
+                path: routes.SignUp,
+                element: <SignUpPage />,
+            },
+            {
+                path: routes.SignIn,
+                element: <SignInPage />,
+            },
+        ],
     },
 ]);

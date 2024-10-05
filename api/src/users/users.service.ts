@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "./entities/user.entity";
 import { Repository } from "typeorm";
-import { UserExistException } from "src/shared/exceptions/user-exist.exception";
+import { UserExistException } from "src/users/exceptions/user-exist.exception";
 import * as argon2 from "argon2";
 import { CreateUserDto } from "./dto/create-user.dto";
 

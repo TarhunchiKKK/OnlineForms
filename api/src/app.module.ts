@@ -4,6 +4,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 import { AuthModule } from "./auth/auth.module";
+import { TemplatesModule } from './templates/templates.module';
+import { QuestionsModule } from './questions/questions.module';
 
 @Module({
     imports: [
@@ -38,6 +40,8 @@ import { AuthModule } from "./auth/auth.module";
                 },
             }),
         }),
+        TemplatesModule,
+        QuestionsModule,
     ],
 })
 export class AppModule {}

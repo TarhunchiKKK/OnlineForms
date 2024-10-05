@@ -4,10 +4,10 @@ import { UsersService } from "src/users/users.service";
 import { JwtService } from "@nestjs/jwt";
 import { User } from "src/users/entities/user.entity";
 import { SignInDto } from "./dto/sign-in.dto";
-import { UserNotFounException } from "src/shared/exceptions/user-not-found.exception";
-import * as argon2 from "argon2";
-import { IncorrectPasswordException } from "src/shared/exceptions/incorrect-password.exception";
+import { UserNotFounException } from "src/auth/exceptions/user-not-found.exception";
+import { IncorrectPasswordException } from "./exceptions/incorrect-password.exception";
 import { AuthWithProviderDto } from "./dto/auth-with-provider.dto";
+import * as argon2 from "argon2";
 
 @Injectable()
 export class AuthService {
