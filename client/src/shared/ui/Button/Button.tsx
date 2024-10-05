@@ -1,10 +1,13 @@
-import { IButtonProps } from "./props";
+import { buttonSizeStyles } from "./constants";
+import { IButtonProps } from "./types";
 
-export function Button({ content, onClick }: IButtonProps) {
+export function Button({ size, content, onClick }: IButtonProps) {
+    const sizeStyles = buttonSizeStyles[size];
+
     return (
         <button
             onClick={onClick}
-            className="px-8 py-3 rounded-md text-xl text-white bg-green-secondary hover:bg-green-secondary-hover cursor-pointer"
+            className={`${sizeStyles} rounded-md text-white bg-green-secondary hover:bg-green-secondary-hover cursor-pointer`}
         >
             {content}
         </button>

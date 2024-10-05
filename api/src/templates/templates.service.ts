@@ -12,8 +12,6 @@ export class TemplatesService {
     ) {}
 
     public async create(createTemplateDto: CreateTemplateDto) {
-        console.log(createTemplateDto);
-
         const exitsTemplate = await this.templatesRepository.findOne({
             where: {
                 title: createTemplateDto.title,
@@ -27,9 +25,13 @@ export class TemplatesService {
         return await this.templatesRepository.save(createTemplateDto);
     }
 
-    public async findAll() {
+    public async findAll(page: number, limit: number) {
         return await this.templatesRepository.find({
-            relations: {},
+            skip: (page - 1) * limit,
+            take: limit,
+            relations: {
+                creator: true,
+            },
         });
     }
 
@@ -39,5 +41,9 @@ export class TemplatesService {
                 id: templateId,
             },
         });
+    }
+
+    public async getCount() {
+        return await this.templatesRepository.count();
     }
 }

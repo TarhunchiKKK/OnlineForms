@@ -8,7 +8,6 @@ import { SingleLineQuestion } from "./entities/single-line-question.entity";
 import { MultipleLinesQuestion } from "./entities/multiple-lines-question.entity";
 import { PositiveIntegerQuestion } from "./entities/positive-integer-question";
 import { QuestionTypes } from "./enums/question-types.enum";
-import { CreateUserDto } from "src/users/dto/create-user.dto";
 
 @Injectable()
 export class QuestionsService {

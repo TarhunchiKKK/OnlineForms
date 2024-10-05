@@ -1,4 +1,11 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+} from "typeorm";
 import { TemplateTopics } from "../enums/template-topics.enum";
 import { User } from "src/users/entities/user.entity";
 
@@ -15,6 +22,12 @@ export class Template {
 
     @Column()
     topic: TemplateTopics;
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
 
     @ManyToOne(() => User, (user: User) => user.templates)
     creator: User;

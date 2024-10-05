@@ -1,4 +1,4 @@
-import { ITextInputProps } from "./props";
+import { ITextInputProps } from "./types";
 
 export function TextInput({ label, placeholder, value, onChange }: ITextInputProps) {
     return (

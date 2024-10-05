@@ -1,4 +1,4 @@
-import { userSlice } from "@/entities/user";
+import { userSlice } from "@/entities/users";
 import { authApi } from "@/features/auth-with-api";
 import { routes } from "@/shared/constants";
 import { localStorageService } from "@/shared/services";

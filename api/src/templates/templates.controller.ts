@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from "@nestjs/common";
+import { Controller, Get, Post, Body, Param, Query } from "@nestjs/common";
 import { TemplatesService } from "./templates.service";
 import { CreateTemplateDto } from "./dto/create-template.dto";
 
@@ -12,8 +12,13 @@ export class TemplatesController {
     }
 
     @Get()
-    public async findAll() {
-        return this.templatesService.findAll();
+    public async findAll(@Query("page") page: string, @Query("limit") limit: string) {
+        return this.templatesService.findAll(+page, +limit);
+    }
+
+    @Get("/count")
+    public async getCount() {
+        return this.templatesService.getCount();
     }
 
     @Get(":id")

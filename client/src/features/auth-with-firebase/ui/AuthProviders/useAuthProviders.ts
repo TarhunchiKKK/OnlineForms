@@ -1,7 +1,7 @@
 import { MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { userSlice } from "@/entities/user";
+import { userSlice } from "@/entities/users";
 import { routes } from "@/shared/constants";
 import { localStorageService } from "@/shared/services";
 import { authWithFirebase, authWithProviderData } from "../../api";
