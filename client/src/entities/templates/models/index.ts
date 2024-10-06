@@ -1,2 +1,2 @@
-export type { ITemplate } from "./template";
-export type { TemplateTopics } from "./templateTopics";
+export type { ITemplate, TCreateTemplateDto } from "./template";
+export { TemplateTopics } from "./templateTopics";

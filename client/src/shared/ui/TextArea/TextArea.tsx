@@ -1,18 +1,17 @@
-import { ITextInputProps } from "./types";
+import { ITextAreaProps } from "./types";
 
-export function TextInput({ label, placeholder, value, onChange }: ITextInputProps) {
+export function TextArea({ label, placeholder, value, onChange }: ITextAreaProps) {
     return (
         <>
             {label && (
                 <label className="text-lg text-white font-medium block mb-[6px]">{label}</label>
             )}
 
-            <input
-                type="text"
+            <textarea
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className="w-full px-4 py-3 text-lg rounded-md outline-none border-none bg-gray-100 placeholder:text-gray-400"
+                className="w-full px-4 py-3 text-lg rounded-md outline-none border-none bg-gray-100"
             />
         </>
     );

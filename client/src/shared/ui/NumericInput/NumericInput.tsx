@@ -8,7 +8,7 @@ export function NumericInput({ label, ...inputProps }: INumericInputProps) {
             <input
                 type="number"
                 {...inputProps}
-                className="w-20 px-2 py-1 text-lg rounded-md outline-none border-[1px] border-gray"
+                className="w-20 px-2 py-1 text-lg rounded-md outline-none border-[1px] border-gray bg-gray-100"
             />
         </div>
     );

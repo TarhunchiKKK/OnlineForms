@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { routes } from "@/shared/constants";
 import { TemplatesPage, Layout, SignInPage, SignUpPage } from "@/pages";
+import { CreateTemplatePage } from "@/pages/templates";
 
 export const router = createBrowserRouter([
     {
@@ -10,6 +11,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <TemplatesPage />,
+            },
+            {
+                path: routes.CreateTemplate,
+                element: <CreateTemplatePage />,
             },
             {
                 path: routes.SignUp,

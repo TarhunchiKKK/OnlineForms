@@ -1,2 +1,3 @@
 export { templatesApi } from "./api";
-export type { ITemplate, TemplateTopics } from "./models";
+export { TemplateTopics } from "./models";
+export type { ITemplate, TCreateTemplateDto } from "./models";

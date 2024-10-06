@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 export function Layout() {
     return (
-        <main className="py-4">
+        <main className="py-4 bg-green-primary">
             <div className="container mx-auto">
                 <Outlet />
             </div>
