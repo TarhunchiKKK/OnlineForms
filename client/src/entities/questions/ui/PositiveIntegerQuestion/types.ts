@@ -4,5 +4,5 @@ import { OmitId } from "../../types";
 export interface IPositiveIntegerQuestionProps {
     question: OmitId<TPositiveIntegerQuestion>;
 
-    disabled: boolean;
+    editable: boolean;
 }

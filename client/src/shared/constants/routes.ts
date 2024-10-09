@@ -1,6 +1,8 @@
 export const routes = {
     Home: "/",
+    Template: "/templates",
     CreateTemplate: "/templates/create",
-    SignIn: "/sign-in",
-    SignUp: "/sign-up",
+    Auth: "/auth",
+    SignIn: "/auth/sign-in",
+    SignUp: "/auth/sign-up",
 };

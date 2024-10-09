@@ -1,14 +1,22 @@
-import { QuestionTypes, TCreateSingleLineQuestionDto } from "@/entities/questions";
-import { TemplateTopics } from "@/entities/templates";
+import { QuestionTypes, TMultipleLineQuestion, TSingleLineQuestion } from "@/entities/questions";
+import { OmitId } from "@/shared/types";
 
-// template
-export const defaultTemplateTitle = "New form";
-export const defaultTemplateDescription = "This form is about...";
-export const defaultTemplateTopic = TemplateTopics.Education;
+// fixed questions
+export const defaultFixedQuestions = [
+    {
+        title: "Form title",
+        type: QuestionTypes.SingleLine,
+        sequenceNumber: 0,
+        answer: "New form",
+    } as OmitId<TSingleLineQuestion>,
+    {
+        title: "Form description",
+        type: QuestionTypes.MultipleLines,
+        sequenceNumber: 1,
+        answer: "Create a new form with custom questions",
+    } as OmitId<TMultipleLineQuestion>,
+];
 
-// question
-export const defaultQuestion: Omit<TCreateSingleLineQuestionDto, "sequenceNumber"> = {
-    type: QuestionTypes.SingleLine,
-    title: "",
-    answer: "",
-};
+export const questionsEditingEnabled = true;
+
+export const iconsSize = 24;

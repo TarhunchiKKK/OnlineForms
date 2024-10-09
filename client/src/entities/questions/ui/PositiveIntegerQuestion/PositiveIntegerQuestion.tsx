@@ -1,5 +1,4 @@
 import { NumericInput } from "@/shared/ui";
-import { QuestionHeader } from "../QuestionHeader";
 import { IPositiveIntegerQuestionProps } from "./types";
 import { usePositiveIntegerQuestion } from "./usePositiveIntegerQuestion";
 import { maxValue, minValue, step } from "./constants";
@@ -9,10 +8,6 @@ export function PositiveIntegerQuestion({ question }: IPositiveIntegerQuestionPr
 
     return (
         <>
-            <div>
-                <QuestionHeader question={question} />
-            </div>
-
             <div>
                 <NumericInput
                     min={minValue}

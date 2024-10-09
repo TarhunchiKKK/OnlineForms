@@ -1,5 +1,4 @@
 import { TextArea } from "@/shared/ui";
-import { QuestionHeader } from "../QuestionHeader";
 import { IMultipleLinesQuestionProps } from "./types";
 import { useMultipleLinesQuestion } from "./useMultipleLinesQuestion";
 import { answerPlaceholder } from "./constants";
@@ -9,11 +8,7 @@ export function MultipleLinesQuestion({ question }: IMultipleLinesQuestionProps)
 
     return (
         <>
-            <div>
-                <QuestionHeader question={question} />
-            </div>
-
-            <div className="w-[700px]">
+            <div className="w-[800px]">
                 <TextArea
                     placeholder={answerPlaceholder}
                     value={question.answer}

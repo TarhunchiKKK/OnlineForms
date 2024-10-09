@@ -4,5 +4,5 @@ import { OmitId } from "../../types";
 export interface IMultipleLinesQuestionProps {
     question: OmitId<TMultipleLineQuestion>;
 
-    disabled: boolean;
+    editable: boolean;
 }

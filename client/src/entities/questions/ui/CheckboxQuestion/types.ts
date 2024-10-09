@@ -4,5 +4,5 @@ import { OmitId } from "../../types";
 export interface ICheckboxQuestionProps {
     question: OmitId<TCheckboxQuestion>;
 
-    disabled: boolean;
+    editable: boolean;
 }

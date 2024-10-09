@@ -4,5 +4,7 @@ import { OmitId } from "../../types";
 export interface IQuestionProps {
     question: OmitId<TAnyQuestion>;
 
-    disabled: boolean;
+    editable: boolean;
+
+    fixed: boolean;
 }
