@@ -1,1 +1,1 @@
-export { useFixedQuestions, useQuestions, useTemplate, fixedQuestionsCount } from "./hooks";
+export { useQuestions, useTemplate } from "./hooks";

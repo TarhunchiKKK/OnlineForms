@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IDropdownProps } from "./types";
+import { inputClassName } from "@/shared/constants";
 
 export function Dropdown({ label, options, value, onSelect }: IDropdownProps) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -12,10 +13,7 @@ export function Dropdown({ label, options, value, onSelect }: IDropdownProps) {
         <>
             {label && <label>{label}</label>}
 
-            <button
-                onClick={handleChangeVisibility}
-                className="relative w-full px-4 py-3 rounded-md text-lg outline-none border-none bg-gray-100"
-            >
+            <button onClick={handleChangeVisibility} className={`${inputClassName} relative`}>
                 {value}
 
                 {isOpen && (

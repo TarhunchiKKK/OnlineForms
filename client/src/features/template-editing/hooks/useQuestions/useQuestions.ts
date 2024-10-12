@@ -15,8 +15,6 @@ export function useQuestions() {
     const handleAddQuestion = () => {
         const nextSequenceNumber = getNextSequenceNumber(questionsRecord);
 
-        console.log(nextSequenceNumber);
-
         dispatch(
             questionsSlice.actions.addQuestion({
                 ...defaultQuestion,

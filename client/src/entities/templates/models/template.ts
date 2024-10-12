@@ -19,6 +19,12 @@ export interface ITemplate {
 }
 
 export type TCreateTemplateDto = Pick<ITemplate, "title" | "description" | "topic"> & {
+    title: string;
+
+    description: string;
+
+    topic: TemplateTopics;
+
     creator: {
         id: string;
     };

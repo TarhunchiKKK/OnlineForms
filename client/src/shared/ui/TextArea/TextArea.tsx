@@ -1,3 +1,4 @@
+import { inputClassName } from "@/shared/constants";
 import { ITextAreaProps } from "./types";
 
 export function TextArea({ label, placeholder, value, onChange }: ITextAreaProps) {
@@ -11,7 +12,7 @@ export function TextArea({ label, placeholder, value, onChange }: ITextAreaProps
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className="w-full px-4 py-3 text-lg rounded-md outline-none border-none bg-gray-100"
+                className={inputClassName}
             />
         </>
     );

@@ -1,3 +1,4 @@
+import { inputClassName } from "@/shared/constants";
 import { ITextInputProps } from "./types";
 
 export function TextInput({ label, placeholder, value, onChange }: ITextInputProps) {
@@ -12,7 +13,7 @@ export function TextInput({ label, placeholder, value, onChange }: ITextInputPro
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className="w-full px-4 py-3 text-lg rounded-md outline-none border-none bg-gray-100 placeholder:text-gray-400"
+                className={inputClassName}
             />
         </>
     );
