@@ -1,5 +1,5 @@
-import { ITemplate } from "@/entities/templates";
+import { TTemplate } from "@/entities/templates";
 
-export interface ITemplatesTableProps {
-    templates: ITemplate[];
-}
+export type TTemplatesTableProps = {
+    templates: TTemplate[];
+};

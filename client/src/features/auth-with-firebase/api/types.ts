@@ -1,4 +1,4 @@
-import { IUser } from "@/entities/users";
+import { TUser } from "@/entities/users";
 
 export type TSIgnInQueryArgs = {
     username: string | null;
@@ -7,7 +7,7 @@ export type TSIgnInQueryArgs = {
 };
 
 export type TSIgnInResponse = {
-    user: Omit<IUser, "password">;
+    user: Omit<TUser, "password">;
 
     access: string;
 };

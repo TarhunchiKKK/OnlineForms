@@ -1,1 +1,2 @@
-export { routes } from "./routes";
+export { routes } from "./routing";
+export { inputClassName } from "./styles";

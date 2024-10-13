@@ -1,9 +1,9 @@
 export type TButtonSize = "sm" | "md" | "lg";
 
-export interface IButtonProps {
+export type TButtonProps = {
     size: TButtonSize;
 
     content: string;
 
     onClick?: () => void;
-}
+};

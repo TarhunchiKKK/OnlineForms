@@ -1,7 +1,9 @@
 import { ChangeEvent } from "react";
 
-export interface INumericInputProps {
+export type TNumericInputProps = {
     label?: string;
+
+    disabled?: boolean;
 
     min?: number;
 
@@ -12,4 +14,4 @@ export interface INumericInputProps {
     value: number;
 
     onChange: (_: ChangeEvent<HTMLInputElement>) => void;
-}
+};

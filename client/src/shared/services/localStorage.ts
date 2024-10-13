@@ -1,15 +1,33 @@
 export const localStorageService = {
-    authTokenKey: import.meta.env.VITE_TOKEN_LOCALSTORAGE_KEY,
+    auth: {
+        authTokenKey: import.meta.env.VITE_TOKEN_LOCALSTORAGE_KEY,
 
-    getAuthToken() {
-        return localStorage.getItem(this.authTokenKey);
+        getAuthToken() {
+            return localStorage.getItem(this.authTokenKey);
+        },
+
+        resetAuthToken() {
+            localStorage.removeItem(this.authTokenKey);
+        },
+
+        setAuthToken(token: string) {
+            localStorage.setItem(this.authTokenKey, token);
+        },
     },
 
-    resetAuthToken() {
-        localStorage.removeItem(this.authTokenKey);
-    },
+    user: {
+        userIdKey: import.meta.env.VITE_USER_ID_LOCALSTORAGE_KEY,
 
-    setAuthToken(token: string) {
-        localStorage.setItem(this.authTokenKey, token);
+        getUserId() {
+            return localStorage.getItem(this.userIdKey);
+        },
+
+        resetUserId() {
+            localStorage.removeItem(this.userIdKey);
+        },
+
+        setUserId(userId: string) {
+            localStorage.setItem(this.userIdKey, userId);
+        },
     },
 };

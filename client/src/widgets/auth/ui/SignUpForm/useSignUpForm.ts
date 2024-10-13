@@ -1,13 +1,10 @@
-import { userSlice } from "@/entities/users";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { authApi } from "@/features/auth-with-api";
 import { routes } from "@/shared/constants";
 import { localStorageService } from "@/shared/services";
-import { ChangeEvent, FormEvent, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 export function useSignUpForm() {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [signUp] = authApi.useSignUpMutation();
@@ -34,8 +31,7 @@ export function useSignUpForm() {
         const { data } = await signUp({ username, email, password });
 
         if (data) {
-            dispatch(userSlice.actions.setCurrentUser(data.user));
-            localStorageService.setAuthToken(data.access);
+            localStorageService.auth.setAuthToken(data.access);
             navigate(routes.Home);
         }
     };

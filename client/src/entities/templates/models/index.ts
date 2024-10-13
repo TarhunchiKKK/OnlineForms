@@ -1,2 +1,2 @@
-export type { ITemplate } from "./template";
-export type { TemplateTopics } from "./templateTopics";
+export type { TTemplate, TFullTemplate } from "./templates";
+export { TemplateTopics } from "./enums";
