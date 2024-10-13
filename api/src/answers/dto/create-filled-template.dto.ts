@@ -1,4 +1,4 @@
-import { CreateAnswerDto } from "src/questions/dto/create-answer.dto";
+import { CreateAnswerDto } from "./create-answer.dto";
 
 export class CreateFilledTemplateDto {
     user: {

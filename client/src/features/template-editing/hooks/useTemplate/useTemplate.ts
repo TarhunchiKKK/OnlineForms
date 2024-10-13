@@ -1,16 +1,20 @@
 import { ChangeEvent, useState } from "react";
 import { Descendant } from "slate";
-import { TemplateTopics } from "@/entities/templates";
+import { TemplateTopics, TTemplate } from "@/entities/templates";
 import {
     defaultTemplateDescription,
     defaultTemplateTitle,
     defaultTemplateTopic,
 } from "./constants";
 
-export function useTemplate() {
-    const [title, setTitle] = useState<string>(defaultTemplateTitle);
-    const [description, setDescription] = useState<Descendant[]>(defaultTemplateDescription);
-    const [topic, setTopic] = useState<TemplateTopics>(defaultTemplateTopic);
+export function useTemplate(template: TTemplate | null = null) {
+    const [title, setTitle] = useState<string>(template?.title ?? defaultTemplateTitle);
+
+    const [description, setDescription] = useState<Descendant[]>(
+        template?.description ?? defaultTemplateDescription,
+    );
+
+    const [topic, setTopic] = useState<TemplateTopics>(template?.topic ?? defaultTemplateTopic);
 
     const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value);

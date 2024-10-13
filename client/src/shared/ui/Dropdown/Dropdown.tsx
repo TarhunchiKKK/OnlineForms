@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { IDropdownProps } from "./types";
+import { TDropdownProps } from "./types";
 import { inputClassName } from "@/shared/constants";
 
-export function Dropdown({ label, options, value, onSelect, disabled }: IDropdownProps) {
+export function Dropdown({ label, options, value, onSelect, disabled }: TDropdownProps) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleChangeVisibility = () => {

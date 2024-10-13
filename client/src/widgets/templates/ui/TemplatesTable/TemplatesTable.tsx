@@ -1,8 +1,8 @@
 import { Table } from "@/shared/ui";
-import { ITemplatesTableProps } from "./types";
+import { TTemplatesTableProps } from "./types";
 import { renderTemplateRow, renderTemplatesTableHeaders } from "./helpers";
 
-export function TemplatesTable({ templates }: ITemplatesTableProps) {
+export function TemplatesTable({ templates }: TTemplatesTableProps) {
     return (
         <Table
             items={templates}

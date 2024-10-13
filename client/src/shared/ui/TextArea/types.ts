@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 
-export interface ITextAreaProps {
+export type TTextAreaProps = {
     label?: string;
 
     placeholder?: string;
@@ -10,4 +10,4 @@ export interface ITextAreaProps {
     value: string;
 
     onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-}
+};

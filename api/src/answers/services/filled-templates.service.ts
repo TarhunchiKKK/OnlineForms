@@ -3,7 +3,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { FilledTemplate } from "../entities/filled-template.entity";
 import { CreateFilledTemplateDto } from "../dto/create-filled-template.dto";
-import { AnswersService } from "src/questions/services/answers.service";
+import { AnswersService } from "./answers.service";
 
 @Injectable()
 export class FilledTemplatesService {

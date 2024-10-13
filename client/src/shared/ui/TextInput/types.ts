@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 
-export interface ITextInputProps {
+export type TTextInputProps = {
     label?: string;
 
     placeholder?: string;
@@ -10,4 +10,4 @@ export interface ITextInputProps {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 
     disabled?: boolean;
-}
+};

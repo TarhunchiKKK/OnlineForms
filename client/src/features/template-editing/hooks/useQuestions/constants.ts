@@ -1,7 +1,7 @@
-import { QuestionTypes, TCreateSingleLineQuestionDto } from "@/entities/questions";
+import { QuestionTypes, TCreateAnyQuestionDto } from "@/entities/questions";
 
-export const defaultQuestion: Omit<TCreateSingleLineQuestionDto, "sequenceNumber"> = {
+export const defaultQuestion: Omit<TCreateAnyQuestionDto, "sequenceNumber"> = {
     type: QuestionTypes.SingleLine,
     title: "",
     line: "",
-};
+} as Omit<TCreateAnyQuestionDto, "sequenceNumber">;

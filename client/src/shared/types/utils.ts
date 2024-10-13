@@ -1,4 +1,4 @@
-type THaveId = {
+export type THaveId = {
     id: number | string;
 };
 

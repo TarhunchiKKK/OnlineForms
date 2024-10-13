@@ -1,7 +1,7 @@
 import { buttonSizeStyles } from "./constants";
-import { IButtonProps } from "./types";
+import { TButtonProps } from "./types";
 
-export function Button({ size, content, onClick }: IButtonProps) {
+export function Button({ size, content, onClick }: TButtonProps) {
     const sizeStyles = buttonSizeStyles[size];
 
     return (

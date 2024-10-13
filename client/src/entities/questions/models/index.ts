@@ -9,9 +9,7 @@ export type {
 } from "./questions";
 export type {
     TCreateQuestionDto,
-    TCreateSingleLineQuestionDto,
-    TCreateMultipleLinesQuestionDto,
-    TCreateCheckboxQUestionDto,
-    TCreatePositiveIntegerQUestionDto,
     TCreateAnyQuestionDto,
+    TUpdateQuestionDto,
+    TUpdateAnyQuestionDto,
 } from "./dtos";

@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 
-export interface ICheckboxProps {
+export type TCheckboxProps = {
     label?: string;
 
     disabled?: boolean;
@@ -8,4 +8,4 @@ export interface ICheckboxProps {
     isChecked: boolean;
 
     onCheck: (_: ChangeEvent<HTMLInputElement>) => void;
-}
+};

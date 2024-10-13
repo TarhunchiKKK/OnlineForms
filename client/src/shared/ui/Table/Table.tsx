@@ -1,6 +1,6 @@
-import { ITableProps } from "./types";
+import { TTableProps } from "./types";
 
-export function Table<TItem>({ items, renderItem, renderHeaders }: ITableProps<TItem>) {
+export function Table<TItem>({ items, renderItem, renderHeaders }: TTableProps<TItem>) {
     return (
         <table className="w-full">
             <thead>{renderHeaders()}</thead>

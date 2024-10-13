@@ -5,14 +5,14 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 import { AuthModule } from "./auth/auth.module";
 import { TemplatesModule } from "./templates/templates.module";
-import { QuestionsModule } from "./questions/questions.module";
+import { AnswersModule } from "./answers/answers.module";
 
 @Module({
     imports: [
         UsersModule,
         AuthModule,
         TemplatesModule,
-        QuestionsModule,
+        AnswersModule,
         ConfigModule.forRoot({
             envFilePath: ".env",
             isGlobal: true,

@@ -1,2 +1,2 @@
-export type { IUser } from "./models";
+export type { TUser } from "./models";
 export { userSlice } from "./lib";

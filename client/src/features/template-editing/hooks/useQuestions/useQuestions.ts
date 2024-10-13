@@ -1,11 +1,11 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/shared/hooks";
-import { questionsSlice } from "@/entities/questions";
+import { questionsSlice, TQuestion } from "@/entities/questions";
 import { defaultQuestion } from "./constants";
 import { getNextSequenceNumber } from "./helpers";
 
-export function useQuestions() {
+export function useQuestions(providedQuestions: TQuestion[] | null = null) {
     const dispatch = useDispatch();
 
     const questionsRecord = useAppSelector((state) => state.questions.entities);
@@ -19,9 +19,15 @@ export function useQuestions() {
             questionsSlice.actions.addQuestion({
                 ...defaultQuestion,
                 sequenceNumber: nextSequenceNumber,
-            }),
+            } as TQuestion),
         );
     };
+
+    useEffect(() => {
+        if (providedQuestions) {
+            dispatch(questionsSlice.actions.setQuestions(providedQuestions));
+        }
+    }, [dispatch, providedQuestions]);
 
     return {
         questions,

@@ -1,6 +1,6 @@
-import { ICheckboxProps } from "./types";
+import { TCheckboxProps } from "./types";
 
-export function Checkbox({ label, disabled, isChecked, onCheck }: ICheckboxProps) {
+export function Checkbox({ label, disabled, isChecked, onCheck }: TCheckboxProps) {
     return (
         <label className="cursor-pointer">
             <input

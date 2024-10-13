@@ -1,13 +1,13 @@
-import { IUser } from "@/entities/users";
+import { TUser } from "@/entities/users";
 
 export type TSIgnUpResponse = {
-    user: IUser;
+    user: TUser;
 
     access: string;
 };
 
 export type TSIgnInResponse = {
-    user: IUser;
+    user: TUser;
 
     access: string;
 };

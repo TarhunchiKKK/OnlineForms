@@ -3,6 +3,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Question } from "../entities/question.entity";
 import { CreateQuestionDto } from "../dto/create-question.dto";
+import { UpdateQuestionDto } from "../dto/update-question.dto";
 
 @Injectable()
 export class QuestionsService {
@@ -47,5 +48,30 @@ export class QuestionsService {
                 id: questionId,
             },
         });
+    }
+
+    public async updateOne(updateQuestionDto: UpdateQuestionDto) {
+        const question = await this.questionsRepository.findOne({
+            relations: {
+                template: true,
+            },
+            where: {
+                id: updateQuestionDto.id,
+            },
+        });
+
+        if (!question) {
+            console.log("jhghfgn");
+            return await this.questionsRepository.save(updateQuestionDto);
+        }
+
+        return await this.questionsRepository.update(updateQuestionDto.id, {
+            ...updateQuestionDto,
+        });
+    }
+
+    public async updateMany(dtos: UpdateQuestionDto[]) {
+        const updatingPromises = dtos.map((dto) => this.updateOne(dto));
+        await Promise.allSettled(updatingPromises);
     }
 }

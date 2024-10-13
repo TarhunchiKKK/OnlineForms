@@ -1,7 +1,7 @@
 import { inputClassName } from "@/shared/constants";
-import { ITextInputProps } from "./types";
+import { TTextInputProps } from "./types";
 
-export function TextInput({ label, ...inputProps }: ITextInputProps) {
+export function TextInput({ label, ...inputProps }: TTextInputProps) {
     return (
         <>
             {label && (

@@ -1,6 +1,7 @@
 import { useQuestions, useTemplate } from "@/features/template-editing";
 import { templatesApi } from "@/entities/templates";
 import { localStorageService } from "@/shared/services";
+import { TQuestion } from "@/entities/questions";
 
 export function useCreateTemplate() {
     const [createTemplate] = templatesApi.useCreateMutation();
@@ -31,18 +32,24 @@ export function useCreateTemplate() {
     };
 
     return {
-        data: {
-            title,
-            description,
-            topic,
-            questions,
+        template: {
+            data: {
+                title,
+                description,
+                topic,
+            },
+            handlers: {
+                handleTitleChange,
+                handleDescriptionChange,
+                handleTopicChange,
+            },
         },
-        handlers: {
-            handleTitleChange,
-            handleDescriptionChange,
-            handleTopicChange,
-            handleAddQuestion,
-            handleSaveTemplate,
+        questions: {
+            data: questions as TQuestion[],
+            handlers: {
+                handleAddQuestion,
+            },
         },
+        handleSaveTemplate,
     };
 }

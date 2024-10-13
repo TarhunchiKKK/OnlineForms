@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Question } from "./question.entity";
-import { FilledTemplate } from "src/templates/entities/filled-template.entity";
+import { FilledTemplate } from "./filled-template.entity";
+import { Question } from "src/templates/entities/question.entity";
 
 @Entity()
 export class Answer {

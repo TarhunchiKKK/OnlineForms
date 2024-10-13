@@ -1,15 +1,15 @@
-import { Controller, Get, Post, Body, Param, Query, Req, UseGuards } from "@nestjs/common";
+import { Controller, Get, Post, Body, Param, Query, Req, UseGuards, Patch } from "@nestjs/common";
 import { TemplatesService } from "./services/templates.service";
 import { CreateTemplateDto } from "./dto/create-template.dto";
-import { FilledTemplatesService } from "./services/filled-templates.service";
-import { CreateFilledTemplateDto } from "./dto/create-filled-template.dto";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
+import { QuestionsService } from "./services/questions.service";
+import { UpdateTemplateDto } from "./dto/update-template.dto";
 
 @Controller("templates")
 export class TemplatesController {
     constructor(
         private readonly templatesService: TemplatesService,
-        private readonly filledTemplatesService: FilledTemplatesService,
+        private readonly questionsService: QuestionsService,
     ) {}
 
     @Post()
@@ -41,18 +41,8 @@ export class TemplatesController {
         return this.templatesService.findOne(templateId);
     }
 
-    @Post("/filled")
-    public async createFilledTemplate(@Body() createFilledTemplateDto: CreateFilledTemplateDto) {
-        return this.filledTemplatesService.create(createFilledTemplateDto);
-    }
-
-    @Get("/filled")
-    public async findAllFilledTemplates(@Param("templateId") templateId: string) {
-        return this.filledTemplatesService.findAll(templateId);
-    }
-
-    @Get("/filled/:id")
-    public async findOneFilledTemplate(@Param("id") filledTemplateId: string) {
-        return this.filledTemplatesService.findOne(filledTemplateId);
+    @Patch()
+    public async updatetemplate(@Body() updateTemplateDto: UpdateTemplateDto) {
+        return await this.templatesService.updateOne(updateTemplateDto);
     }
 }

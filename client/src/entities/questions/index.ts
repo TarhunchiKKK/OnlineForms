@@ -10,10 +10,8 @@ export type {
     TPositiveIntegerQuestion,
     TAnyQuestion,
     TCreateQuestionDto,
-    TCreateSingleLineQuestionDto,
-    TCreateMultipleLinesQuestionDto,
-    TCreateCheckboxQUestionDto,
-    TCreatePositiveIntegerQUestionDto,
     TCreateAnyQuestionDto,
+    TUpdateQuestionDto,
+    TUpdateAnyQuestionDto,
 } from "./models";
-export { trimQuestionsDtos } from "./api";
+export { trimCreateQuestionDtos, trimUpdateQuestionDtos } from "./helpers";

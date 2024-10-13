@@ -3,16 +3,14 @@ import { TemplatesService } from "./services/templates.service";
 import { TemplatesController } from "./templates.controller";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Template } from "./entities/template.entity";
-import { FilledTemplate } from "./entities/filled-template.entity";
-import { QuestionsModule } from "src/questions/questions.module";
-import { FilledTemplatesService } from "./services/filled-templates.service";
 import { JwtModule } from "@nestjs/jwt";
 import { ConfigModule, ConfigService } from "@nestjs/config";
+import { Question } from "./entities/question.entity";
+import { QuestionsService } from "./services/questions.service";
 
 @Module({
     imports: [
-        QuestionsModule,
-        TypeOrmModule.forFeature([Template, FilledTemplate]),
+        TypeOrmModule.forFeature([Template, Question]),
         JwtModule.registerAsync({
             imports: [ConfigModule],
             inject: [ConfigService],
@@ -25,6 +23,6 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
         }),
     ],
     controllers: [TemplatesController],
-    providers: [TemplatesService, FilledTemplatesService],
+    providers: [TemplatesService, QuestionsService],
 })
 export class TemplatesModule {}

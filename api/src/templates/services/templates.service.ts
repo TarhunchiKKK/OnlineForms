@@ -4,7 +4,9 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Template } from "../entities/template.entity";
 import { Repository } from "typeorm";
 import { TemplateExistException } from "../exceptions/template-exist.exception";
-import { QuestionsService } from "src/questions/services/questions.service";
+import { QuestionsService } from "src/templates/services/questions.service";
+import { UpdateTemplateDto } from "../dto/update-template.dto";
+import { TemplateNotFoundException } from "../exceptions/template-not-found.exception";
 
 @Injectable()
 export class TemplatesService {
@@ -50,7 +52,26 @@ export class TemplatesService {
             where: {
                 id: templateId,
             },
+            relations: ["creator", "questions"],
         });
+    }
+
+    public async updateOne(updateTemplateDto: UpdateTemplateDto) {
+        const template = await this.templatesRepository.findOne({
+            where: {
+                id: updateTemplateDto.id,
+            },
+        });
+
+        if (!template) {
+            throw new TemplateNotFoundException(updateTemplateDto.id);
+        }
+
+        const { questions, ...templateData } = updateTemplateDto;
+        this.questionsService.updateMany(questions);
+        return await this.templatesRepository.save({ ...template, ...templateData });
+
+        // return await this.templatesRepository.save({ ...template, ...updateTemplateDto });
     }
 
     public async getCount() {

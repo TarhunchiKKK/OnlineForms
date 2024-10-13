@@ -1,4 +1,4 @@
-export interface IDropdownProps {
+export type TDropdownProps = {
     label?: string;
 
     options: { value: string; label: string }[];
@@ -8,4 +8,4 @@ export interface IDropdownProps {
     onSelect: (_: string) => void;
 
     disabled?: boolean;
-}
+};

@@ -9,8 +9,8 @@ import {
 } from "typeorm";
 import { TemplateTopics } from "../enums/template-topics.enum";
 import { User } from "src/users/entities/user.entity";
-import { Question } from "src/questions/entities/question.entity";
-import { FilledTemplate } from "./filled-template.entity";
+import { Question } from "src/templates/entities/question.entity";
+import { FilledTemplate } from "src/answers/entities/filled-template.entity";
 
 @Entity()
 export class Template {

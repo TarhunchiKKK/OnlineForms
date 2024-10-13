@@ -1,1 +1,1 @@
-export type { OmitId } from "./utils";
+export type { THaveId, OmitId } from "./utils";

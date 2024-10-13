@@ -1,7 +1,7 @@
 import { inputClassName } from "@/shared/constants";
-import { ITextAreaProps } from "./types";
+import { TTextAreaProps } from "./types";
 
-export function TextArea({ label, ...inputProps }: ITextAreaProps) {
+export function TextArea({ label, ...inputProps }: TTextAreaProps) {
     return (
         <>
             {label && (
