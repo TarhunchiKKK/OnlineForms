@@ -2,7 +2,7 @@ import { LuPlus } from "react-icons/lu";
 import { FormatableTextarea } from "@/features/text-formatting";
 import { Question } from "@/entities/questions";
 import { Button, Dropdown, QuestionWrapper, TextInput } from "@/shared/ui";
-import { iconsSize, questionsEditingEnabled, templateTopicDropdownOptions } from "./constants";
+import { iconsSize, questionsContext, templateTopicDropdownOptions } from "./constants";
 import { useCreateTemplate } from "./useCreateTemplate";
 
 export function CreateTemplatePage() {
@@ -39,7 +39,7 @@ export function CreateTemplatePage() {
                 <Question
                     key={question.sequenceNumber}
                     question={question}
-                    editable={questionsEditingEnabled}
+                    context={questionsContext}
                 />
             ))}
 

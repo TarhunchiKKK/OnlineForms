@@ -1,7 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import { routes } from "@/shared/constants";
-import { TemplatesPage, SignInPage, SignUpPage, AuthLayout, TemplateLayout } from "@/pages";
-import { CreateTemplatePage } from "@/pages/templates";
+import {
+    TemplatesPage,
+    SignInPage,
+    SignUpPage,
+    AuthLayout,
+    TemplateLayout,
+    CreateTemplatePage,
+} from "@/pages";
 
 export const router = createBrowserRouter([
     {

@@ -10,7 +10,7 @@ export function useMultipleLinesQuestion(question: OmitId<TMultipleLineQuestion>
         dispatch(
             questionsSlice.actions.upsertQuestion({
                 ...question,
-                answer: event.target.value,
+                text: event.target.value,
             } as TMultipleLineQuestion),
         );
     };

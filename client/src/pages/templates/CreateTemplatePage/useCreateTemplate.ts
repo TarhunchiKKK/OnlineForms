@@ -1,5 +1,6 @@
-import { templatesApi } from "@/entities/templates";
 import { useQuestions, useTemplate } from "@/features/template-editing";
+import { templatesApi } from "@/entities/templates";
+import { localStorageService } from "@/shared/services";
 
 export function useCreateTemplate() {
     const [createTemplate] = templatesApi.useCreateMutation();
@@ -16,14 +17,16 @@ export function useCreateTemplate() {
     const { questions, handleAddQuestion } = useQuestions();
 
     const handleSaveTemplate = async () => {
+        const authToken = localStorageService.auth.getAuthToken();
+
         await createTemplate({
-            title,
-            description: JSON.stringify(description),
-            topic,
-            questions,
-            creator: {
-                id: "",
+            data: {
+                title,
+                description: JSON.stringify(description),
+                topic,
+                questions,
             },
+            authToken: authToken!,
         });
     };
 

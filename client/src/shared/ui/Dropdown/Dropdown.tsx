@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IDropdownProps } from "./types";
 import { inputClassName } from "@/shared/constants";
 
-export function Dropdown({ label, options, value, onSelect }: IDropdownProps) {
+export function Dropdown({ label, options, value, onSelect, disabled }: IDropdownProps) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleChangeVisibility = () => {
@@ -13,7 +13,11 @@ export function Dropdown({ label, options, value, onSelect }: IDropdownProps) {
         <>
             {label && <label>{label}</label>}
 
-            <button onClick={handleChangeVisibility} className={`${inputClassName} relative`}>
+            <button
+                disabled={disabled}
+                onClick={handleChangeVisibility}
+                className={`${inputClassName} relative`}
+            >
                 {value}
 
                 {isOpen && (

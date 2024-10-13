@@ -25,12 +25,12 @@ export const defaultQuestions: Record<QuestionTypes, TAnyQuestion> = {
     [QuestionTypes.SingleLine]: {
         title: "",
         type: QuestionTypes.SingleLine,
-        answer: "",
+        line: "",
     } as TAnyQuestion,
     [QuestionTypes.MultipleLines]: {
         title: "",
         type: QuestionTypes.MultipleLines,
-        answer: "",
+        text: "",
     } as TAnyQuestion,
     [QuestionTypes.Checkbox]: {
         title: "",
@@ -41,6 +41,6 @@ export const defaultQuestions: Record<QuestionTypes, TAnyQuestion> = {
     [QuestionTypes.PositiveInteger]: {
         title: "",
         type: QuestionTypes.PositiveInteger,
-        value: 5,
+        value: 0,
     } as TAnyQuestion,
 };

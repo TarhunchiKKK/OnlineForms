@@ -3,11 +3,14 @@ import {
     CreateDateColumn,
     Entity,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from "typeorm";
 import { TemplateTopics } from "../enums/template-topics.enum";
 import { User } from "src/users/entities/user.entity";
+import { Question } from "src/questions/entities/question.entity";
+import { FilledTemplate } from "./filled-template.entity";
 
 @Entity()
 export class Template {
@@ -29,6 +32,12 @@ export class Template {
     @UpdateDateColumn()
     updatedAt: Date;
 
-    @ManyToOne(() => User, (user: User) => user.templates)
+    @ManyToOne(() => User, (user) => user.templates)
     creator: User;
+
+    @OneToMany(() => Question, (question) => question.template)
+    questions: Question[];
+
+    @OneToMany(() => FilledTemplate, (template) => template.originalTemplate)
+    filledTemplates: FilledTemplate[];
 }

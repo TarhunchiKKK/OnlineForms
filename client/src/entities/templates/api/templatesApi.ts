@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ITemplate, TCreateTemplateDto } from "../models/template";
-import { TFindTemplatesQueryArgs } from "./types";
+import { ITemplate } from "../models/template";
+import { TCreateTemplateDto, TFindTemplatesQueryArgs } from "./types";
+import { trimQuestionsDtos } from "@/entities/questions";
 
 export const templatesApi = createApi({
     reducerPath: "templates/api",
@@ -13,10 +14,16 @@ export const templatesApi = createApi({
 
     endpoints: (builder) => ({
         create: builder.mutation<ITemplate, TCreateTemplateDto>({
-            query: (queryArgs: TCreateTemplateDto) => ({
+            query: (dto: TCreateTemplateDto) => ({
                 url: "",
                 method: "POST",
-                body: queryArgs,
+                body: {
+                    ...dto.data,
+                    questions: trimQuestionsDtos(dto.data.questions),
+                },
+                headers: {
+                    Authorization: `Bearer ${dto.authToken}`,
+                },
             }),
             invalidatesTags: ["Template"],
         }),

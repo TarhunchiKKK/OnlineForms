@@ -3,6 +3,8 @@ import { ChangeEvent } from "react";
 export interface INumericInputProps {
     label?: string;
 
+    disabled?: boolean;
+
     min?: number;
 
     max?: number;

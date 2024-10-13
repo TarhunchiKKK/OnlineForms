@@ -1,8 +1,8 @@
 import { TAnyQuestion } from "../../models";
-import { OmitId } from "../../types";
+import { OmitId, QuestionContexts } from "../../types";
 
 export interface IQuestionProps {
     question: OmitId<TAnyQuestion>;
 
-    editable: boolean;
+    context: QuestionContexts;
 }

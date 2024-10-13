@@ -1,13 +1,10 @@
-import { userSlice } from "@/entities/users";
 import { authApi } from "@/features/auth-with-api";
 import { routes } from "@/shared/constants";
 import { localStorageService } from "@/shared/services";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export function useSignInForm() {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [signIn] = authApi.useSignInMutation();
@@ -29,8 +26,7 @@ export function useSignInForm() {
         const { data } = await signIn({ email, password });
 
         if (data) {
-            dispatch(userSlice.actions.setCurrentUser(data.user));
-            localStorageService.setAuthToken(data.access);
+            localStorageService.auth.setAuthToken(data.access);
             navigate(routes.Home);
         }
     };

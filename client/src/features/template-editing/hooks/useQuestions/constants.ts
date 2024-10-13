@@ -3,5 +3,5 @@ import { QuestionTypes, TCreateSingleLineQuestionDto } from "@/entities/question
 export const defaultQuestion: Omit<TCreateSingleLineQuestionDto, "sequenceNumber"> = {
     type: QuestionTypes.SingleLine,
     title: "",
-    answer: "",
+    line: "",
 };

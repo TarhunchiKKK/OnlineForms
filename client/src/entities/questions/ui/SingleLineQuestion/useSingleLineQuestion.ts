@@ -10,12 +10,8 @@ export function useSingleLineQuestion(question: OmitId<TSingleLineQuestion>) {
     const handleAnswerChange = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(
             questionsSlice.actions.upsertQuestion({
-                // id: questionSequenceNumber,
-                // changes: {
-                //     answer: e.target.value,
-                // },
                 ...question,
-                answer: e.target.value,
+                line: e.target.value,
             } as TSingleLineQuestion),
         );
     };

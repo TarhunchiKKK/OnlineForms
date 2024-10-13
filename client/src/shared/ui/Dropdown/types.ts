@@ -6,4 +6,6 @@ export interface IDropdownProps {
     value: string;
 
     onSelect: (_: string) => void;
+
+    disabled?: boolean;
 }

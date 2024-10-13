@@ -1,8 +1,8 @@
 import { TPositiveIntegerQuestion } from "../../models";
-import { OmitId } from "../../types";
+import { OmitId, QuestionContexts } from "../../types";
 
 export interface IPositiveIntegerQuestionProps {
     question: OmitId<TPositiveIntegerQuestion>;
 
-    editable: boolean;
+    context: QuestionContexts;
 }

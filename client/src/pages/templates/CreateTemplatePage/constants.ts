@@ -1,6 +1,7 @@
+import { QuestionContexts } from "@/entities/questions";
 import { TemplateTopics } from "@/entities/templates";
 
-export const questionsEditingEnabled = true;
+export const questionsContext = QuestionContexts.Edit;
 
 export const iconsSize = 24;
 

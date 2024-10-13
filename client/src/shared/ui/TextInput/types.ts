@@ -8,4 +8,6 @@ export interface ITextInputProps {
     value: string;
 
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+
+    disabled?: boolean;
 }

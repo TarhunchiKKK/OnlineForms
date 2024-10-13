@@ -1,15 +1,18 @@
-import { TemplateTopics } from "../models/templateTopics";
+import { TCreateAnyQuestionDto } from "@/entities/questions";
+import { TemplateTopics } from "../models/enums";
 
-export type TCreateTemplateQueryArgs = {
-    title: string;
+export type TCreateTemplateDto = {
+    data: {
+        title: string;
 
-    description: string;
+        description: string;
 
-    topic: TemplateTopics;
+        topic: TemplateTopics;
 
-    creator: {
-        id: string;
+        questions: TCreateAnyQuestionDto[];
     };
+
+    authToken: string;
 };
 
 export type TFindTemplatesQueryArgs = {

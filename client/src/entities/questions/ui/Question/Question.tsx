@@ -1,17 +1,20 @@
 import { IQuestionProps } from "./types";
-import { renderQuestionByType } from "./helpers";
 import { QuestionHeader } from "../QuestionHeader";
 import { QuestionFooter } from "../QuestionFooter";
 import { QuestionWrapper } from "@/shared/ui";
+import { QuestionContexts } from "../../types";
+import { renderQuestionByType } from "./helpers";
 
-export function Question({ question, editable }: IQuestionProps) {
+export function Question({ question, context }: IQuestionProps) {
+    const isEditing = context === QuestionContexts.Edit;
+
     return (
         <QuestionWrapper>
-            <QuestionHeader question={question} />
+            <QuestionHeader question={question} context={context} />
 
-            {renderQuestionByType(question, editable)}
+            {renderQuestionByType(question, context)}
 
-            <QuestionFooter questionId={question.sequenceNumber} />
+            {isEditing ? <QuestionFooter questionId={question.sequenceNumber} /> : <></>}
         </QuestionWrapper>
     );
 }

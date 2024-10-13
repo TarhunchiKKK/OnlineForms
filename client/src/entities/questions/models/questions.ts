@@ -1,4 +1,4 @@
-import { QuestionTypes } from "./questionTypes";
+import { QuestionTypes } from "./enums";
 
 export type TQuestion = {
     id: string;
@@ -11,11 +11,11 @@ export type TQuestion = {
 };
 
 export type TSingleLineQuestion = TQuestion & {
-    answer: string;
+    line: string;
 };
 
 export type TMultipleLineQuestion = TQuestion & {
-    answer: string;
+    text: string;
 };
 
 export type TCheckboxQuestion = TQuestion & {

@@ -6,4 +6,8 @@ export class CreateQuestionDto {
     sequenceNumber: number;
 
     type: QuestionTypes;
+
+    template: {
+        id: string;
+    };
 }

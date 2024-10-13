@@ -1,6 +1,5 @@
 import { IUser } from "@/entities/users";
-import { TemplateTopics } from "./templateTopics";
-import { TCreateAnyQuestionDto } from "@/entities/questions";
+import { TemplateTopics } from "./enums";
 
 export interface ITemplate {
     id: string;
@@ -17,17 +16,3 @@ export interface ITemplate {
 
     updatedAt: string;
 }
-
-export type TCreateTemplateDto = Pick<ITemplate, "title" | "description" | "topic"> & {
-    title: string;
-
-    description: string;
-
-    topic: TemplateTopics;
-
-    creator: {
-        id: string;
-    };
-
-    questions: TCreateAnyQuestionDto[];
-};

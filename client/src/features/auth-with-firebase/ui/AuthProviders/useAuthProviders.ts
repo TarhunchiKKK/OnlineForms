@@ -23,7 +23,7 @@ export function useAuthProviders() {
                 if (authResult) {
                     const { user, access } = authResult;
 
-                    localStorageService.setAuthToken(access);
+                    localStorageService.auth.setAuthToken(access);
 
                     dispatch(userSlice.actions.setCurrentUser(user));
 

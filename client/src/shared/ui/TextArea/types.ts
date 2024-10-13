@@ -5,6 +5,8 @@ export interface ITextAreaProps {
 
     placeholder?: string;
 
+    disabled?: boolean;
+
     value: string;
 
     onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;

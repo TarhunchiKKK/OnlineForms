@@ -4,13 +4,15 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 import { AuthModule } from "./auth/auth.module";
-import { TemplatesModule } from './templates/templates.module';
-import { QuestionsModule } from './questions/questions.module';
+import { TemplatesModule } from "./templates/templates.module";
+import { QuestionsModule } from "./questions/questions.module";
 
 @Module({
     imports: [
         UsersModule,
         AuthModule,
+        TemplatesModule,
+        QuestionsModule,
         ConfigModule.forRoot({
             envFilePath: ".env",
             isGlobal: true,
@@ -40,8 +42,6 @@ import { QuestionsModule } from './questions/questions.module';
                 },
             }),
         }),
-        TemplatesModule,
-        QuestionsModule,
     ],
 })
 export class AppModule {}

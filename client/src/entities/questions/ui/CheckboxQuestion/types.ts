@@ -1,8 +1,8 @@
 import { TCheckboxQuestion } from "../../models";
-import { OmitId } from "../../types";
+import { OmitId, QuestionContexts } from "../../types";
 
 export interface ICheckboxQuestionProps {
     question: OmitId<TCheckboxQuestion>;
 
-    editable: boolean;
+    context: QuestionContexts;
 }
