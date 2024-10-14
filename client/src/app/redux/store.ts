@@ -1,3 +1,4 @@
+import { formsApi } from "@/entities/forms";
 import { questionsSlice } from "@/entities/questions";
 import { templatesApi } from "@/entities/templates";
 import { userSlice } from "@/entities/users";
@@ -10,7 +11,11 @@ export const reduxStore = configureStore({
         [questionsSlice.name]: questionsSlice.reducer,
         [authApi.reducerPath]: authApi.reducer,
         [templatesApi.reducerPath]: templatesApi.reducer,
+        [formsApi.reducerPath]: formsApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(authApi.middleware).concat(templatesApi.middleware),
+        getDefaultMiddleware()
+            .concat(authApi.middleware)
+            .concat(templatesApi.middleware)
+            .concat(formsApi.middleware),
 });

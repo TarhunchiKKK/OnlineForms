@@ -1,8 +1,11 @@
+import { TemplateEditorContext } from "@/shared/types";
 import { TQuestion } from "../../models";
-import { OmitId, QuestionContexts } from "../../types";
+import { TQuestionEditor, OmitId } from "../../types";
 
 export interface IQuestionHeaderProps {
     question: OmitId<TQuestion>;
 
-    context: QuestionContexts;
+    questionEditor: TQuestionEditor;
+
+    context: TemplateEditorContext;
 }

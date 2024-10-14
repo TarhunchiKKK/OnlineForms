@@ -1,4 +1,4 @@
-import { FilledTemplate } from "src/answers/entities/filled-template.entity";
+import { FilledTemplate } from "src/forms/entities/form.entity";
 import { Template } from "src/templates/entities/template.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 

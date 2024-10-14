@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { TFullTemplate, TTemplate } from "../models/templates";
-import { TCreateTemplateDto, TFindTemplatesQueryArgs, TUpdateTemplateDto } from "./types";
 import { trimCreateQuestionDtos, trimUpdateQuestionDtos } from "@/entities/questions";
-import { Descendant } from "slate";
+import { TFullTemplate, TTemplate, TCreateTemplateDto, TUpdateTemplateDto } from "../models";
+import { transformFindAllResponse, transformFindOneResponse } from "./helpers";
+import { TFindTemplatesQueryArgs } from "./types";
 
 export const templatesApi = createApi({
     reducerPath: "templates/api",
@@ -34,6 +34,7 @@ export const templatesApi = createApi({
                 url: "",
                 params: queryArgs,
             }),
+            transformResponse: transformFindAllResponse,
             providesTags: ["Template"],
         }),
 
@@ -41,10 +42,7 @@ export const templatesApi = createApi({
             query: (id: string) => ({
                 url: `/${id}`,
             }),
-            transformResponse: (response: TFullTemplate & { description: string }) => ({
-                ...response,
-                description: JSON.parse(response.description) as Descendant[],
-            }),
+            transformResponse: transformFindOneResponse,
         }),
 
         getCount: builder.query<number, void>({

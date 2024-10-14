@@ -1,7 +1,7 @@
 export { questionsSlice } from "./lib";
 export { Question } from "./ui";
 export { QuestionTypes } from "./models";
-export { QuestionContexts } from "./types";
+export type { TQuestionEditor, TQuestionEditorFactory } from "./types";
 export type {
     TQuestion,
     TSingleLineQuestion,
@@ -14,4 +14,5 @@ export type {
     TUpdateQuestionDto,
     TUpdateAnyQuestionDto,
 } from "./models";
+export { questionEditorFactory } from "./models";
 export { trimCreateQuestionDtos, trimUpdateQuestionDtos } from "./helpers";

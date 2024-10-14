@@ -1,14 +1,17 @@
-import { TemplateEditor } from "@/widgets/templates";
 import { useCreateTemplate } from "./useCreateTemplate";
+import { AddQuestionButton, QuestionsList, TemplateHeader } from "@/features/template-editing";
+import { templateEditorContext } from "./constants";
 
 export function CreateTemplatePage() {
-    const { template, questions, handleSaveTemplate } = useCreateTemplate();
+    const { template, questions } = useCreateTemplate();
 
     return (
-        <TemplateEditor
-            template={template}
-            questions={questions}
-            handleSubmit={handleSaveTemplate}
-        />
+        <>
+            <TemplateHeader {...template} />
+
+            <QuestionsList questions={questions} context={templateEditorContext} />
+
+            <AddQuestionButton />
+        </>
     );
 }

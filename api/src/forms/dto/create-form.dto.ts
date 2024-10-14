@@ -1,11 +1,11 @@
 import { CreateAnswerDto } from "./create-answer.dto";
 
-export class CreateFilledTemplateDto {
+export class CreateFormDto {
     user: {
         id: string;
     };
 
-    originalTemplate: {
+    template: {
         id: string;
     };
 

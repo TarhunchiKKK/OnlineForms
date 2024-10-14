@@ -1,8 +1,11 @@
+import { TemplateEditorContext } from "@/shared/types";
 import { TMultipleLineQuestion } from "../../models";
-import { OmitId, QuestionContexts } from "../../types";
+import { TQuestionEditor, OmitId } from "../../types";
 
 export interface IMultipleLinesQuestionProps {
     question: OmitId<TMultipleLineQuestion>;
 
-    context: QuestionContexts;
+    questionEditor: TQuestionEditor;
+
+    context: TemplateEditorContext;
 }

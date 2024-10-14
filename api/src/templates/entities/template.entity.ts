@@ -10,7 +10,7 @@ import {
 import { TemplateTopics } from "../enums/template-topics.enum";
 import { User } from "src/users/entities/user.entity";
 import { Question } from "src/templates/entities/question.entity";
-import { FilledTemplate } from "src/answers/entities/filled-template.entity";
+import { FilledTemplate } from "src/forms/entities/form.entity";
 
 @Entity()
 export class Template {

@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { FilledTemplate } from "./filled-template.entity";
 import { Question } from "src/templates/entities/question.entity";
+import { Form } from "./form.entity";
 
 @Entity()
 export class Answer {
@@ -19,8 +19,8 @@ export class Answer {
     @Column({ nullable: true })
     value: number | null;
 
-    @ManyToOne(() => FilledTemplate, (template) => template.answers)
-    template: FilledTemplate;
+    @ManyToOne(() => Form, (form) => form.answers)
+    form: Form;
 
     @ManyToOne(() => Question, (question) => question.answers)
     question: Question;

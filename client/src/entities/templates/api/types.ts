@@ -1,34 +1,23 @@
-import { TCreateAnyQuestionDto, TUpdateAnyQuestionDto } from "@/entities/questions";
-import { TemplateTopics } from "../models/enums";
-
-export type TCreateTemplateDto = {
-    data: {
-        title: string;
-
-        description: string;
-
-        topic: TemplateTopics;
-
-        questions: TCreateAnyQuestionDto[];
-    };
-
-    authToken: string;
-};
-
-export type TUpdateTemplateDto = {
-    data: {
-        title: string;
-
-        description: string;
-
-        topic: TemplateTopics;
-
-        questions: TUpdateAnyQuestionDto[];
-    };
-};
+import { TFullTemplate, TTemplate } from "../models";
 
 export type TFindTemplatesQueryArgs = {
     page: number;
 
     limit: number;
+};
+
+export type TFindAllTemplatesResponse = (TTemplate & {
+    description: string;
+
+    createdAt: string;
+
+    updatedAt: string;
+})[];
+
+export type TFindOneTemplateResponse = TFullTemplate & {
+    description: string;
+
+    createdAt: string;
+
+    updatedAt: string;
 };

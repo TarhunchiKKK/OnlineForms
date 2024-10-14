@@ -2,10 +2,10 @@ import { Dropdown, TextInput } from "@/shared/ui";
 import { IQuestionHeaderProps } from "./types";
 import { defaultTitlePlaceholder, questionTypesDropdownOptions } from "./constants";
 import { useQuestionHeader } from "./useQuestionHeader";
-import { QuestionContexts } from "../../types";
+import { TemplateEditorContext } from "@/shared/types";
 
 export function QuestionHeader({ question, context }: IQuestionHeaderProps) {
-    const isAnswering = context === QuestionContexts.Answer;
+    const isAnswering = context === TemplateEditorContext.Answer;
 
     const { handleTitleChange, handleTypeChange } = useQuestionHeader(question);
 

@@ -1,2 +1,2 @@
 export { useQuestions, useTemplate } from "./hooks";
-export { TemplateHeader, AddQuestionButton } from "./ui";
+export { TemplateHeader, AddQuestionButton, QuestionsList } from "./ui";

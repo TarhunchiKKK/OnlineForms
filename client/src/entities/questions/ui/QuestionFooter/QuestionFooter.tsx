@@ -4,11 +4,11 @@ import { MdDeleteOutline } from "react-icons/md";
 import { questionsSlice } from "../../lib";
 import { iconsSize } from "./constants";
 
-export function QuestionFooter({ questionId }: IQuestionFooterProps) {
+export function QuestionFooter({ question }: IQuestionFooterProps) {
     const dispatch = useDispatch();
 
     const handleDeleteQuestion = () => {
-        dispatch(questionsSlice.actions.deleteQuestion(questionId));
+        dispatch(questionsSlice.actions.deleteQuestion(question.sequenceNumber));
     };
 
     return (

@@ -2,7 +2,9 @@ import { TemplateTopics } from "@/entities/templates";
 import { ChangeEvent } from "react";
 import { Descendant } from "slate";
 
-export interface ITemplateHeaderProps {
+export type TTemplateHeaderProps = {
+    editable: boolean;
+
     data: {
         title: string;
 
@@ -18,6 +20,4 @@ export interface ITemplateHeaderProps {
 
         handleTopicChange: (value: string) => void;
     };
-
-    dropdownOptions: { label: string; value: string }[];
-}
+};

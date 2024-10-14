@@ -2,10 +2,10 @@ import { NumericInput } from "@/shared/ui";
 import { IPositiveIntegerQuestionProps } from "./types";
 import { usePositiveIntegerQuestion } from "./usePositiveIntegerQuestion";
 import { maxValue, minValue, step } from "./constants";
-import { QuestionContexts } from "../../types";
+import { TemplateEditorContext } from "@/shared/types";
 
 export function PositiveIntegerQuestion({ question, context }: IPositiveIntegerQuestionProps) {
-    const isEditing = context === QuestionContexts.Edit;
+    const isEditing = context === TemplateEditorContext.Edit;
 
     const { handleValueChange } = usePositiveIntegerQuestion(question);
 

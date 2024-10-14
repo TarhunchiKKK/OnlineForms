@@ -15,7 +15,7 @@ export function useCreateTemplate() {
         handleTopicChange,
     } = useTemplate();
 
-    const { questions, handleAddQuestion } = useQuestions();
+    const { questions } = useQuestions();
 
     const handleSaveTemplate = async () => {
         const authToken = localStorageService.auth.getAuthToken();
@@ -43,13 +43,9 @@ export function useCreateTemplate() {
                 handleDescriptionChange,
                 handleTopicChange,
             },
+            editable: true,
         },
-        questions: {
-            data: questions as TQuestion[],
-            handlers: {
-                handleAddQuestion,
-            },
-        },
+        questions: questions as TQuestion[],
         handleSaveTemplate,
     };
 }

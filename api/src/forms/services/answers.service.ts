@@ -13,11 +13,11 @@ export class AnswersService {
         return await this.answersRepository.save(createAnswerDto);
     }
 
-    public async createMany(templateId: string, dtos: Omit<CreateAnswerDto, "template">[]) {
+    public async createMany(formId: string, dtos: Omit<CreateAnswerDto, "form">[]) {
         const createAnswersDtos: CreateAnswerDto[] = dtos.map((answer) => ({
             ...answer,
-            template: {
-                id: templateId,
+            form: {
+                id: formId,
             },
         }));
 
@@ -26,11 +26,11 @@ export class AnswersService {
         return await Promise.all(creationPromises);
     }
 
-    public async findAllByTemplateId(templateId: string) {
+    public async findAllByFormId(templateId: string) {
         const answers = await this.answersRepository.find({
             relations: ["question"],
             where: {
-                template: {
+                form: {
                     id: templateId,
                 },
             },

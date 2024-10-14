@@ -1,7 +1,4 @@
-import { QuestionContexts } from "@/entities/questions";
 import { TemplateTopics } from "@/entities/templates";
-
-export const questionsContext = QuestionContexts.Edit;
 
 export const templateTopicDropdownOptions = [
     {

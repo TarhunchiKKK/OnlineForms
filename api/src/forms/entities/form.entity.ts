@@ -4,7 +4,7 @@ import { CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn 
 import { Answer } from "./answer.entity";
 
 @Entity()
-export class FilledTemplate {
+export class Form {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
@@ -15,8 +15,8 @@ export class FilledTemplate {
     user: User;
 
     @ManyToOne(() => Template, (template) => template.filledTemplates)
-    originalTemplate: Template;
+    template: Template;
 
-    @OneToMany(() => Answer, (answer) => answer.template)
+    @OneToMany(() => Answer, (answer) => answer.form)
     answers: Answer[];
 }

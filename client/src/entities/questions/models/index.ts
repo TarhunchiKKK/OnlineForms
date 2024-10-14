@@ -1,4 +1,4 @@
-export { QuestionTypes } from "./enums";
+export { QuestionTypes } from "./questions";
 export type {
     TQuestion,
     TSingleLineQuestion,
@@ -13,3 +13,4 @@ export type {
     TUpdateQuestionDto,
     TUpdateAnyQuestionDto,
 } from "./dtos";
+export { questionEditorFactory } from "./questionEditorFactory";

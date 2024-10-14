@@ -1,1 +1,1 @@
-export { TemplatesTable, TemplateEditor } from "./ui";
+export { TemplatesTable } from "./ui";

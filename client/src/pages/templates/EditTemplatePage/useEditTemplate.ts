@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useQuestions, useTemplate } from "@/features/template-editing";
-import { TUpdateAnyQuestionDto } from "@/entities/questions";
+import { TQuestion, TUpdateAnyQuestionDto } from "@/entities/questions";
 import { templatesApi } from "@/entities/templates";
 
 export function useEditTemplate() {
@@ -18,7 +18,7 @@ export function useEditTemplate() {
         handleTopicChange,
     } = useTemplate(fetchedTemplate ?? null);
 
-    const { questions, handleAddQuestion } = useQuestions(fetchedTemplate?.questions ?? null);
+    const { questions } = useQuestions(fetchedTemplate?.questions ?? null);
 
     const handleSaveTemplate = async () => {
         await updateTemplate({
@@ -43,13 +43,9 @@ export function useEditTemplate() {
                 handleDescriptionChange,
                 handleTopicChange,
             },
+            editable: true,
         },
-        questions: {
-            data: questions,
-            handlers: {
-                handleAddQuestion,
-            },
-        },
+        questions: questions as TQuestion[],
         handleSaveTemplate,
     };
 }

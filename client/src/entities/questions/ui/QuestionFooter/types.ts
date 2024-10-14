@@ -1,3 +1,8 @@
+import { TQuestion } from "../../models";
+import { TQuestionEditor } from "../../types";
+
 export interface IQuestionFooterProps {
-    questionId: number;
+    question: TQuestion;
+
+    questionEditor: TQuestionEditor;
 }
