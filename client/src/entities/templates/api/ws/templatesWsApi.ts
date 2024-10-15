@@ -2,7 +2,7 @@ import { io, Socket } from "socket.io-client";
 import { updateTemplateDelay } from "./constants";
 import { TUpdateTemplateDto } from "../../models";
 
-export class TemplatesWsApi {
+class TemplatesWsApi {
     private socket: Socket;
 
     private updateTimer: NodeJS.Timer | undefined = undefined;
@@ -22,5 +22,17 @@ export class TemplatesWsApi {
                 description: JSON.stringify(dto.data.description),
             });
         }, updateTemplateDelay);
+    }
+}
+
+export class TemplatesWsApiProvider {
+    private static instance: TemplatesWsApi | null = null;
+
+    public static getInstance() {
+        if (!TemplatesWsApiProvider.instance) {
+            TemplatesWsApiProvider.instance = new TemplatesWsApi();
+        }
+
+        return TemplatesWsApiProvider.instance;
     }
 }

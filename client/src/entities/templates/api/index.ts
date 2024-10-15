@@ -1,2 +1,2 @@
 export { templatesApi } from "./http/templatesApi";
-export { TemplatesWsApi } from "./ws/templatesWsApi";
+export { TemplatesWsApiProvider } from "./ws/templatesWsApi";

@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import { TPositiveIntegerQuestion } from "../../models";
-import { TQuestionEditor } from "../../utils";
+import { TQuestionEditor } from "../../types";
 
 export function usePositiveIntegerQuestion(
     question: TPositiveIntegerQuestion,

@@ -1,6 +1,6 @@
 import { TemplateEditorContext } from "@/shared/types";
 import { TSingleLineQuestion } from "../../models";
-import { TQuestionEditor } from "../../utils";
+import { TQuestionEditor } from "../../types";
 
 export interface ISingleLineQuestionProps {
     question: TSingleLineQuestion;

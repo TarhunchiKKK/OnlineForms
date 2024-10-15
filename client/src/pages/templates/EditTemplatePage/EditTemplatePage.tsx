@@ -1,16 +1,12 @@
-import {
-    AddQuestionButton,
-    questionEditorsFactories,
-    QuestionsList,
-    TemplateHeader,
-} from "@/features/template-editing";
+import { AddQuestionButton, QuestionsList, TemplateHeader } from "@/features/template-editing";
 import { useEditTemplate } from "./useEditTemplate";
 import { templateEditorContext } from "./constants";
+import { questionEditorFactory } from "@/features/questions-editing";
 
 export function EditTemplatePage() {
     const { template, questions } = useEditTemplate();
 
-    const questionsEditor = questionEditorsFactories[templateEditorContext].useEditor();
+    const questionsEditor = questionEditorFactory.useEditor();
 
     const handleCreateQuestion = () => {
         questionsEditor.createQuestion(template.template!.id);

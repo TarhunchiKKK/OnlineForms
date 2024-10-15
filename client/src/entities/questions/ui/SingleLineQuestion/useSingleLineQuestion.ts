@@ -1,6 +1,6 @@
 import { TSingleLineQuestion } from "../../models";
 import { ChangeEvent } from "react";
-import { TQuestionEditor } from "../../utils";
+import { TQuestionEditor } from "../../types";
 
 export function useSingleLineQuestion(
     question: TSingleLineQuestion,

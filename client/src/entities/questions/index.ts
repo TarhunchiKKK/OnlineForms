@@ -13,5 +13,5 @@ export type {
     TUpdateQuestionDto,
     TUpdateAnyQuestionDto,
 } from "./models";
-export { QuestionsWsApi, questionsApi } from "./api";
-export * from "./utils";
+export { QuestionsWsApiProvider, questionsApi } from "./api";
+export type { TQuestionEditor, TQuestionEditorFactory } from "./types";

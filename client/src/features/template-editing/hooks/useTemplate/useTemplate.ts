@@ -1,6 +1,6 @@
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Descendant } from "slate";
-import { TemplatesWsApi, TemplateTopics, TTemplate } from "@/entities/templates";
+import { TemplatesWsApiProvider, TemplateTopics, TTemplate } from "@/entities/templates";
 
 export function useTemplate(inputTemplate?: TTemplate) {
     const [template, setTemplate] = useState(inputTemplate);
@@ -9,7 +9,7 @@ export function useTemplate(inputTemplate?: TTemplate) {
         setTemplate(inputTemplate);
     }, [inputTemplate]);
 
-    const templatesWsApi = useMemo(() => new TemplatesWsApi(), []);
+    const templatesWsApi = TemplatesWsApiProvider.getInstance();
 
     const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const newValue = {

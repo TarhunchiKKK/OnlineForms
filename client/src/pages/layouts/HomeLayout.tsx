@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 
-export function Layout() {
+export function HomeLayout() {
     return (
-        <main className="py-4 bg-green-primary">
+        <main className="py-4">
             <div className="container mx-auto">
                 <Outlet />
             </div>

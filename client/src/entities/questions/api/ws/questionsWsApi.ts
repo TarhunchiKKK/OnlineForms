@@ -35,3 +35,15 @@ export class QuestionsWsApi {
         this.socket.on("onCreateQuestion", callback);
     }
 }
+
+export class QuestionsWsApiProvider {
+    private static instance: QuestionsWsApi | null = null;
+
+    public static getInstance() {
+        if (!QuestionsWsApiProvider.instance) {
+            QuestionsWsApiProvider.instance = new QuestionsWsApi();
+        }
+
+        return QuestionsWsApiProvider.instance;
+    }
+}

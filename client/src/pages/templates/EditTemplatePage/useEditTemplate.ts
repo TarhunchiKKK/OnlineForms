@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
-import { useQuestions, useTemplate } from "@/features/template-editing";
-import { questionsApi, TQuestion } from "@/entities/questions";
+import { useTemplate } from "@/features/template-editing";
+import { useQuestions } from "@/features/questions-editing";
 import { templatesApi } from "@/entities/templates";
+import { questionsApi, TQuestion } from "@/entities/questions";
 
 export function useEditTemplate() {
     const { id: templateId } = useParams();

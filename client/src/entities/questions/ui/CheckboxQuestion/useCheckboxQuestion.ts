@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { TCheckboxQuestion } from "../../models";
 import { ChangeEvent } from "react";
 import { questionsSlice } from "../../lib";
-import { TQuestionEditor } from "../../utils";
+import { TQuestionEditor } from "../../types";
 
 export function useCheckboxQuestion(question: TCheckboxQuestion, questionEditor: TQuestionEditor) {
     const dispatch = useDispatch();

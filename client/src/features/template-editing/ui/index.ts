@@ -1,3 +1,3 @@
 export { TemplateHeader } from "./TemplateHeader";
-export { AddQuestionButton } from "./AddQuestionButton";
-export { QuestionsList } from "./QuestionsList";
+export { AddQuestionButton } from "../../questions-editing/ui/AddQuestionButton";
+export { QuestionsList } from "../../../widgets/questions/ui/QuestionsList";

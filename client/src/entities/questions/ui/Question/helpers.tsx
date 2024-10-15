@@ -3,7 +3,7 @@ import { CheckboxQuestion } from "../CheckboxQuestion";
 import { MultipleLinesQuestion } from "../MultipleLinesQuestion";
 import { PositiveIntegerQuestion } from "../PositiveIntegerQuestion";
 import { SingleLineQuestion } from "../SingleLineQuestion";
-import { TQuestionEditor } from "../../utils";
+import { TQuestionEditor } from "../../types";
 import {
     QuestionTypes,
     TCheckboxQuestion,

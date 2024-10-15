@@ -1,19 +1,18 @@
 import { useDispatch } from "react-redux";
-import { TQuestion } from "../models/questions";
-import { questionsSlice } from "../lib";
-import { QuestionsWsApi } from "../api";
-import { useQuestions } from "@/features/template-editing";
-import { defaultQuestion } from "../constants";
-import { TQuestionEditorFactory } from "./types";
-import { TCreateQuestionDto } from "../models";
-import { useMemo } from "react";
+import { TQuestion } from "../../../entities/questions/models/questions";
+import { questionsSlice } from "../../../entities/questions/lib";
+import { QuestionsWsApiProvider } from "../../../entities/questions/api";
+import { TCreateQuestionDto } from "../../../entities/questions/models";
+import { defaultQuestion } from "./constants";
+import { useQuestions } from "../hooks";
+import { TQuestionEditorFactory } from "@/entities/questions";
 
 export const questionEditorFactory: TQuestionEditorFactory = {
     useEditor() {
         const dispatch = useDispatch();
         const { nextSequenceNumber } = useQuestions();
 
-        const questionsWsApi = useMemo(() => new QuestionsWsApi(), []);
+        const questionsWsApi = QuestionsWsApiProvider.getInstance();
 
         questionsWsApi.onCreateQuestion((question) => {
             dispatch(questionsSlice.actions.upsertQuestion(question));

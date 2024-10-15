@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { defaultQuestions } from "./constants";
 import { QuestionTypes, TQuestion } from "../../models";
-import { TQuestionEditor } from "../../utils";
+import { TQuestionEditor } from "../../types";
 
 export function useQuestionHeader(question: TQuestion, questionEditor: TQuestionEditor) {
     const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {

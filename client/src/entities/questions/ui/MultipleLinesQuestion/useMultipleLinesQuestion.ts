@@ -1,5 +1,5 @@
 import { TMultipleLineQuestion } from "../../models";
-import { TQuestionEditor } from "../../utils";
+import { TQuestionEditor } from "../../types";
 
 export function useMultipleLinesQuestion(
     question: TMultipleLineQuestion,

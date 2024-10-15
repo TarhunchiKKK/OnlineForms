@@ -1,4 +1,4 @@
-import { QuestionTypes, TCreateQuestionDto } from "../models";
+import { QuestionTypes, TCreateQuestionDto } from "@/entities/questions";
 
 export const defaultQuestion: Omit<TCreateQuestionDto, "sequenceNumber" | "template"> = {
     type: QuestionTypes.SingleLine,
