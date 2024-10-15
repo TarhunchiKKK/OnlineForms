@@ -1,4 +1,4 @@
-import { TFullTemplate, TTemplate } from "../models";
+import { TFullTemplate, TTemplate } from "../../models";
 
 export type TFindTemplatesQueryArgs = {
     page: number;
@@ -20,4 +20,8 @@ export type TFindOneTemplateResponse = TFullTemplate & {
     createdAt: string;
 
     updatedAt: string;
+};
+
+export type TCreateResponse = TTemplate & {
+    description: string;
 };

@@ -4,10 +4,10 @@ import { defaultTitlePlaceholder, questionTypesDropdownOptions } from "./constan
 import { useQuestionHeader } from "./useQuestionHeader";
 import { TemplateEditorContext } from "@/shared/types";
 
-export function QuestionHeader({ question, context }: IQuestionHeaderProps) {
+export function QuestionHeader({ question, questionEditor, context }: IQuestionHeaderProps) {
     const isAnswering = context === TemplateEditorContext.Answer;
 
-    const { handleTitleChange, handleTypeChange } = useQuestionHeader(question);
+    const { handleTitleChange, handleTypeChange } = useQuestionHeader(question, questionEditor);
 
     return (
         <div className="flex flex-row justify-between items-center mb-4">

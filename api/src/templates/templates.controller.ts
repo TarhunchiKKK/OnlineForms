@@ -1,9 +1,8 @@
-import { Controller, Get, Post, Body, Param, Query, Req, UseGuards, Patch } from "@nestjs/common";
+import { Controller, Get, Post, Body, Param, Query, Req, UseGuards } from "@nestjs/common";
 import { TemplatesService } from "./services/templates.service";
 import { CreateTemplateDto } from "./dto/create-template.dto";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 import { QuestionsService } from "./services/questions.service";
-import { UpdateTemplateDto } from "./dto/update-template.dto";
 
 @Controller("templates")
 export class TemplatesController {
@@ -41,8 +40,8 @@ export class TemplatesController {
         return this.templatesService.findOne(templateId);
     }
 
-    @Patch()
-    public async updatetemplate(@Body() updateTemplateDto: UpdateTemplateDto) {
-        return await this.templatesService.updateOne(updateTemplateDto);
+    @Get("/:id/questions")
+    public async getTemplateQuestions(@Param("id") templateId: string) {
+        return await this.questionsService.findAllByTemplateId(templateId);
     }
 }

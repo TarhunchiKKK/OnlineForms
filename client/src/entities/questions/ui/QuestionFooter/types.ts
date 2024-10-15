@@ -1,5 +1,5 @@
 import { TQuestion } from "../../models";
-import { TQuestionEditor } from "../../types";
+import { TQuestionEditor } from "../../utils";
 
 export interface IQuestionFooterProps {
     question: TQuestion;

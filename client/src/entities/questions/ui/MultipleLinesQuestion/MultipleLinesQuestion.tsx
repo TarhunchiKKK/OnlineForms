@@ -4,10 +4,14 @@ import { useMultipleLinesQuestion } from "./useMultipleLinesQuestion";
 import { answerPlaceholder } from "./constants";
 import { TemplateEditorContext } from "@/shared/types";
 
-export function MultipleLinesQuestion({ question, context }: IMultipleLinesQuestionProps) {
+export function MultipleLinesQuestion({
+    question,
+    questionEditor,
+    context,
+}: IMultipleLinesQuestionProps) {
     const isEditing = context === TemplateEditorContext.Edit;
 
-    const { handleAnswerChange } = useMultipleLinesQuestion(question);
+    const { handleAnswerChange } = useMultipleLinesQuestion(question, questionEditor);
 
     return (
         <>

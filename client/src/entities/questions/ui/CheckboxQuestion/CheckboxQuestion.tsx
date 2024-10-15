@@ -4,10 +4,10 @@ import { useCheckboxQuestion } from "./useCheckboxQuestion";
 import { checkedLabel, notCheckedLabel } from "./constants";
 import { TemplateEditorContext } from "@/shared/types";
 
-export function CheckboxQuestion({ question, context }: ICheckboxQuestionProps) {
+export function CheckboxQuestion({ question, context, questionEditor }: ICheckboxQuestionProps) {
     const isEditing = context === TemplateEditorContext.Edit;
 
-    const { handleCheck } = useCheckboxQuestion(question);
+    const { handleCheck } = useCheckboxQuestion(question, questionEditor);
 
     return (
         <>

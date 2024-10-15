@@ -1,8 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { trimCreateQuestionDtos, trimUpdateQuestionDtos } from "@/entities/questions";
-import { TFullTemplate, TTemplate, TCreateTemplateDto, TUpdateTemplateDto } from "../models";
-import { transformFindAllResponse, transformFindOneResponse } from "./helpers";
 import { TFindTemplatesQueryArgs } from "./types";
+import { defaultTemplate } from "../../constants";
+import { TFullTemplate, TTemplate, TCreateTemplateDto } from "../../models";
+import {
+    transformCreateResponse,
+    transformFindAllResponse,
+    transformFindOneResponse,
+} from "../ws/helpers";
 
 export const templatesApi = createApi({
     reducerPath: "templates/api",
@@ -14,18 +18,29 @@ export const templatesApi = createApi({
     tagTypes: ["Template"],
 
     endpoints: (builder) => ({
+        createDefault: builder.mutation<TTemplate, string>({
+            query: (authToken: string) => ({
+                url: "",
+                method: "POST",
+                body: defaultTemplate,
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            }),
+            transformResponse: transformCreateResponse,
+            invalidatesTags: ["Template"],
+        }),
+
         create: builder.mutation<TTemplate, TCreateTemplateDto>({
             query: (dto: TCreateTemplateDto) => ({
                 url: "",
                 method: "POST",
-                body: {
-                    ...dto.data,
-                    questions: trimCreateQuestionDtos(dto.data.questions),
-                },
+                body: dto.data,
                 headers: {
                     Authorization: `Bearer ${dto.authToken}`,
                 },
             }),
+            transformResponse: transformCreateResponse,
             invalidatesTags: ["Template"],
         }),
 
@@ -48,17 +63,6 @@ export const templatesApi = createApi({
         getCount: builder.query<number, void>({
             query: () => ({
                 url: "/count",
-            }),
-        }),
-
-        update: builder.mutation<void, TUpdateTemplateDto>({
-            query: (dto: TUpdateTemplateDto) => ({
-                url: "",
-                method: "PATCH",
-                body: {
-                    ...dto.data,
-                    questions: trimUpdateQuestionDtos(dto.data.questions),
-                },
             }),
         }),
     }),

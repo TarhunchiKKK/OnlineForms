@@ -13,4 +13,3 @@ export type {
     TUpdateQuestionDto,
     TUpdateAnyQuestionDto,
 } from "./dtos";
-export { questionEditorFactory } from "./questionEditorFactory";

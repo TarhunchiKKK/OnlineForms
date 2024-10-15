@@ -1,5 +1,4 @@
 import { TemplateTopics } from "../enums/template-topics.enum";
-import { CreateQuestionDto } from "src/templates/dto/create-question.dto";
 
 export class CreateTemplateDto {
     title: string;
@@ -11,6 +10,4 @@ export class CreateTemplateDto {
     creator: {
         id: string;
     };
-
-    questions: Omit<CreateQuestionDto, "template">[];
 }

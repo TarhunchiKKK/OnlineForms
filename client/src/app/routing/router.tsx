@@ -6,7 +6,6 @@ import {
     SignUpPage,
     AuthLayout,
     TemplateLayout,
-    CreateTemplatePage,
     EditTemplatePage,
 } from "@/pages";
 
@@ -36,10 +35,6 @@ export const router = createBrowserRouter([
                 path: routes.Template,
                 element: <TemplateLayout />,
                 children: [
-                    {
-                        path: routes.CreateTemplate,
-                        element: <CreateTemplatePage />,
-                    },
                     {
                         path: `${routes.EditTemplate}/:id`,
                         element: <EditTemplatePage />,

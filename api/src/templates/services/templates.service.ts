@@ -17,26 +17,7 @@ export class TemplatesService {
     ) {}
 
     public async create(createTemplateDto: CreateTemplateDto) {
-        const exitsTemplate = await this.templatesRepository.findOne({
-            where: {
-                title: createTemplateDto.title,
-            },
-        });
-
-        if (exitsTemplate) {
-            throw new TemplateExistException(createTemplateDto.title);
-        }
-
-        const template = await this.templatesRepository.save({
-            title: createTemplateDto.title,
-            description: createTemplateDto.description,
-            topic: createTemplateDto.topic,
-            creator: createTemplateDto.creator,
-        });
-
-        await this.questionsService.createMany(template.id, createTemplateDto.questions);
-
-        return template;
+        return await this.templatesRepository.save(createTemplateDto);
     }
 
     public async findAll(page: number, limit: number) {
@@ -56,7 +37,7 @@ export class TemplatesService {
         });
     }
 
-    public async updateOne(updateTemplateDto: UpdateTemplateDto) {
+    public async update(updateTemplateDto: UpdateTemplateDto) {
         const template = await this.templatesRepository.findOne({
             where: {
                 id: updateTemplateDto.id,
@@ -67,11 +48,7 @@ export class TemplatesService {
             throw new TemplateNotFoundException(updateTemplateDto.id);
         }
 
-        const { questions, ...templateData } = updateTemplateDto;
-        this.questionsService.updateMany(questions);
-        return await this.templatesRepository.save({ ...template, ...templateData });
-
-        // return await this.templatesRepository.save({ ...template, ...updateTemplateDto });
+        return await this.templatesRepository.save(updateTemplateDto);
     }
 
     public async getCount() {

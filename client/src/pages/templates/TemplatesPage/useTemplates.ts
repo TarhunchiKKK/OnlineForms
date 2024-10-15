@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
-import { changeLimitDelay, defaultPage, defaultTemplatesLimit } from "./constants";
 import { templatesApi } from "@/entities/templates";
 import { useDebounce } from "@/shared/hooks";
+import { changeLimitDelay, defaultPage, defaultTemplatesLimit } from "./constants";
 
 export function useTemplates() {
     const [page, setPage] = useState<number>(defaultPage);

@@ -1,9 +1,24 @@
+import { z } from "zod";
 import { QuestionTypes } from "../enums/question-types.enum";
 
-export class UpdateQuestionDto {
-    id: string;
+export const UpdateQuestionDtoSchema = z.object({
+    id: z.string(),
 
-    sequenceNumber?: number;
+    title: z.string().optional(),
 
-    type?: QuestionTypes;
-}
+    sequenceNumber: z.number().optional(),
+
+    type: z.nativeEnum(QuestionTypes).optional(),
+});
+
+export type UpdateQuestionDto = z.infer<typeof UpdateQuestionDtoSchema>;
+
+// export class UpdateQuestionDto {
+//     id: string;
+
+//     title?: string;
+
+//     sequenceNumber?: number;
+
+//     type?: QuestionTypes;
+// }

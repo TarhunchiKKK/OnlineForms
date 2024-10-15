@@ -5,7 +5,7 @@ import { Descendant } from "slate";
 export type TTemplateHeaderProps = {
     editable: boolean;
 
-    data: {
+    template: {
         title: string;
 
         description: Descendant[];

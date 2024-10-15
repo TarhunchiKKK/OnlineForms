@@ -4,10 +4,14 @@ import { useSingleLineQuestion } from "./useSingleLineQuestion";
 import { answerPlaceholder } from "./constants";
 import { TemplateEditorContext } from "@/shared/types";
 
-export function SingleLineQuestion({ question, context }: ISingleLineQuestionProps) {
+export function SingleLineQuestion({
+    question,
+    questionEditor,
+    context,
+}: ISingleLineQuestionProps) {
     const isEditing = context === TemplateEditorContext.Edit;
 
-    const { handleAnswerChange } = useSingleLineQuestion(question);
+    const { handleAnswerChange } = useSingleLineQuestion(question, questionEditor);
 
     return (
         <>

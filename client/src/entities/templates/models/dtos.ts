@@ -1,4 +1,4 @@
-import { TCreateAnyQuestionDto, TUpdateAnyQuestionDto } from "@/entities/questions";
+import { Descendant } from "slate";
 import { TemplateTopics } from "./enums";
 
 export type TCreateTemplateDto = {
@@ -8,8 +8,6 @@ export type TCreateTemplateDto = {
         description: string;
 
         topic: TemplateTopics;
-
-        questions: TCreateAnyQuestionDto[];
     };
 
     authToken: string;
@@ -17,12 +15,12 @@ export type TCreateTemplateDto = {
 
 export type TUpdateTemplateDto = {
     data: {
+        id: string;
+
         title: string;
 
-        description: string;
+        description: Descendant[];
 
         topic: TemplateTopics;
-
-        questions: TUpdateAnyQuestionDto[];
     };
 };

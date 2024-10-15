@@ -7,6 +7,7 @@ import { JwtModule } from "@nestjs/jwt";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { Question } from "./entities/question.entity";
 import { QuestionsService } from "./services/questions.service";
+import { TemplatesGateway } from "./templates.gateway";
 
 @Module({
     imports: [
@@ -23,6 +24,6 @@ import { QuestionsService } from "./services/questions.service";
         }),
     ],
     controllers: [TemplatesController],
-    providers: [TemplatesService, QuestionsService],
+    providers: [TemplatesGateway, TemplatesService, QuestionsService],
 })
 export class TemplatesModule {}

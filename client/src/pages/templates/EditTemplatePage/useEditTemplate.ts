@@ -1,51 +1,24 @@
 import { useParams } from "react-router-dom";
 import { useQuestions, useTemplate } from "@/features/template-editing";
-import { TQuestion, TUpdateAnyQuestionDto } from "@/entities/questions";
+import { questionsApi, TQuestion } from "@/entities/questions";
 import { templatesApi } from "@/entities/templates";
 
 export function useEditTemplate() {
-    const { id } = useParams();
-    const { data: fetchedTemplate } = templatesApi.useFindOneQuery(id!);
+    const { id: templateId } = useParams();
 
-    const [updateTemplate] = templatesApi.useUpdateMutation();
+    const { data: fetchedTemplate } = templatesApi.useFindOneQuery(templateId!);
+    const { data: fetchedQuestions } = questionsApi.useFindByTemplateQuery(templateId!);
 
-    const {
-        title,
-        description,
-        topic,
-        handleTitleChange,
-        handleDescriptionChange,
-        handleTopicChange,
-    } = useTemplate(fetchedTemplate ?? null);
+    const { template, handlers } = useTemplate(fetchedTemplate);
 
-    const { questions } = useQuestions(fetchedTemplate?.questions ?? null);
-
-    const handleSaveTemplate = async () => {
-        await updateTemplate({
-            data: {
-                title,
-                description: JSON.stringify(description),
-                topic,
-                questions: questions as TUpdateAnyQuestionDto[],
-            },
-        });
-    };
+    const { questions } = useQuestions(fetchedQuestions);
 
     return {
         template: {
-            data: {
-                title,
-                description,
-                topic,
-            },
-            handlers: {
-                handleTitleChange,
-                handleDescriptionChange,
-                handleTopicChange,
-            },
+            template,
+            handlers,
             editable: true,
         },
         questions: questions as TQuestion[],
-        handleSaveTemplate,
     };
 }

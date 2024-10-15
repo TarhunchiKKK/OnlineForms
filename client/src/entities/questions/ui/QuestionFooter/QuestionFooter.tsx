@@ -1,19 +1,14 @@
-import { useDispatch } from "react-redux";
-import { IQuestionFooterProps } from "./types";
 import { MdDeleteOutline } from "react-icons/md";
-import { questionsSlice } from "../../lib";
+import { IQuestionFooterProps } from "./types";
 import { iconsSize } from "./constants";
+import { useQuestionsFooter } from "./useQuestionsFooter";
 
-export function QuestionFooter({ question }: IQuestionFooterProps) {
-    const dispatch = useDispatch();
-
-    const handleDeleteQuestion = () => {
-        dispatch(questionsSlice.actions.deleteQuestion(question.sequenceNumber));
-    };
+export function QuestionFooter({ question, questionEditor }: IQuestionFooterProps) {
+    const { handleRemoveQuestion } = useQuestionsFooter(question, questionEditor);
 
     return (
         <div className="mt-6 flex flex-row justify-end items-center">
-            <button title="Delete" onClick={handleDeleteQuestion}>
+            <button title="Delete" onClick={handleRemoveQuestion}>
                 <MdDeleteOutline size={iconsSize} />
             </button>
         </div>

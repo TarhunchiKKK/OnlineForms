@@ -3,18 +3,18 @@ import { CheckboxQuestion } from "../CheckboxQuestion";
 import { MultipleLinesQuestion } from "../MultipleLinesQuestion";
 import { PositiveIntegerQuestion } from "../PositiveIntegerQuestion";
 import { SingleLineQuestion } from "../SingleLineQuestion";
-import { TQuestionEditor, OmitId } from "../../types";
+import { TQuestionEditor } from "../../utils";
 import {
     QuestionTypes,
-    TAnyQuestion,
     TCheckboxQuestion,
     TMultipleLineQuestion,
     TPositiveIntegerQuestion,
+    TQuestion,
     TSingleLineQuestion,
 } from "../../models";
 
 export const renderQuestionByType = (
-    question: OmitId<TAnyQuestion>,
+    question: TQuestion,
     questionEditor: TQuestionEditor,
     context: TemplateEditorContext,
 ) => {

@@ -4,10 +4,14 @@ import { usePositiveIntegerQuestion } from "./usePositiveIntegerQuestion";
 import { maxValue, minValue, step } from "./constants";
 import { TemplateEditorContext } from "@/shared/types";
 
-export function PositiveIntegerQuestion({ question, context }: IPositiveIntegerQuestionProps) {
+export function PositiveIntegerQuestion({
+    question,
+    questionEditor,
+    context,
+}: IPositiveIntegerQuestionProps) {
     const isEditing = context === TemplateEditorContext.Edit;
 
-    const { handleValueChange } = usePositiveIntegerQuestion(question);
+    const { handleValueChange } = usePositiveIntegerQuestion(question, questionEditor);
 
     return (
         <>

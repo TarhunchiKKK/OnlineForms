@@ -1,17 +1,11 @@
-import { routes } from "@/shared/constants";
-import { Button, NumericInput } from "@/shared/ui";
-import { TemplatesTable } from "@/widgets/templates";
-import { Link } from "react-router-dom";
+import { TemplatesPageHeader, TemplatesTable } from "@/widgets/templates";
 import ReactPaginate from "react-paginate";
 import { useTemplates } from "./useTemplates";
 import {
-    maxTemplatesLimit,
-    minTemplatesLimit,
     pageRangeDisplayed,
     paginationBreakLabel,
     paginationNextLabel,
     paginationPreviousLabel,
-    templatesLimitStep,
 } from "./constants";
 
 export function TemplatesPage() {
@@ -20,18 +14,7 @@ export function TemplatesPage() {
     return (
         <>
             <div className="px-6 py-4 rounded-xl shadow-md mb-8 flex flex-row justify-between items-center">
-                <Link to={routes.CreateTemplate} target="_blank">
-                    <Button size="md" content="New" />
-                </Link>
-
-                <NumericInput
-                    label="Per page:"
-                    min={minTemplatesLimit}
-                    max={maxTemplatesLimit}
-                    step={templatesLimitStep}
-                    value={limit}
-                    onChange={handleLimitChange}
-                />
+                <TemplatesPageHeader limit={limit} handleLimitChange={handleLimitChange} />
             </div>
 
             <div className="mb-6">{templates && <TemplatesTable templates={templates} />}</div>

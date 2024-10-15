@@ -1,9 +1,9 @@
 import { TemplateEditorContext } from "@/shared/types";
 import { TPositiveIntegerQuestion } from "../../models";
-import { TQuestionEditor, OmitId } from "../../types";
+import { TQuestionEditor } from "../../utils";
 
 export interface IPositiveIntegerQuestionProps {
-    question: OmitId<TPositiveIntegerQuestion>;
+    question: TPositiveIntegerQuestion;
 
     questionEditor: TQuestionEditor;
 

@@ -1,19 +1,16 @@
-import { useDispatch } from "react-redux";
-import { TPositiveIntegerQuestion } from "../../models";
-import { OmitId } from "../../types";
 import { ChangeEvent } from "react";
-import { questionsSlice } from "../../lib";
+import { TPositiveIntegerQuestion } from "../../models";
+import { TQuestionEditor } from "../../utils";
 
-export function usePositiveIntegerQuestion(question: OmitId<TPositiveIntegerQuestion>) {
-    const dispatch = useDispatch();
-
+export function usePositiveIntegerQuestion(
+    question: TPositiveIntegerQuestion,
+    questionEditor: TQuestionEditor,
+) {
     const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(
-            questionsSlice.actions.upsertQuestion({
-                ...question,
-                value: +e.target.value,
-            } as TPositiveIntegerQuestion),
-        );
+        questionEditor.updateQuestion({
+            ...question,
+            value: +e.target.value,
+        } as TPositiveIntegerQuestion);
     };
 
     return { handleValueChange };
