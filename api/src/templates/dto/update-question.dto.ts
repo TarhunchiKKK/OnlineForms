@@ -12,13 +12,3 @@ export const UpdateQuestionDtoSchema = z.object({
 });
 
 export type UpdateQuestionDto = z.infer<typeof UpdateQuestionDtoSchema>;
-
-// export class UpdateQuestionDto {
-//     id: string;
-
-//     title?: string;
-
-//     sequenceNumber?: number;
-
-//     type?: QuestionTypes;
-// }

@@ -36,12 +36,12 @@ export class TemplatesController {
     }
 
     @Get(":id")
-    public async findOneTemplate(@Param("id") templateId: string) {
-        return this.templatesService.findOne(templateId);
+    public async findOneTemplateById(@Param("id") templateId: string) {
+        return this.templatesService.findOneById(templateId);
     }
 
     @Get("/:id/questions")
-    public async getTemplateQuestions(@Param("id") templateId: string) {
+    public async getTemplatesQuestions(@Param("id") templateId: string) {
         return await this.questionsService.findAllByTemplateId(templateId);
     }
 }

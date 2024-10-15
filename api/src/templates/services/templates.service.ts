@@ -3,7 +3,6 @@ import { CreateTemplateDto } from "../dto/create-template.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Template } from "../entities/template.entity";
 import { Repository } from "typeorm";
-import { TemplateExistException } from "../exceptions/template-exist.exception";
 import { QuestionsService } from "src/templates/services/questions.service";
 import { UpdateTemplateDto } from "../dto/update-template.dto";
 import { TemplateNotFoundException } from "../exceptions/template-not-found.exception";
@@ -28,7 +27,7 @@ export class TemplatesService {
         });
     }
 
-    public async findOne(templateId: string) {
+    public async findOneById(templateId: string) {
         return await this.templatesRepository.findOne({
             where: {
                 id: templateId,

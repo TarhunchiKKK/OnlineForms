@@ -11,12 +11,9 @@ import { CreateQuestionDto } from "./dto/create-question.dto";
 import { UpdateQuestionDto, UpdateQuestionDtoSchema } from "./dto/update-question.dto";
 import { UpdateTemplateDto } from "./dto/update-template.dto";
 import { ZodValidationPipe } from "src/shared/pipes/zod-validation.pipe";
+import { webSocketGatewayProps } from "src/shared/constants/websockets";
 
-@WebSocketGateway({
-    cors: {
-        origin: "*",
-    },
-})
+@WebSocketGateway(webSocketGatewayProps)
 export class TemplatesGateway {
     @WebSocketServer()
     private readonly server: Server;
@@ -37,8 +34,6 @@ export class TemplatesGateway {
         @MessageBody(new ZodValidationPipe(UpdateQuestionDtoSchema))
         updateQuestionDto: UpdateQuestionDto,
     ) {
-        console.count("updateQuestion");
-
         await this.questionsService.update(updateQuestionDto);
     }
 
@@ -49,7 +44,6 @@ export class TemplatesGateway {
 
     @SubscribeMessage("updateTemplate")
     public async handleUpdateTemplate(@MessageBody() updateTemplateDto: UpdateTemplateDto) {
-        console.count("updateTemplate");
         await this.templatesService.update(updateTemplateDto);
     }
 }
