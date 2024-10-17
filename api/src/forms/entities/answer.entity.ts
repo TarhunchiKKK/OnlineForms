@@ -16,7 +16,7 @@ export class Answer {
     @Column({ nullable: true, default: null })
     isChacked: boolean | null;
 
-    @Column({ nullable: true })
+    @Column({ nullable: true, default: null })
     value: number | null;
 
     @ManyToOne(() => Form, (form) => form.answers)

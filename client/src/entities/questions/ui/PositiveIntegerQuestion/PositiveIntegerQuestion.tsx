@@ -17,6 +17,7 @@ export function PositiveIntegerQuestion({
                     min={minValue}
                     max={maxValue}
                     step={step}
+                    defaultValue={0}
                     value={question.value}
                     onChange={handleValueChange}
                 />

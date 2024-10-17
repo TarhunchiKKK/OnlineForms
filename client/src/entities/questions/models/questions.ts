@@ -24,8 +24,6 @@ export type TMultipleLineQuestion = TQuestion & {
 };
 
 export type TCheckboxQuestion = TQuestion & {
-    label: string;
-
     isChecked: boolean;
 };
 

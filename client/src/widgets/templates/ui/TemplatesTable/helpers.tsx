@@ -15,15 +15,17 @@ export const renderTemplatesTableHeaders = () => {
     );
 };
 
-export const renderTemplateRow = (template: TTemplate) => {
+export const renderTemplatesTableRow = (template: TTemplate) => {
+    const route = routes.createTemplateFormsRoute(template.id);
+
     return (
         <tr
             key={template.id}
             className="table-row h-12 px-2 py-4 rounded-lg overflow-hidden hover:bg-slate-300 duration-300"
         >
-            <NavLink to={`${routes.CreateAnswer}/${template.id}`}>
-                <td className="table-cell">{template.title}</td>
-            </NavLink>
+            <td className="table-cell">
+                <NavLink to={route}>{template.title}</NavLink>
+            </td>
 
             <td className="table-cell">{template.topic}</td>
             <td className="table-cell">{template.creator.username ?? template.creator.email}</td>

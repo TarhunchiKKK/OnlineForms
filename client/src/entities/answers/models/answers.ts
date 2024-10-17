@@ -3,6 +3,14 @@ import { TQuestion } from "@/entities/questions";
 export type TAnswer = {
     id: string;
 
+    line: string | null;
+
+    text: string | null;
+
+    isChecked: boolean | null;
+
+    value: number | null;
+
     question: TQuestion;
 };
 

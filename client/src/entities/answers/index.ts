@@ -1,2 +1,3 @@
 export * from "./models";
-export { transformQuestionsToCreateAnswerDtos } from "./helpers";
+export { answersApi } from "./api";
+export { transformQuestionsToCreateAnswerDtos, transformAnswersToQuestions } from "./helpers";

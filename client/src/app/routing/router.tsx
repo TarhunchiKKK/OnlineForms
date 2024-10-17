@@ -8,6 +8,8 @@ import {
     TemplateLayout,
     EditTemplatePage,
     CreateFormPage,
+    EditFormPage,
+    TemplateFormsPage,
 } from "@/pages";
 
 export const router = createBrowserRouter([
@@ -33,16 +35,24 @@ export const router = createBrowserRouter([
                 ],
             },
             {
-                path: routes.Template,
+                path: routes.Templates,
                 element: <TemplateLayout />,
                 children: [
                     {
-                        path: `${routes.EditTemplate}/:id`,
+                        path: routes.EditTemplate,
                         element: <EditTemplatePage />,
                     },
                     {
-                        path: `${routes.CreateAnswer}/:id`,
+                        path: routes.TemplateForms,
+                        element: <TemplateFormsPage />,
+                    },
+                    {
+                        path: routes.CreateForm,
                         element: <CreateFormPage />,
+                    },
+                    {
+                        path: routes.EditForm,
+                        element: <EditFormPage />,
                     },
                 ],
             },

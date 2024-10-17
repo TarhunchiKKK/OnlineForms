@@ -15,13 +15,13 @@ export class FormsController {
         return this.formsService.create(createFormDto);
     }
 
+    @Get("/answers/:id")
+    public async findFormAnswers(@Param("id") formId: string) {
+        return this.answersService.findAllByFormId(formId);
+    }
+
     @Get(":id")
     public async findAllByTemplateId(@Param("templateId") templateId: string) {
         return this.formsService.findAllByTemplateId(templateId);
-    }
-
-    @Get("/anwers/:id")
-    public async findFormAnswers(@Param("id") formId: string) {
-        return this.answersService.findAllByFormId(formId);
     }
 }

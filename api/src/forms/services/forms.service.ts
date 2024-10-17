@@ -41,7 +41,7 @@ export class FormsService {
             where: {
                 id: formId,
             },
-            relations: ["user", "originalTemplate", "answers"],
+            relations: ["user", "template", "answers"],
         });
     }
 }

@@ -13,7 +13,8 @@ export function useTemplatesPageHeader() {
         const { data: template } = await createDefaultTemplate(authToken!);
 
         if (template) {
-            navigate(`${routes.EditTemplate}/${template.id}`);
+            const route = routes.createEditTemplateRoute(template.id);
+            navigate(route);
         }
     };
 

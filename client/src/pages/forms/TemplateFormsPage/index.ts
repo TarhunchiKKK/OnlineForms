@@ -1,0 +1,1 @@
+export { TemplateFormsPage } from "./TemplateFormsPage";

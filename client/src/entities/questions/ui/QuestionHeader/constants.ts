@@ -35,7 +35,6 @@ export const defaultQuestions: Record<QuestionTypes, TAnyQuestion> = {
     [QuestionTypes.Checkbox]: {
         title: "",
         type: QuestionTypes.Checkbox,
-        label: "",
         isChecked: false,
     } as TAnyQuestion,
     [QuestionTypes.PositiveInteger]: {
