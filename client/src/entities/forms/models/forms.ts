@@ -9,7 +9,7 @@ export type TForm = {
 
     user: TUser;
 
-    originalTemplate: TTemplate;
+    template: TTemplate;
 };
 
 export type TFullForm = TForm & {

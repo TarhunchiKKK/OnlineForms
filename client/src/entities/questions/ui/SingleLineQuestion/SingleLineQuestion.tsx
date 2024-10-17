@@ -2,15 +2,8 @@ import { TextInput } from "@/shared/ui";
 import { ISingleLineQuestionProps } from "./types";
 import { useSingleLineQuestion } from "./useSingleLineQuestion";
 import { answerPlaceholder } from "./constants";
-import { TemplateEditorContext } from "@/shared/types";
 
-export function SingleLineQuestion({
-    question,
-    questionEditor,
-    context,
-}: ISingleLineQuestionProps) {
-    const isEditing = context === TemplateEditorContext.Edit;
-
+export function SingleLineQuestion({ question, questionEditor }: ISingleLineQuestionProps) {
     const { handleAnswerChange } = useSingleLineQuestion(question, questionEditor);
 
     return (
@@ -18,7 +11,7 @@ export function SingleLineQuestion({
             <div className="w-[600px]">
                 <TextInput
                     placeholder={answerPlaceholder}
-                    disabled={isEditing}
+                    disabled={!questionEditor.answerEditable}
                     value={question.line}
                     onChange={handleAnswerChange}
                 />

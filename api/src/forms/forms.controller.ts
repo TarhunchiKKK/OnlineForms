@@ -11,11 +11,11 @@ export class FormsController {
     ) {}
 
     @Post()
-    public async createForm(@Body() createFilledTemplateDto: CreateFormDto) {
-        return this.formsService.create(createFilledTemplateDto);
+    public async createForm(@Body() createFormDto: CreateFormDto) {
+        return this.formsService.create(createFormDto);
     }
 
-    @Get()
+    @Get(":id")
     public async findAllByTemplateId(@Param("templateId") templateId: string) {
         return this.formsService.findAllByTemplateId(templateId);
     }

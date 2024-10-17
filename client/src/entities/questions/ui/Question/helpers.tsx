@@ -1,4 +1,3 @@
-import { TemplateEditorContext } from "@/shared/types";
 import { CheckboxQuestion } from "../CheckboxQuestion";
 import { MultipleLinesQuestion } from "../MultipleLinesQuestion";
 import { PositiveIntegerQuestion } from "../PositiveIntegerQuestion";
@@ -13,18 +12,13 @@ import {
     TSingleLineQuestion,
 } from "../../models";
 
-export const renderQuestionByType = (
-    question: TQuestion,
-    questionEditor: TQuestionEditor,
-    context: TemplateEditorContext,
-) => {
+export const renderQuestionByType = (question: TQuestion, questionEditor: TQuestionEditor) => {
     switch (question.type) {
         case QuestionTypes.SingleLine:
             return (
                 <SingleLineQuestion
                     question={question as TSingleLineQuestion}
                     questionEditor={questionEditor}
-                    context={context}
                 />
             );
         case QuestionTypes.MultipleLines:
@@ -32,7 +26,6 @@ export const renderQuestionByType = (
                 <MultipleLinesQuestion
                     question={question as TMultipleLineQuestion}
                     questionEditor={questionEditor}
-                    context={context}
                 />
             );
         case QuestionTypes.Checkbox:
@@ -40,7 +33,6 @@ export const renderQuestionByType = (
                 <CheckboxQuestion
                     question={question as TCheckboxQuestion}
                     questionEditor={questionEditor}
-                    context={context}
                 />
             );
         case QuestionTypes.PositiveInteger:
@@ -48,7 +40,6 @@ export const renderQuestionByType = (
                 <PositiveIntegerQuestion
                     question={question as TPositiveIntegerQuestion}
                     questionEditor={questionEditor}
-                    context={context}
                 />
             );
     }

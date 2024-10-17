@@ -42,6 +42,9 @@ export const questionEditorFactory: TQuestionEditorFactory = {
         };
 
         return {
+            headerEditable: true,
+            answerEditable: false,
+            footerEnabled: true,
             updateQuestion,
             removeQuestion,
             createQuestion,

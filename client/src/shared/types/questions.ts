@@ -1,4 +1,4 @@
-export enum TemplateEditorContext {
+export enum QuestionEditingMode {
     Edit = "Edit",
     Answer = "Answer",
 }

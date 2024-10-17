@@ -21,7 +21,7 @@ export const renderTemplateRow = (template: TTemplate) => {
             key={template.id}
             className="table-row h-12 px-2 py-4 rounded-lg overflow-hidden hover:bg-slate-300 duration-300"
         >
-            <NavLink to={`${routes.EditTemplate}/${template.id}`}>
+            <NavLink to={`${routes.CreateAnswer}/${template.id}`}>
                 <td className="table-cell">{template.title}</td>
             </NavLink>
 

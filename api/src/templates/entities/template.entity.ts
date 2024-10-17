@@ -39,5 +39,5 @@ export class Template {
     questions: Question[];
 
     @OneToMany(() => Form, (form) => form.template)
-    filledTemplates: Form[];
+    forms: Form[];
 }

@@ -14,7 +14,7 @@ export class Form {
     @ManyToOne(() => User, (user) => user.filledTemplates)
     user: User;
 
-    @ManyToOne(() => Template, (template) => template.filledTemplates)
+    @ManyToOne(() => Template, (template) => template.forms)
     template: Template;
 
     @OneToMany(() => Answer, (answer) => answer.form)

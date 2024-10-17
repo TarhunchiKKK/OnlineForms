@@ -7,6 +7,7 @@ import {
     AuthLayout,
     TemplateLayout,
     EditTemplatePage,
+    CreateFormPage,
 } from "@/pages";
 
 export const router = createBrowserRouter([
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
                     {
                         path: `${routes.EditTemplate}/:id`,
                         element: <EditTemplatePage />,
+                    },
+                    {
+                        path: `${routes.CreateAnswer}/:id`,
+                        element: <CreateFormPage />,
                     },
                 ],
             },

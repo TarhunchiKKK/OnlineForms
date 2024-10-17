@@ -1,7 +1,7 @@
 import { Question } from "@/entities/questions";
 import { TQuestionsListProps } from "./types";
 
-export function QuestionsList({ questions, questionsEditor, context }: TQuestionsListProps) {
+export function QuestionsList({ questions, questionsEditor }: TQuestionsListProps) {
     return (
         <>
             {questions.map((question) => (
@@ -9,7 +9,6 @@ export function QuestionsList({ questions, questionsEditor, context }: TQuestion
                     key={question.sequenceNumber}
                     question={question}
                     questionEditor={questionsEditor}
-                    context={context}
                 />
             ))}
         </>

@@ -2,11 +2,8 @@ import { Dropdown, TextInput } from "@/shared/ui";
 import { IQuestionHeaderProps } from "./types";
 import { defaultTitlePlaceholder, questionTypesDropdownOptions } from "./constants";
 import { useQuestionHeader } from "./useQuestionHeader";
-import { TemplateEditorContext } from "@/shared/types";
 
-export function QuestionHeader({ question, questionEditor, context }: IQuestionHeaderProps) {
-    const isAnswering = context === TemplateEditorContext.Answer;
-
+export function QuestionHeader({ question, questionEditor }: IQuestionHeaderProps) {
     const { handleTitleChange, handleTypeChange } = useQuestionHeader(question, questionEditor);
 
     return (
@@ -15,7 +12,7 @@ export function QuestionHeader({ question, questionEditor, context }: IQuestionH
                 <TextInput
                     placeholder={defaultTitlePlaceholder}
                     value={question.title}
-                    disabled={isAnswering}
+                    disabled={!questionEditor.headerEditable}
                     onChange={handleTitleChange}
                 />
             </div>
@@ -23,7 +20,7 @@ export function QuestionHeader({ question, questionEditor, context }: IQuestionH
             <div className="shadow-sm w-[240px]">
                 <Dropdown
                     value={question.type}
-                    disabled={isAnswering}
+                    disabled={!questionEditor.headerEditable}
                     onSelect={handleTypeChange}
                     options={questionTypesDropdownOptions}
                 />

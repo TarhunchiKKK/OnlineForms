@@ -1,6 +1,5 @@
 import { AddQuestionButton, QuestionsList, TemplateHeader } from "@/features/template-editing";
 import { useEditTemplate } from "./useEditTemplate";
-import { templateEditorContext } from "./constants";
 import { questionEditorFactory } from "@/features/questions-editing";
 
 export function EditTemplatePage() {
@@ -22,11 +21,7 @@ export function EditTemplatePage() {
                 />
             )}
 
-            <QuestionsList
-                questions={questions}
-                questionsEditor={questionsEditor}
-                context={templateEditorContext}
-            />
+            <QuestionsList questions={questions} questionsEditor={questionsEditor} />
 
             <AddQuestionButton createQuestion={handleCreateQuestion} />
         </>

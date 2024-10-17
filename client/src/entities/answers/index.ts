@@ -1,2 +1,2 @@
 export * from "./models";
-export { answerToQuestionParser } from "./helpers";
+export { transformQuestionsToCreateAnswerDtos } from "./helpers";

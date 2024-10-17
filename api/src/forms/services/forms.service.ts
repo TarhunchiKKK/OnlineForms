@@ -15,14 +15,14 @@ export class FormsService {
     ) {}
 
     public async create(createFormDto: CreateFormDto) {
-        const filledTemplate = await this.formsRepository.save({
+        const form = await this.formsRepository.save({
             user: createFormDto.user,
-            originalTemplate: createFormDto.template,
+            template: createFormDto.template,
         });
 
-        await this.answersService.createMany(filledTemplate.id, createFormDto.answers);
+        await this.answersService.createMany(form.id, createFormDto.answers);
 
-        return filledTemplate;
+        return form;
     }
 
     public async findAllByTemplateId(templateId: string) {

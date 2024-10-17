@@ -2,15 +2,8 @@ import { TextArea } from "@/shared/ui";
 import { IMultipleLinesQuestionProps } from "./types";
 import { useMultipleLinesQuestion } from "./useMultipleLinesQuestion";
 import { answerPlaceholder } from "./constants";
-import { TemplateEditorContext } from "@/shared/types";
 
-export function MultipleLinesQuestion({
-    question,
-    questionEditor,
-    context,
-}: IMultipleLinesQuestionProps) {
-    const isEditing = context === TemplateEditorContext.Edit;
-
+export function MultipleLinesQuestion({ question, questionEditor }: IMultipleLinesQuestionProps) {
     const { handleAnswerChange } = useMultipleLinesQuestion(question, questionEditor);
 
     return (
@@ -18,7 +11,7 @@ export function MultipleLinesQuestion({
             <div className="w-[800px]">
                 <TextArea
                     placeholder={answerPlaceholder}
-                    disabled={isEditing}
+                    disabled={!questionEditor.answerEditable}
                     value={question.text}
                     onChange={handleAnswerChange}
                 />

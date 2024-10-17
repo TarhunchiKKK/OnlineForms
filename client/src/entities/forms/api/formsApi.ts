@@ -1,34 +1,38 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { transformFindAllResponse, transformFindOneResponse } from "./helpers";
 import { TCreateFormDto, TForm, TFullForm } from "../models";
+import { transformQuestionsToCreateAnswerDtos } from "@/entities/answers";
 
 export const formsApi = createApi({
     reducerPath: "forms/api",
 
     baseQuery: fetchBaseQuery({
-        baseUrl: `${import.meta.env.VITE_SERVER_URL}/answers/filled`,
+        baseUrl: `${import.meta.env.VITE_SERVER_URL}/forms`,
     }),
 
-    tagTypes: ["FilledTemplate"],
+    tagTypes: ["Forms"],
 
     endpoints: (builder) => ({
         create: builder.mutation<TForm, TCreateFormDto>({
             query: (dto: TCreateFormDto) => ({
                 url: "",
                 method: "POST",
-                body: dto.data,
+                body: {
+                    ...dto.data,
+                    answers: transformQuestionsToCreateAnswerDtos(dto.data.answers),
+                },
                 headers: {
                     Authorization: `Bearer ${dto.authToken}`,
                 },
             }),
-            invalidatesTags: ["FilledTemplate"],
+            invalidatesTags: ["Forms"],
         }),
-        findAll: builder.query<TForm[], void>({
-            query: () => ({
-                url: "",
+        findAllByTemplateId: builder.query<TForm[], string>({
+            query: (templateId: string) => ({
+                url: `/${templateId}`,
             }),
             transformResponse: transformFindAllResponse,
-            providesTags: ["FilledTemplate"],
+            providesTags: ["Forms"],
         }),
         findOne: builder.query<TFullForm, string>({
             query: (id: string) => ({

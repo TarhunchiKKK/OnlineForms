@@ -2,11 +2,8 @@ import { Checkbox } from "@/shared/ui";
 import { ICheckboxQuestionProps } from "./types";
 import { useCheckboxQuestion } from "./useCheckboxQuestion";
 import { checkedLabel, notCheckedLabel } from "./constants";
-import { TemplateEditorContext } from "@/shared/types";
 
-export function CheckboxQuestion({ question, context, questionEditor }: ICheckboxQuestionProps) {
-    const isEditing = context === TemplateEditorContext.Edit;
-
+export function CheckboxQuestion({ question, questionEditor }: ICheckboxQuestionProps) {
     const { handleCheck } = useCheckboxQuestion(question, questionEditor);
 
     return (
@@ -14,7 +11,7 @@ export function CheckboxQuestion({ question, context, questionEditor }: ICheckbo
             <div>
                 <Checkbox
                     label={question.isChecked ? checkedLabel : notCheckedLabel}
-                    disabled={isEditing}
+                    disabled={!questionEditor.answerEditable}
                     isChecked={question.isChecked}
                     onCheck={handleCheck}
                 />
