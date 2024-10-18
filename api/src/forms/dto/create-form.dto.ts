@@ -1,7 +1,7 @@
 import { CreateAnswerDto } from "./create-answer.dto";
 
 export class CreateFormDto {
-    user: {
+    creator: {
         id: string;
     };
 

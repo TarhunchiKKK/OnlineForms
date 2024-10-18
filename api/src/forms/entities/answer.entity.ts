@@ -14,7 +14,7 @@ export class Answer {
     text: string | null;
 
     @Column({ nullable: true, default: null })
-    isChacked: boolean | null;
+    isChecked: boolean | null;
 
     @Column({ nullable: true, default: null })
     value: number | null;

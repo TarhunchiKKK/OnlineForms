@@ -23,7 +23,9 @@ export class TemplatesService {
         return await this.templatesRepository.find({
             skip: (page - 1) * limit,
             take: limit,
-            relations: ["creator"],
+            relations: {
+                creator: true,
+            },
         });
     }
 
@@ -32,7 +34,10 @@ export class TemplatesService {
             where: {
                 id: templateId,
             },
-            relations: ["creator", "questions"],
+            relations: {
+                creator: true,
+                questions: true,
+            },
         });
     }
 

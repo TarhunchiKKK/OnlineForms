@@ -5,9 +5,23 @@ import { Answer } from "./entities/answer.entity";
 import { FormsController } from "./forms.controller";
 import { AnswersService } from "./services/answers.service";
 import { FormsService } from "./services/forms.service";
+import { JwtModule } from "@nestjs/jwt";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Form, Answer])],
+    imports: [
+        TypeOrmModule.forFeature([Form, Answer]),
+        JwtModule.registerAsync({
+            imports: [ConfigModule],
+            inject: [ConfigService],
+            useFactory: (configService: ConfigService) => ({
+                secret: configService.get("JWT_SECRET"),
+                signOptions: {
+                    expiresIn: configService.get("JWT_EXPIRATION"),
+                },
+            }),
+        }),
+    ],
     controllers: [FormsController],
     providers: [AnswersService, FormsService],
 })

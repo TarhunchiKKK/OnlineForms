@@ -7,7 +7,7 @@ export type TForm = {
 
     createdAt: Date;
 
-    user: TUser;
+    creator: TUser;
 
     template: TTemplate;
 };

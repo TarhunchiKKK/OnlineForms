@@ -9,26 +9,32 @@ import {
 import { TAnswer, TCreateAnyAnswerDto } from "../models";
 
 function transformQuestionToCreateAnswerDto(question: TAnyQuestion): TCreateAnyAnswerDto {
+    const questionData = {
+        id: question.id,
+        sequenceNumber: question.sequenceNumber,
+        type: question.type,
+        title: question.title,
+    };
     switch (question.type) {
         case QuestionTypes.SingleLine:
             return {
-                question,
+                question: questionData,
                 line: (question as TSingleLineQuestion).line,
             };
 
         case QuestionTypes.MultipleLines:
             return {
-                question,
+                question: questionData,
                 text: (question as TMultipleLineQuestion).text,
             };
         case QuestionTypes.Checkbox:
             return {
-                question,
+                question: questionData,
                 isChecked: (question as TCheckboxQuestion).isChecked,
             };
         case QuestionTypes.PositiveInteger:
             return {
-                question,
+                question: questionData,
                 value: (question as TPositiveIntegerQuestion).value,
             };
     }

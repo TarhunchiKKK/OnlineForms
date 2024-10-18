@@ -1,11 +1,10 @@
 import { useDispatch } from "react-redux";
-import { TQuestion } from "../../../entities/questions/models/questions";
+import { QuestionTypes, TQuestion } from "../../../entities/questions/models/questions";
 import { questionsSlice } from "../../../entities/questions/lib";
 import { QuestionsWsApiProvider } from "../../../entities/questions/api";
 import { TCreateQuestionDto } from "../../../entities/questions/models";
-import { defaultQuestion } from "./constants";
 import { useQuestions } from "../hooks";
-import { TQuestionEditorFactory } from "@/entities/questions";
+import { defaultQuestions, TQuestionEditorFactory } from "@/entities/questions";
 
 export const questionEditorFactory: TQuestionEditorFactory = {
     useEditor() {
@@ -30,7 +29,7 @@ export const questionEditorFactory: TQuestionEditorFactory = {
 
         const createQuestion = (templateId: string) => {
             const question: TCreateQuestionDto = {
-                ...defaultQuestion,
+                ...defaultQuestions[QuestionTypes.SingleLine],
                 sequenceNumber: nextSequenceNumber,
                 template: {
                     id: templateId,

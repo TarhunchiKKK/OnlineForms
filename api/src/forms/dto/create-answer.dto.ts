@@ -3,7 +3,7 @@ export class CreateAnswerDto {
 
     text?: string;
 
-    isChacked?: boolean;
+    isChecked?: boolean;
 
     value?: number;
 

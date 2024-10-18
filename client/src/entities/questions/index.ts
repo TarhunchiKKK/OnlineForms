@@ -15,3 +15,4 @@ export type {
 } from "./models";
 export { QuestionsWsApiProvider, questionsApi } from "./api";
 export type { TQuestionEditor, TQuestionEditorFactory } from "./types";
+export { defaultQuestions } from "./constants";

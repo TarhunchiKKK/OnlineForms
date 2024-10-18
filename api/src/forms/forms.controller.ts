@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Req, UseGuards } from "@nestjs/common";
 import { AnswersService } from "./services/answers.service";
 import { CreateFormDto } from "./dto/create-form.dto";
 import { FormsService } from "./services/forms.service";
+import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 
 @Controller("forms")
 export class FormsController {
@@ -11,16 +12,22 @@ export class FormsController {
     ) {}
 
     @Post()
-    public async createForm(@Body() createFormDto: CreateFormDto) {
-        return this.formsService.create(createFormDto);
+    @UseGuards(JwtAuthGuard)
+    public async createForm(@Req() request, @Body() createFormDto: CreateFormDto) {
+        return this.formsService.create({
+            ...createFormDto,
+            creator: {
+                id: request.user.id,
+            },
+        });
     }
 
-    @Get("/answers/:id")
-    public async findFormAnswers(@Param("id") formId: string) {
+    @Get("/answers/:formId")
+    public async findFormAnswers(@Param("formId") formId: string) {
         return this.answersService.findAllByFormId(formId);
     }
 
-    @Get(":id")
+    @Get(":templateId")
     public async findAllByTemplateId(@Param("templateId") templateId: string) {
         return this.formsService.findAllByTemplateId(templateId);
     }

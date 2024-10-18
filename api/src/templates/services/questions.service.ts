@@ -23,7 +23,9 @@ export class QuestionsService {
                     id: templateId,
                 },
             },
-            relations: ["template"],
+            relations: {
+                template: true,
+            },
         });
     }
 
@@ -37,11 +39,11 @@ export class QuestionsService {
 
     public async update(updateQuestionDto: UpdateQuestionDto) {
         const question = await this.questionsRepository.findOne({
-            relations: {
-                template: true,
-            },
             where: {
                 id: updateQuestionDto.id,
+            },
+            relations: {
+                template: true,
             },
         });
 

@@ -19,6 +19,6 @@ export class User {
     @OneToMany(() => Template, (template) => template.creator)
     templates: Template[];
 
-    @OneToMany(() => Form, (form) => form.user)
-    filledTemplates: Form[];
+    @OneToMany(() => Form, (form) => form.creator)
+    forms: Form[];
 }

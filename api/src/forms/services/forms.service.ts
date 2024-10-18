@@ -15,10 +15,7 @@ export class FormsService {
     ) {}
 
     public async create(createFormDto: CreateFormDto) {
-        const form = await this.formsRepository.save({
-            user: createFormDto.user,
-            template: createFormDto.template,
-        });
+        const form = await this.formsRepository.save(createFormDto);
 
         await this.answersService.createMany(form.id, createFormDto.answers);
 
@@ -27,12 +24,15 @@ export class FormsService {
 
     public async findAllByTemplateId(templateId: string) {
         return await this.formsRepository.find({
+            relations: {
+                template: true,
+                creator: true,
+            },
             where: {
                 template: {
                     id: templateId,
                 },
             },
-            relations: ["template"],
         });
     }
 
@@ -41,7 +41,11 @@ export class FormsService {
             where: {
                 id: formId,
             },
-            relations: ["user", "template", "answers"],
+            relations: {
+                creator: true,
+                template: true,
+                answers: true,
+            },
         });
     }
 }

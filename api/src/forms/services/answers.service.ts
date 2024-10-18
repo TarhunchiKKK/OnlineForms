@@ -28,7 +28,9 @@ export class AnswersService {
 
     public async findAllByFormId(templateId: string) {
         const answers = await this.answersRepository.find({
-            relations: ["question"],
+            relations: {
+                question: true,
+            },
             where: {
                 form: {
                     id: templateId,

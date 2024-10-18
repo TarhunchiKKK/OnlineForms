@@ -20,12 +20,8 @@ export const renderFormsTableRow = (form: TForm) => {
             key={form.id}
             className="table-row h-12 px-2 py-4 rounded-lg overflow-hidden hover:bg-slate-300 duration-300"
         >
-            {/* <td className="table-cell">
-                <NavLink to={route}>{form.user.username ?? form.user.email}</NavLink>
-            </td> */}
-
             <td className="table-cell">
-                <NavLink to={route}>{"user"}</NavLink>
+                <NavLink to={route}>{form.creator.username ?? form.creator.email}</NavLink>
             </td>
 
             <td className="table-cell">{formatDate(form.createdAt)}</td>
