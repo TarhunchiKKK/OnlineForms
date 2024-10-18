@@ -1,25 +1,32 @@
+import { AnswersWsApiProvider } from "@/entities/answers";
 import { questionsSlice, TQuestion, TQuestionEditorFactory } from "@/entities/questions";
 import { useDispatch } from "react-redux";
+import { parseQuestionToUpdateAnswerDto } from "../helpers";
 
 export const answersEditorFactory: TQuestionEditorFactory = {
     useEditor() {
         const dispatch = useDispatch();
 
-        const updateQuestion = (question: TQuestion) => {
+        const answersWsApi = AnswersWsApiProvider.getInstance();
+
+        const update = (question: TQuestion) => {
             dispatch(questionsSlice.actions.upsertQuestion(question));
+
+            const updateAnswerDto = parseQuestionToUpdateAnswerDto(question);
+            answersWsApi.updateAnswer(updateAnswerDto);
         };
 
-        const createQuestion = () => {};
+        const create = () => {};
 
-        const removeQuestion = () => {};
+        const remove = () => {};
 
         return {
             headerEditable: false,
             answerEditable: true,
             footerEnabled: false,
-            updateQuestion,
-            createQuestion,
-            removeQuestion,
+            update,
+            create,
+            remove,
         };
     },
 };

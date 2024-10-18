@@ -7,7 +7,7 @@ export function useSingleLineQuestion(
     questionEditor: TQuestionEditor,
 ) {
     const handleAnswerChange = (e: ChangeEvent<HTMLInputElement>) => {
-        questionEditor.updateQuestion({
+        questionEditor.update({
             ...question,
             line: e.target.value,
         } as TSingleLineQuestion);

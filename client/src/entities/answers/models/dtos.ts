@@ -25,3 +25,15 @@ export type TCreateAnyAnswerDto =
     | TCreateMultipleLinesAnswerDto
     | TCreateCheckboxAnswerDto
     | TCreatePositiveIntegerAnswerDto;
+
+export type TUpdateAnswerDto = {
+    id: string;
+
+    line: string | null;
+
+    text: string | null;
+
+    isChecked: boolean | null;
+
+    value: number | null;
+};

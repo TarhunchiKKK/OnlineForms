@@ -5,6 +5,8 @@ import { useQuestions } from "@/features/questions-editing";
 import { useTemplate } from "@/features/template-editing";
 import { useParams } from "react-router-dom";
 import { localStorageService } from "@/shared/services";
+import { useMemo } from "react";
+import { parseQuestionsToCreateAnswerDtos } from "./helpers";
 
 export function useCreateForm() {
     const { id: templateId } = useParams();
@@ -16,6 +18,11 @@ export function useCreateForm() {
     const { template, handlers } = useTemplate(fetchedTemplate);
     const { questions } = useQuestions(fetchedQuestions);
 
+    const answers = useMemo(
+        () => parseQuestionsToCreateAnswerDtos(questions as TAnyQuestion[]),
+        [questions],
+    );
+
     const handleSaveForm = async () => {
         const authToken = localStorageService.auth.getAuthToken();
 
@@ -24,7 +31,7 @@ export function useCreateForm() {
                 template: {
                     id: templateId!,
                 },
-                answers: questions as TAnyQuestion[],
+                answers: answers,
             },
             authToken: authToken!,
         });

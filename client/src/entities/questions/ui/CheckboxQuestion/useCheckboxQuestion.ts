@@ -8,7 +8,7 @@ export function useCheckboxQuestion(question: TCheckboxQuestion, questionEditor:
     const dispatch = useDispatch();
 
     const handleLabelChange = (e: ChangeEvent<HTMLInputElement>) => {
-        questionEditor.updateQuestion({
+        questionEditor.update({
             ...question,
             label: e.target.value,
         } as TCheckboxQuestion);

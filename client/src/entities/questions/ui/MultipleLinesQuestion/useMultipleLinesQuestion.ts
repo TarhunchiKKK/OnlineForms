@@ -6,7 +6,7 @@ export function useMultipleLinesQuestion(
     questionEditor: TQuestionEditor,
 ) {
     const handleAnswerChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        questionEditor.updateQuestion({
+        questionEditor.update({
             ...question,
             text: event.target.value,
         } as TMultipleLineQuestion);

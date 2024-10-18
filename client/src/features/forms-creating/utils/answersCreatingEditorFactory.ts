@@ -5,21 +5,21 @@ export const answersCreatingEditorFactory: TQuestionEditorFactory = {
     useEditor() {
         const dispatch = useDispatch();
 
-        const updateQuestion = (question: TQuestion) => {
+        const update = (question: TQuestion) => {
             dispatch(questionsSlice.actions.upsertQuestion(question));
         };
 
-        const createQuestion = () => {};
+        const create = () => {};
 
-        const removeQuestion = () => {};
+        const remove = () => {};
 
         return {
             headerEditable: false,
             answerEditable: true,
             footerEnabled: false,
-            updateQuestion,
-            createQuestion,
-            removeQuestion,
+            update,
+            create,
+            remove,
         };
     },
 };

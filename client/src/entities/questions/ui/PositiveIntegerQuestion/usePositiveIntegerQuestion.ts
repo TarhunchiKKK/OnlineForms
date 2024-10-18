@@ -7,7 +7,7 @@ export function usePositiveIntegerQuestion(
     questionEditor: TQuestionEditor,
 ) {
     const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
-        questionEditor.updateQuestion({
+        questionEditor.update({
             ...question,
             value: +e.target.value,
         } as TPositiveIntegerQuestion);

@@ -8,7 +8,7 @@ export function EditTemplatePage() {
     const questionsEditor = questionEditorFactory.useEditor();
 
     const handleCreateQuestion = () => {
-        questionsEditor.createQuestion(template.template!.id);
+        questionsEditor.create(template.template!.id);
     };
 
     return (

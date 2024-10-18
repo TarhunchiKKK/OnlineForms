@@ -3,7 +3,7 @@ import { TQuestionEditor } from "../../types";
 
 export function useQuestionsFooter(question: TQuestion, questionEditor: TQuestionEditor) {
     const handleRemoveQuestion = () => {
-        questionEditor.removeQuestion(question);
+        questionEditor.remove(question);
     };
 
     return { handleRemoveQuestion };

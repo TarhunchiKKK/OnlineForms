@@ -1,1 +1,1 @@
-export { transformQuestionsToCreateAnswerDtos, transformAnswersToQuestions } from "./transformers";
+export { transformQuestionsToCreateAnswerDtos } from "./transformers";

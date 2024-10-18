@@ -8,9 +8,8 @@ import { Server } from "socket.io";
 import { TemplatesService } from "./services/templates.service";
 import { QuestionsService } from "./services/questions.service";
 import { CreateQuestionDto } from "./dto/create-question.dto";
-import { UpdateQuestionDto, UpdateQuestionDtoSchema } from "./dto/update-question.dto";
+import { UpdateQuestionDto } from "./dto/update-question.dto";
 import { UpdateTemplateDto } from "./dto/update-template.dto";
-import { ZodValidationPipe } from "src/shared/pipes/zod-validation.pipe";
 import { webSocketGatewayProps } from "src/shared/constants/websockets";
 
 @WebSocketGateway(webSocketGatewayProps)
@@ -30,10 +29,7 @@ export class TemplatesGateway {
     }
 
     @SubscribeMessage("updateQuestion")
-    public async handleUpdateQuestion(
-        @MessageBody(new ZodValidationPipe(UpdateQuestionDtoSchema))
-        updateQuestionDto: UpdateQuestionDto,
-    ) {
+    public async handleUpdateQuestion(@MessageBody() updateQuestionDto: UpdateQuestionDto) {
         await this.questionsService.update(updateQuestionDto);
     }
 

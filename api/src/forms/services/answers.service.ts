@@ -4,6 +4,8 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Answer } from "../entities/answer.entity";
 import { CreateAnswerDto } from "../dto/create-answer.dto";
 import { questionSequenceNumberSortCompareer } from "../helpers/sort-compareers";
+import { UpdateAnswerDto } from "../dto/update-answer.dto";
+import { AnswerNotFoundException } from "../exceptions/answer-not-found.exception";
 
 @Injectable()
 export class AnswersService {
@@ -39,5 +41,21 @@ export class AnswersService {
         });
 
         return answers.sort(questionSequenceNumberSortCompareer);
+    }
+
+    public async update(updateAnswerDto: UpdateAnswerDto) {
+        const answer = await this.answersRepository.findOne({
+            where: {
+                id: updateAnswerDto.id,
+            },
+        });
+
+        if (!answer) {
+            throw new AnswerNotFoundException(updateAnswerDto.id);
+        }
+
+        return await this.answersRepository.update(updateAnswerDto.id, {
+            ...updateAnswerDto,
+        });
     }
 }

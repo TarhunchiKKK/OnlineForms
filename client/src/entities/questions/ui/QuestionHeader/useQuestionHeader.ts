@@ -5,7 +5,7 @@ import { defaultQuestions } from "../../constants";
 
 export function useQuestionHeader(question: TQuestion, questionEditor: TQuestionEditor) {
     const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        questionEditor.updateQuestion({
+        questionEditor.update({
             ...question,
             title: e.target.value,
         });
@@ -14,7 +14,7 @@ export function useQuestionHeader(question: TQuestion, questionEditor: TQuestion
     const handleTypeChange = (type: string) => {
         const questionType = type as QuestionTypes;
 
-        questionEditor.updateQuestion({
+        questionEditor.update({
             ...defaultQuestions[questionType],
             title: question.title,
             sequenceNumber: question.sequenceNumber,

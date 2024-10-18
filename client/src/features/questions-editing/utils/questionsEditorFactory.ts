@@ -17,17 +17,17 @@ export const questionEditorFactory: TQuestionEditorFactory = {
             dispatch(questionsSlice.actions.upsertQuestion(question));
         });
 
-        const updateQuestion = (question: TQuestion) => {
+        const update = (question: TQuestion) => {
             dispatch(questionsSlice.actions.upsertQuestion(question));
             questionsWsApi.updateQuestion(question);
         };
 
-        const removeQuestion = (question: TQuestion) => {
+        const remove = (question: TQuestion) => {
             dispatch(questionsSlice.actions.deleteQuestion(question.sequenceNumber));
             questionsWsApi.removeQuestion(question.id);
         };
 
-        const createQuestion = (templateId: string) => {
+        const create = (templateId: string) => {
             const question: TCreateQuestionDto = {
                 ...defaultQuestions[QuestionTypes.SingleLine],
                 sequenceNumber: nextSequenceNumber,
@@ -44,9 +44,9 @@ export const questionEditorFactory: TQuestionEditorFactory = {
             headerEditable: true,
             answerEditable: false,
             footerEnabled: true,
-            updateQuestion,
-            removeQuestion,
-            createQuestion,
+            update,
+            remove,
+            create,
         };
     },
 };

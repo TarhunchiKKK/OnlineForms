@@ -7,6 +7,7 @@ import { AnswersService } from "./services/answers.service";
 import { FormsService } from "./services/forms.service";
 import { JwtModule } from "@nestjs/jwt";
 import { ConfigModule, ConfigService } from "@nestjs/config";
+import { FormsGateway } from "./forms.gateway";
 
 @Module({
     imports: [
@@ -23,6 +24,6 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
         }),
     ],
     controllers: [FormsController],
-    providers: [AnswersService, FormsService],
+    providers: [FormsGateway, AnswersService, FormsService],
 })
 export class FormsModule {}

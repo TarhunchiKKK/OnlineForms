@@ -1,4 +1,4 @@
-import { TAnyQuestion } from "@/entities/questions";
+import { TCreateAnswerDto } from "@/entities/answers";
 
 export type TCreateFormDto = {
     data: {
@@ -6,7 +6,7 @@ export type TCreateFormDto = {
             id: string;
         };
 
-        answers: TAnyQuestion[];
+        answers: TCreateAnswerDto[];
     };
 
     authToken: string;

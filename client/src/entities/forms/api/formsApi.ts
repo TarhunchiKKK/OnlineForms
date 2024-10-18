@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { transformFindAllResponse, transformFindOneResponse } from "./helpers";
 import { TCreateFormDto, TForm, TFullForm } from "../models";
-import { transformQuestionsToCreateAnswerDtos } from "@/entities/answers";
 
 export const formsApi = createApi({
     reducerPath: "forms/api",
@@ -17,10 +16,7 @@ export const formsApi = createApi({
             query: (dto: TCreateFormDto) => ({
                 url: "",
                 method: "POST",
-                body: {
-                    ...dto.data,
-                    answers: transformQuestionsToCreateAnswerDtos(dto.data.answers),
-                },
+                body: dto.data,
                 headers: {
                     Authorization: `Bearer ${dto.authToken}`,
                 },

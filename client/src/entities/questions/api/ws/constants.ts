@@ -1,1 +1,1 @@
-export const updateQuestionDelay = 3000;
+export const updateQuestionDelay = 1300;

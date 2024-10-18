@@ -7,11 +7,11 @@ export type TQuestionEditor = {
 
     footerEnabled: boolean;
 
-    createQuestion(templateId: string): void;
+    create(templateId: string): void;
 
-    updateQuestion(_: TQuestion): void;
+    update(_: TQuestion): void;
 
-    removeQuestion: (_: TQuestion) => void;
+    remove: (_: TQuestion) => void;
 };
 
 export type TQuestionEditorFactory = {
