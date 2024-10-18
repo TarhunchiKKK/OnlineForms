@@ -1,11 +1,11 @@
 import { QuestionsList, TemplateHeader } from "@/features/template-editing";
 import { useEditForm } from "./useEditForm";
-import { answersEditorFactory } from "@/features/answers-editing";
+import { useAnswersEditor } from "@/features/answers-editing";
 
 export function EditFormPage() {
     const { template, questions } = useEditForm();
 
-    const questionsEditor = answersEditorFactory.useEditor();
+    const questionsEditor = useAnswersEditor();
 
     return (
         <>

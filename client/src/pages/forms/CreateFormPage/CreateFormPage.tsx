@@ -1,12 +1,12 @@
-import { answersCreatingEditorFactory } from "@/features/forms-creating";
-import { useCreateForm } from "./useCreateForm";
+import { useFormCreatingEdoitor } from "@/features/forms-creating";
 import { QuestionsList, TemplateHeader } from "@/features/template-editing";
 import { Button } from "@/shared/ui";
+import { useCreateForm } from "./useCreateForm";
 
 export function CreateFormPage() {
     const { template, questions, handleSaveForm } = useCreateForm();
 
-    const questionsEditor = answersCreatingEditorFactory.useEditor();
+    const questionsEditor = useFormCreatingEdoitor();
 
     return (
         <>

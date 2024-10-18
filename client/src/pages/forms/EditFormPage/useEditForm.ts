@@ -1,11 +1,10 @@
 import { answersApi } from "@/entities/answers";
 import { formsApi } from "@/entities/forms";
 import { TQuestion } from "@/entities/questions";
-import { useQuestions } from "@/features/questions-editing";
+import { AnswersToQuestionsAdapter, useQuestions } from "@/features/questions-editing";
 import { useTemplate } from "@/features/template-editing";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { parseAnswersToQuestions } from "./helpers";
 
 export function useEditForm() {
     const { id: formId } = useParams();
@@ -17,7 +16,7 @@ export function useEditForm() {
 
     const answers = useMemo(() => {
         if (fetchedAnswers) {
-            return parseAnswersToQuestions(fetchedAnswers);
+            return AnswersToQuestionsAdapter.toQuestions(fetchedAnswers);
         }
         return fetchedAnswers;
     }, [fetchedAnswers]);

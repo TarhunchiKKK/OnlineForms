@@ -1,1 +1,1 @@
-export { answersCreatingEditorFactory } from "./utils";
+export { useFormCreatingEdoitor } from "./hooks";

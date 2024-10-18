@@ -1,3 +1,3 @@
-export { useQuestions } from "./hooks";
+export { useQuestions, useQuestionsEditor } from "./hooks";
 export { AddQuestionButton, QuestionsList } from "./ui";
-export { questionEditorFactory } from "./utils";
+export { AnswersToQuestionsAdapter } from "./utils";

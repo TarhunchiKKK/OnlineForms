@@ -1,1 +1,2 @@
-export { answersEditorFactory } from "./utils";
+export { useAnswersEditor } from "./hooks";
+export { QuestionsToAnswersAdapter } from "./utils";

@@ -16,7 +16,7 @@ export const renderTemplatesTableHeaders = () => {
 };
 
 export const renderTemplatesTableRow = (template: TTemplate) => {
-    const route = routes.createTemplateFormsRoute(template.id);
+    const route = routes.createEditTemplateRoute(template.id);
 
     return (
         <tr

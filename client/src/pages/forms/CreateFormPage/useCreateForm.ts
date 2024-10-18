@@ -1,12 +1,12 @@
 import { formsApi } from "@/entities/forms";
-import { questionsApi, TAnyQuestion, TQuestion } from "@/entities/questions";
+import { questionsApi, TQuestion } from "@/entities/questions";
 import { templatesApi } from "@/entities/templates";
 import { useQuestions } from "@/features/questions-editing";
 import { useTemplate } from "@/features/template-editing";
 import { useParams } from "react-router-dom";
 import { localStorageService } from "@/shared/services";
 import { useMemo } from "react";
-import { parseQuestionsToCreateAnswerDtos } from "./helpers";
+import { QuestionsToAnswersAdapter } from "@/features/answers-editing";
 
 export function useCreateForm() {
     const { id: templateId } = useParams();
@@ -19,7 +19,7 @@ export function useCreateForm() {
     const { questions } = useQuestions(fetchedQuestions);
 
     const answers = useMemo(
-        () => parseQuestionsToCreateAnswerDtos(questions as TAnyQuestion[]),
+        () => QuestionsToAnswersAdapter.toCreateAnswerDtos(questions as TQuestion[]),
         [questions],
     );
 
