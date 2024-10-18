@@ -1,5 +1,4 @@
 import { TemplateTopics } from "../enums/template-topics.enum";
-import { UpdateQuestionDto } from "./update-question.dto";
 
 export class UpdateTemplateDto {
     id: string;
@@ -9,6 +8,4 @@ export class UpdateTemplateDto {
     description?: string;
 
     topic?: TemplateTopics;
-
-    questions: UpdateQuestionDto[];
 }

@@ -1,2 +1,1 @@
-export type { OmitId } from "./utils";
-export { QuestionContexts } from "./enums";
+export type { TQuestionEditor, TQuestionEditorFactory } from "./questionsEditor";

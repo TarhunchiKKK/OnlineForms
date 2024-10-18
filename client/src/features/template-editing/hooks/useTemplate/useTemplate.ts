@@ -1,39 +1,61 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Descendant } from "slate";
-import { TemplateTopics, TTemplate } from "@/entities/templates";
-import {
-    defaultTemplateDescription,
-    defaultTemplateTitle,
-    defaultTemplateTopic,
-} from "./constants";
+import { TemplatesWsApiProvider, TemplateTopics, TTemplate } from "@/entities/templates";
 
-export function useTemplate(template: TTemplate | null = null) {
-    const [title, setTitle] = useState<string>(template?.title ?? defaultTemplateTitle);
+export function useTemplate(inputTemplate?: TTemplate) {
+    const [template, setTemplate] = useState(inputTemplate);
 
-    const [description, setDescription] = useState<Descendant[]>(
-        template?.description ?? defaultTemplateDescription,
-    );
+    useEffect(() => {
+        setTemplate(inputTemplate);
+    }, [inputTemplate]);
 
-    const [topic, setTopic] = useState<TemplateTopics>(template?.topic ?? defaultTemplateTopic);
+    const templatesWsApi = TemplatesWsApiProvider.getInstance();
 
     const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.target.value);
+        const newValue = {
+            ...(template as TTemplate),
+            title: e.target.value,
+        };
+
+        setTemplate(newValue);
+
+        templatesWsApi.updateTemplate({
+            data: newValue,
+        });
     };
 
     const handleDescriptionChange = (value: Descendant[]) => {
-        setDescription(value);
+        const newValue = {
+            ...(template as TTemplate),
+            description: value,
+        };
+
+        setTemplate(newValue);
+
+        templatesWsApi.updateTemplate({
+            data: newValue,
+        });
     };
 
     const handleTopicChange = (value: string) => {
-        setTopic(value as TemplateTopics);
+        const newValue = {
+            ...(template as TTemplate),
+            topic: value as TemplateTopics,
+        };
+
+        setTemplate(newValue);
+
+        templatesWsApi.updateTemplate({
+            data: newValue,
+        });
     };
 
     return {
-        title,
-        handleTitleChange,
-        description,
-        handleDescriptionChange,
-        topic,
-        handleTopicChange,
+        template,
+        handlers: {
+            handleTitleChange,
+            handleDescriptionChange,
+            handleTopicChange,
+        },
     };
 }

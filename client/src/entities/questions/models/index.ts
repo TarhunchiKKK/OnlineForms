@@ -1,4 +1,4 @@
-export { QuestionTypes } from "./enums";
+export { QuestionTypes } from "./questions";
 export type {
     TQuestion,
     TSingleLineQuestion,

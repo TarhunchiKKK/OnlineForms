@@ -1,3 +1,4 @@
-export { Layout, AuthLayout, TemplateLayout } from "./layouts";
+export { HomeLayout, AuthLayout, TemplateLayout } from "./layouts";
 export { SignInPage, SignUpPage } from "./auth";
-export { TemplatesPage, CreateTemplatePage, EditTemplatePage } from "./templates";
+export { TemplatesPage, EditTemplatePage } from "./templates";
+export { CreateFormPage, TemplateFormsPage, EditFormPage } from "./forms";

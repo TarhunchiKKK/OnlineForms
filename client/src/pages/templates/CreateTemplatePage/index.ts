@@ -1,1 +1,0 @@
-export { CreateTemplatePage } from "./CreateTemplatePage";

@@ -1,20 +1,22 @@
+import { QuestionWrapper } from "@/shared/ui";
 import { IQuestionProps } from "./types";
+import { renderQuestionByType } from "./helpers";
 import { QuestionHeader } from "../QuestionHeader";
 import { QuestionFooter } from "../QuestionFooter";
-import { QuestionWrapper } from "@/shared/ui";
-import { QuestionContexts } from "../../types";
-import { renderQuestionByType } from "./helpers";
+import { TQuestion } from "../../models";
 
-export function Question({ question, context }: IQuestionProps) {
-    const isEditing = context === QuestionContexts.Edit;
-
+export function Question({ question, questionEditor }: IQuestionProps) {
     return (
         <QuestionWrapper>
-            <QuestionHeader question={question} context={context} />
+            <QuestionHeader question={question} questionEditor={questionEditor} />
 
-            {renderQuestionByType(question, context)}
+            {renderQuestionByType(question, questionEditor)}
 
-            {isEditing ? <QuestionFooter questionId={question.sequenceNumber} /> : <></>}
+            {questionEditor.footerEnabled ? (
+                <QuestionFooter question={question as TQuestion} questionEditor={questionEditor} />
+            ) : (
+                <></>
+            )}
         </QuestionWrapper>
     );
 }

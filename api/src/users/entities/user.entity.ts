@@ -1,4 +1,4 @@
-import { FilledTemplate } from "src/answers/entities/filled-template.entity";
+import { Form } from "src/forms/entities/form.entity";
 import { Template } from "src/templates/entities/template.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -19,6 +19,6 @@ export class User {
     @OneToMany(() => Template, (template) => template.creator)
     templates: Template[];
 
-    @OneToMany(() => FilledTemplate, (template) => template.user)
-    filledTemplates: FilledTemplate[];
+    @OneToMany(() => Form, (form) => form.creator)
+    forms: Form[];
 }

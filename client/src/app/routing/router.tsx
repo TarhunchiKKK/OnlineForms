@@ -6,8 +6,10 @@ import {
     SignUpPage,
     AuthLayout,
     TemplateLayout,
-    CreateTemplatePage,
     EditTemplatePage,
+    CreateFormPage,
+    EditFormPage,
+    TemplateFormsPage,
 } from "@/pages";
 
 export const router = createBrowserRouter([
@@ -33,16 +35,24 @@ export const router = createBrowserRouter([
                 ],
             },
             {
-                path: routes.Template,
+                path: routes.Templates,
                 element: <TemplateLayout />,
                 children: [
                     {
-                        path: routes.CreateTemplate,
-                        element: <CreateTemplatePage />,
+                        path: routes.EditTemplate,
+                        element: <EditTemplatePage />,
                     },
                     {
-                        path: `${routes.EditTemplate}/:id`,
-                        element: <EditTemplatePage />,
+                        path: routes.TemplateForms,
+                        element: <TemplateFormsPage />,
+                    },
+                    {
+                        path: routes.CreateForm,
+                        element: <CreateFormPage />,
+                    },
+                    {
+                        path: routes.EditForm,
+                        element: <EditFormPage />,
                     },
                 ],
             },

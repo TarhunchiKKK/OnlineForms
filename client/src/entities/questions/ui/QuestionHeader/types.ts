@@ -1,8 +1,8 @@
 import { TQuestion } from "../../models";
-import { OmitId, QuestionContexts } from "../../types";
+import { TQuestionEditor } from "../../types";
 
 export interface IQuestionHeaderProps {
-    question: OmitId<TQuestion>;
+    question: TQuestion;
 
-    context: QuestionContexts;
+    questionEditor: TQuestionEditor;
 }

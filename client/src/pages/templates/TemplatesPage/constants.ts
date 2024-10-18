@@ -7,7 +7,7 @@ export const pageRangeDisplayed = 5;
 
 // limit
 export const defaultTemplatesLimit = 20;
-export const minTemplatesLimit = 10;
-export const maxTemplatesLimit = 50;
-export const templatesLimitStep = 5;
 export const changeLimitDelay = 1200;
+
+// styles
+export const wrapperClassName = "px-6 py-4 shadow-md rounded-xl";

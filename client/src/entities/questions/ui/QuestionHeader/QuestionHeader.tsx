@@ -2,12 +2,9 @@ import { Dropdown, TextInput } from "@/shared/ui";
 import { IQuestionHeaderProps } from "./types";
 import { defaultTitlePlaceholder, questionTypesDropdownOptions } from "./constants";
 import { useQuestionHeader } from "./useQuestionHeader";
-import { QuestionContexts } from "../../types";
 
-export function QuestionHeader({ question, context }: IQuestionHeaderProps) {
-    const isAnswering = context === QuestionContexts.Answer;
-
-    const { handleTitleChange, handleTypeChange } = useQuestionHeader(question);
+export function QuestionHeader({ question, questionEditor }: IQuestionHeaderProps) {
+    const { handleTitleChange, handleTypeChange } = useQuestionHeader(question, questionEditor);
 
     return (
         <div className="flex flex-row justify-between items-center mb-4">
@@ -15,7 +12,7 @@ export function QuestionHeader({ question, context }: IQuestionHeaderProps) {
                 <TextInput
                     placeholder={defaultTitlePlaceholder}
                     value={question.title}
-                    disabled={isAnswering}
+                    disabled={!questionEditor.headerEditable}
                     onChange={handleTitleChange}
                 />
             </div>
@@ -23,7 +20,7 @@ export function QuestionHeader({ question, context }: IQuestionHeaderProps) {
             <div className="shadow-sm w-[240px]">
                 <Dropdown
                     value={question.type}
-                    disabled={isAnswering}
+                    disabled={!questionEditor.headerEditable}
                     onSelect={handleTypeChange}
                     options={questionTypesDropdownOptions}
                 />

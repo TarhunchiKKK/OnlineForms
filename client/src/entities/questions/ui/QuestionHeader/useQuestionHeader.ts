@@ -1,34 +1,25 @@
 import { ChangeEvent } from "react";
 import { QuestionTypes, TQuestion } from "../../models";
-import { useDispatch } from "react-redux";
-import { questionsSlice } from "../../lib";
-import { OmitId } from "../../types";
-import { defaultQuestions } from "./constants";
+import { TQuestionEditor } from "../../types";
+import { defaultQuestions } from "../../constants";
 
-export function useQuestionHeader(question: OmitId<TQuestion>) {
-    const dispatch = useDispatch();
-
+export function useQuestionHeader(question: TQuestion, questionEditor: TQuestionEditor) {
     const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(
-            questionsSlice.actions.upsertQuestion({
-                ...question,
-                title: e.target.value,
-            }),
-        );
+        questionEditor.update({
+            ...question,
+            title: e.target.value,
+        });
     };
 
     const handleTypeChange = (type: string) => {
         const questionType = type as QuestionTypes;
 
-        dispatch(
-            questionsSlice.actions.upsertQuestion({
-                ...defaultQuestions[questionType],
-                // ...question,
-                // type: type as QuestionTypes,
-                title: question.title,
-                sequenceNumber: question.sequenceNumber,
-            }),
-        );
+        questionEditor.update({
+            ...defaultQuestions[questionType],
+            title: question.title,
+            sequenceNumber: question.sequenceNumber,
+            id: question.id,
+        });
     };
 
     return {

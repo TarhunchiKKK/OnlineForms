@@ -1,8 +1,8 @@
 import { TSingleLineQuestion } from "../../models";
-import { OmitId, QuestionContexts } from "../../types";
+import { TQuestionEditor } from "../../types";
 
 export interface ISingleLineQuestionProps {
-    question: OmitId<TSingleLineQuestion>;
+    question: TSingleLineQuestion;
 
-    context: QuestionContexts;
+    questionEditor: TQuestionEditor;
 }

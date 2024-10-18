@@ -14,9 +14,9 @@ export type TTemplate = {
 
     creator: TUser;
 
-    createdAt: string;
+    createdAt: Date;
 
-    updatedAt: string;
+    updatedAt: Date;
 };
 
 export type TFullTemplate = TTemplate & {

@@ -1,0 +1,1 @@
+export { QuestionsToAnswersAdapter } from "./QuestionsToAnswersAdapter";

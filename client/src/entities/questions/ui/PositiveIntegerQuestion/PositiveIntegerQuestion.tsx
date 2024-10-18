@@ -2,18 +2,18 @@ import { NumericInput } from "@/shared/ui";
 import { IPositiveIntegerQuestionProps } from "./types";
 import { usePositiveIntegerQuestion } from "./usePositiveIntegerQuestion";
 import { maxValue, minValue, step } from "./constants";
-import { QuestionContexts } from "../../types";
 
-export function PositiveIntegerQuestion({ question, context }: IPositiveIntegerQuestionProps) {
-    const isEditing = context === QuestionContexts.Edit;
-
-    const { handleValueChange } = usePositiveIntegerQuestion(question);
+export function PositiveIntegerQuestion({
+    question,
+    questionEditor,
+}: IPositiveIntegerQuestionProps) {
+    const { handleValueChange } = usePositiveIntegerQuestion(question, questionEditor);
 
     return (
         <>
             <div className="w-[100px]">
                 <NumericInput
-                    disabled={isEditing}
+                    disabled={!questionEditor.answerEditable}
                     min={minValue}
                     max={maxValue}
                     step={step}

@@ -1,8 +1,8 @@
 import { TPositiveIntegerQuestion } from "../../models";
-import { OmitId, QuestionContexts } from "../../types";
+import { TQuestionEditor } from "../../types";
 
 export interface IPositiveIntegerQuestionProps {
-    question: OmitId<TPositiveIntegerQuestion>;
+    question: TPositiveIntegerQuestion;
 
-    context: QuestionContexts;
+    questionEditor: TQuestionEditor;
 }

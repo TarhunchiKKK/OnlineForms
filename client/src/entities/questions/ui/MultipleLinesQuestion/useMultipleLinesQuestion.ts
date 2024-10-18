@@ -1,18 +1,15 @@
-import { useDispatch } from "react-redux";
 import { TMultipleLineQuestion } from "../../models";
-import { questionsSlice } from "../../lib";
-import { OmitId } from "../../types";
+import { TQuestionEditor } from "../../types";
 
-export function useMultipleLinesQuestion(question: OmitId<TMultipleLineQuestion>) {
-    const dispatch = useDispatch();
-
+export function useMultipleLinesQuestion(
+    question: TMultipleLineQuestion,
+    questionEditor: TQuestionEditor,
+) {
     const handleAnswerChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(
-            questionsSlice.actions.upsertQuestion({
-                ...question,
-                text: event.target.value,
-            } as TMultipleLineQuestion),
-        );
+        questionEditor.update({
+            ...question,
+            text: event.target.value,
+        } as TMultipleLineQuestion);
     };
 
     return { handleAnswerChange };

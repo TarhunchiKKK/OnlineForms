@@ -1,14 +1,29 @@
-import { TemplateEditor } from "@/widgets/templates";
+import { AddQuestionButton, QuestionsList, TemplateHeader } from "@/features/template-editing";
 import { useEditTemplate } from "./useEditTemplate";
+import { useQuestionsEditor } from "@/features/questions-editing";
 
 export function EditTemplatePage() {
-    const { template, questions, handleSaveTemplate } = useEditTemplate();
+    const { template, questions } = useEditTemplate();
+
+    const questionsEditor = useQuestionsEditor();
+
+    const handleCreateQuestion = () => {
+        questionsEditor.create(template.template!.id);
+    };
 
     return (
-        <TemplateEditor
-            template={template}
-            questions={questions}
-            handleSubmit={handleSaveTemplate}
-        />
+        <>
+            {template.template && (
+                <TemplateHeader
+                    template={template.template}
+                    handlers={template.handlers}
+                    editable={template.editable}
+                />
+            )}
+
+            <QuestionsList questions={questions} questionsEditor={questionsEditor} />
+
+            <AddQuestionButton createQuestion={handleCreateQuestion} />
+        </>
     );
 }

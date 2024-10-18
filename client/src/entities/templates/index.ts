@@ -1,4 +1,4 @@
-export { templatesApi } from "./api";
-export type { TCreateTemplateDto } from "./api";
-export type { TTemplate, TFullTemplate } from "./models";
+export { templatesApi, TemplatesWsApiProvider } from "./api";
 export { TemplateTopics } from "./models";
+export type { TTemplate, TFullTemplate, TCreateTemplateDto } from "./models";
+export { defaultTemplate } from "./constants";
