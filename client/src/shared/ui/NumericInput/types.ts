@@ -13,7 +13,5 @@ export type TNumericInputProps = {
 
     value: number;
 
-    defaultValue?: number;
-
     onChange: (_: ChangeEvent<HTMLInputElement>) => void;
 };

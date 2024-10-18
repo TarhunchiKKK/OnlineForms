@@ -17,7 +17,7 @@ export const reduxStore = configureStore({
         [answersApi.reducerPath]: answersApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware()
+        getDefaultMiddleware({ serializableCheck: false })
             .concat(authApi.middleware)
             .concat(templatesApi.middleware)
             .concat(questionsApi.middleware)
