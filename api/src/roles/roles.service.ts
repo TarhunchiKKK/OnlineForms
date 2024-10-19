@@ -5,12 +5,14 @@ import { UserRolesOnTheAccounts } from "./enums/accounts";
 import { UserRoles } from "./enums/user-roles.enum";
 import { UserRolesOnTheTemplate } from "./enums/templates";
 import { UserRolesOnTheForm } from "./enums/forms";
+import { OperationOnTheAccountDto } from "./dto/operation-on-the-account.dto";
+import { permissionsOnTheAccounts } from "./constants/permissions-on-the-accounts";
 
 @Injectable()
 export class RolesService {
     constructor(private readonly userService: UsersService) {}
 
-    public async checkForGuest(userId: string | null): Promise<User | null> {
+    private async checkForGuest(userId: string | null): Promise<User | null> {
         if (!userId) {
             return null;
         }
@@ -24,7 +26,7 @@ export class RolesService {
         return user;
     }
 
-    public async defineUserRoleOnTheAccount(userId: string | null, accountId: string) {
+    private async defineUserRoleOnTheAccount(userId: string | null, accountId?: string) {
         const user = await this.checkForGuest(userId);
         if (!user) {
             return UserRolesOnTheAccounts.Guest;
@@ -41,7 +43,12 @@ export class RolesService {
         return UserRolesOnTheAccounts.AuthorizedUser;
     }
 
-    public async defineUserROleOnTheTemplate(userId: string | null, templateId: string) {
+    public async checkAccountOperationAvailability(dto: OperationOnTheAccountDto) {
+        const userRole = await this.defineUserRoleOnTheAccount(dto.userId, dto.accountId);
+        return permissionsOnTheAccounts[userRole].includes(dto.operation);
+    }
+
+    private async defineUserRoleOnTheTemplate(userId: string | null, templateId: string) {
         const user = await this.checkForGuest(userId);
         if (!user) {
             return UserRolesOnTheTemplate.Guest;
@@ -58,7 +65,7 @@ export class RolesService {
         return UserRolesOnTheTemplate.AuthorizedUser;
     }
 
-    public async defineUserRolesOnTheForm(userId: string | null, formId: string) {
+    private async defineUserRoleOnTheForm(userId: string | null, formId: string) {
         const user = await this.checkForGuest(userId);
         if (!user) {
             return UserRolesOnTheForm.Guest;

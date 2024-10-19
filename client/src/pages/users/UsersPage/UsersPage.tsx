@@ -7,7 +7,9 @@ export function UsersPage() {
     return (
         <main className="py-4">
             <div className="container mx-auto">
-                <UsersTable users={users} />
+                <div className="px-6 py-4 shadow-md rounded-xl">
+                    <UsersTable users={users} />
+                </div>
             </div>
         </main>
     );

@@ -1,2 +1,3 @@
 export type { TUser, TUserProfile } from "./user";
-export { UserRoles } from "./roles";
+export { UserRoles, UserStatuses } from "./enums";
+export type { TChangeUserRoleDto, TChangeUserStatusDto } from "./dtos";

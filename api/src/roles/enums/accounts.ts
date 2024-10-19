@@ -7,9 +7,7 @@ export enum UserRolesOnTheAccounts {
 
 export enum OperationsOnTheAccounts {
     ViewUsers = "View users",
-    BlockUser = "Block user",
-    UnblockUser = "Unblock user",
+    ChangeUserStatus = "Change user status",
     RemoveUser = "Remove user",
-    AddUserToAdmins = "Add user to admins",
-    RemoveUserFromAdmins = "Remove user from admins",
+    ChangeAdminPermissions = "Change admin permissions",
 }

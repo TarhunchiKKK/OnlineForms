@@ -3,11 +3,9 @@ import { OperationsOnTheAccounts, UserRolesOnTheAccounts } from "../enums/accoun
 export const permissionsOnTheAccounts: Record<UserRolesOnTheAccounts, OperationsOnTheAccounts[]> = {
     [UserRolesOnTheAccounts.Admin]: [
         OperationsOnTheAccounts.ViewUsers,
-        OperationsOnTheAccounts.BlockUser,
-        OperationsOnTheAccounts.UnblockUser,
+        OperationsOnTheAccounts.ChangeUserStatus,
         OperationsOnTheAccounts.RemoveUser,
-        OperationsOnTheAccounts.AddUserToAdmins,
-        OperationsOnTheAccounts.RemoveUserFromAdmins,
+        OperationsOnTheAccounts.ChangeAdminPermissions,
     ],
     [UserRolesOnTheAccounts.AccountOwner]: [
         OperationsOnTheAccounts.ViewUsers,

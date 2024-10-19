@@ -1,4 +1,4 @@
 import { Reflector } from "@nestjs/core";
-import { Operations } from "../types/operations";
+import { TOperations } from "../types/operations";
 
-export const ProvidesOperation = Reflector.createDecorator<Operations>();
+export const ProvidesOperation = Reflector.createDecorator<TOperations>();

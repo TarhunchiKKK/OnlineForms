@@ -6,6 +6,10 @@ import { UserExistException } from "src/users/exceptions/user-exist.exception";
 import * as argon2 from "argon2";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UserRoles } from "src/roles/enums/user-roles.enum";
+import { UserStatuses } from "./enums/user-statuses.enum";
+import { ChangeUserStatusDto } from "./dto/change-user-status.dto";
+import { UserNotFoundException } from "./exceptions/user-not-found.exception";
+import { ChangeUserRoleDto } from "./dto/change-user-role.dto";
 
 @Injectable()
 export class UsersService {
@@ -27,6 +31,7 @@ export class UsersService {
         return await this.usersRepository.save({
             ...createUserDto,
             role: UserRoles.AuthorizedUser,
+            status: UserStatuses.Active,
             password,
         });
     }
@@ -53,5 +58,37 @@ export class UsersService {
                 email,
             },
         });
+    }
+
+    public async changeUserStatus(dto: ChangeUserStatusDto) {
+        const user = await this.usersRepository.findOne({
+            where: {
+                id: dto.id,
+            },
+        });
+
+        if (!user) {
+            throw new UserNotFoundException(dto.id);
+        }
+
+        user.status = dto.status;
+
+        return await this.usersRepository.save(user);
+    }
+
+    public async changeUserRole(dto: ChangeUserRoleDto) {
+        const user = await this.usersRepository.findOne({
+            where: {
+                id: dto.id,
+            },
+        });
+
+        if (!user) {
+            throw new UserNotFoundException(dto.id);
+        }
+
+        user.role = dto.role;
+
+        return await this.usersRepository.save(user);
     }
 }

@@ -1,4 +1,4 @@
-import { UserRoles } from "./roles";
+import { UserRoles, UserStatuses } from "./enums";
 
 export type TUser = {
     id: string;
@@ -10,6 +10,8 @@ export type TUser = {
     password: string | null;
 
     role: UserRoles;
+
+    status: UserStatuses;
 };
 
 export type TUserProfile = {
