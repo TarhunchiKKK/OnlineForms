@@ -4,20 +4,26 @@ import { TTemplatesPageHeaderProps } from "./types";
 import { useTemplatesPageHeader } from "./useTemplatesPageHeader.ts";
 
 export function TemplatesPageHeader({ limit, handleLimitChange }: TTemplatesPageHeaderProps) {
-    const { handleCreateTemplate } = useTemplatesPageHeader();
+    const { handleCreateTemplate, authToken, handleAuth } = useTemplatesPageHeader();
 
     return (
         <>
             <Button size="md" content="New" onClick={handleCreateTemplate} />
 
-            <NumericInput
-                label="Per page:"
-                min={minTemplatesLimit}
-                max={maxTemplatesLimit}
-                step={templatesLimitStep}
-                value={limit}
-                onChange={handleLimitChange}
-            />
+            <div className="flex flex-row justify-between items-center gap-3 max-w-40">
+                <NumericInput
+                    label="Per page:"
+                    min={minTemplatesLimit}
+                    max={maxTemplatesLimit}
+                    step={templatesLimitStep}
+                    value={limit}
+                    onChange={handleLimitChange}
+                />
+            </div>
+
+            <button onClick={handleAuth} className="text-xl text-green-primary">
+                {authToken ? "Sign Out" : "Sign In"}
+            </button>
         </>
     );
 }

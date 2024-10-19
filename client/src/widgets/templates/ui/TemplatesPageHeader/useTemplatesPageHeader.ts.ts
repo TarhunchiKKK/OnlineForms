@@ -7,9 +7,9 @@ export function useTemplatesPageHeader() {
     const navigate = useNavigate();
     const [createDefaultTemplate] = templatesApi.useCreateDefaultMutation();
 
-    const handleCreateTemplate = async () => {
-        const authToken = localStorageService.auth.getAuthToken();
+    const authToken = localStorageService.auth.getAuthToken();
 
+    const handleCreateTemplate = async () => {
         const { data: template } = await createDefaultTemplate(authToken!);
 
         if (template) {
@@ -18,5 +18,12 @@ export function useTemplatesPageHeader() {
         }
     };
 
-    return { handleCreateTemplate };
+    const handleAuth = () => {
+        if (authToken) {
+            localStorageService.auth.removeAuthToken();
+        }
+        navigate(routes.SignIn);
+    };
+
+    return { handleCreateTemplate, authToken, handleAuth };
 }

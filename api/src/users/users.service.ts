@@ -38,6 +38,10 @@ export class UsersService {
             where: {
                 id: userId,
             },
+            relations: {
+                templates: true,
+                forms: true,
+            },
         });
     }
 

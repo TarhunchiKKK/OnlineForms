@@ -6,6 +6,7 @@ import { JwtModule } from "@nestjs/jwt";
 import { AuthModule } from "./auth/auth.module";
 import { TemplatesModule } from "./templates/templates.module";
 import { FormsModule } from "./forms/forms.module";
+import { RolesModule } from './roles/roles.module';
 
 @Module({
     imports: [
@@ -42,6 +43,7 @@ import { FormsModule } from "./forms/forms.module";
                 },
             }),
         }),
+        RolesModule,
     ],
 })
 export class AppModule {}
