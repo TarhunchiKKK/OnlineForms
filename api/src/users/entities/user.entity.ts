@@ -17,6 +17,7 @@ export class User {
     @Column({ nullable: true, default: null })
     password: string | null;
 
+    @Column({ nullable: false, default: UserRoles.AuthorizedUser })
     role: UserRoles;
 
     @OneToMany(() => Template, (template) => template.creator)

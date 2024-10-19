@@ -5,6 +5,7 @@ import { Repository } from "typeorm";
 import { UserExistException } from "src/users/exceptions/user-exist.exception";
 import * as argon2 from "argon2";
 import { CreateUserDto } from "./dto/create-user.dto";
+import { UserRoles } from "src/roles/enums/user-roles.enum";
 
 @Injectable()
 export class UsersService {
@@ -25,6 +26,7 @@ export class UsersService {
 
         return await this.usersRepository.save({
             ...createUserDto,
+            role: UserRoles.AuthorizedUser,
             password,
         });
     }

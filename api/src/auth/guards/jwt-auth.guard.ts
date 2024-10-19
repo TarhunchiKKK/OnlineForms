@@ -1,6 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
 import { MissingAuthTokenException } from "../exceptions/missing-token.exception";
 import { JwtService } from "@nestjs/jwt";
+import { TUserProfile } from "../types/user-profile.type";
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
@@ -17,8 +18,8 @@ export class JwtAuthGuard implements CanActivate {
                 throw new MissingAuthTokenException();
             }
 
-            const user = this.jwtService.verify(token);
-            request.user = user;
+            const { password, ...userProfile } = this.jwtService.verify(token) as TUserProfile;
+            request.user = userProfile;
             return true;
         } catch (exception: unknown) {
             throw exception;

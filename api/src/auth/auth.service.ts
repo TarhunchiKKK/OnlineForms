@@ -2,12 +2,12 @@ import { Injectable } from "@nestjs/common";
 import { SignUpDto } from "./dto/sign-up.dto";
 import { UsersService } from "src/users/users.service";
 import { JwtService } from "@nestjs/jwt";
-import { User } from "src/users/entities/user.entity";
 import { SignInDto } from "./dto/sign-in.dto";
 import { UserNotFounException } from "src/auth/exceptions/user-not-found.exception";
 import { IncorrectPasswordException } from "./exceptions/incorrect-password.exception";
 import { AuthWithProviderDto } from "./dto/auth-with-provider.dto";
 import * as argon2 from "argon2";
+import { TUserProfile } from "./types/user-profile.type";
 
 @Injectable()
 export class AuthService {
@@ -16,12 +16,12 @@ export class AuthService {
         private readonly jwtService: JwtService,
     ) {}
 
-    private generateToken(user: User) {
+    private generateToken(userProfile: TUserProfile) {
         return this.jwtService.sign({
-            id: user.id,
-            email: user.email,
-            password: user.password,
-            role: user.role,
+            id: userProfile.id,
+            email: userProfile.email,
+            password: userProfile.password,
+            role: userProfile.role,
         });
     }
 

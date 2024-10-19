@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { TSignInQueryArgs, TSIgnInResponse, TSignUpQueryArgs, TSIgnUpResponse } from "../types";
 import { transformSignInQueryArgs, transformSignUpQueryArgs } from "../helpers";
+import { TUserProfile } from "@/entities/users/models";
 
 export const authApi = createApi({
     reducerPath: "auth/api",
@@ -29,6 +30,14 @@ export const authApi = createApi({
                     body: queryArgs,
                 };
             },
+        }),
+        getProfile: builder.query<TUserProfile, string | null>({
+            query: (authToken: string | null) => ({
+                url: "/profile",
+                headers: {
+                    Authorization: `Bearer ${authToken ?? ""}`,
+                },
+            }),
         }),
     }),
 });

@@ -6,7 +6,9 @@ export class UsersController {
     constructor(private readonly usersService: UsersService) {}
 
     @Get()
-    findAll() {
-        return this.usersService.findAll();
+    // @ProvidesOperation(OperationsOnTheAccounts.ViewUsers)
+    // @UseGuards(JwtAuthGuard)
+    public async findAll() {
+        return await this.usersService.findAll();
     }
 }

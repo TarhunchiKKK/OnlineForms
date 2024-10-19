@@ -1,3 +1,5 @@
+import { UserRoles } from "./roles";
+
 export type TUser = {
     id: string;
 
@@ -6,4 +8,14 @@ export type TUser = {
     email: string;
 
     password: string | null;
+
+    role: UserRoles;
+};
+
+export type TUserProfile = {
+    id: string;
+
+    email: string;
+
+    role: UserRoles;
 };
