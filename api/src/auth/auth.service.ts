@@ -88,4 +88,16 @@ export class AuthService {
             access: accessToken,
         };
     }
+
+    public async getProfile(userId: string) {
+        const user = await this.usersService.findOneById(userId);
+
+        if (!user) {
+            throw new UserNotFounException();
+        }
+
+        const { id, email, status, role } = user;
+
+        return { id, email, status, role };
+    }
 }

@@ -19,3 +19,9 @@ export type TChangeUserRoleDto = {
 
     authToken: string;
 };
+
+export type TRemoveUserDto = {
+    id: string;
+
+    authToken: string;
+};

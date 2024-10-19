@@ -91,4 +91,8 @@ export class UsersService {
 
         return await this.usersRepository.save(user);
     }
+
+    public async remove(userId: string) {
+        await this.usersRepository.delete(userId);
+    }
 }

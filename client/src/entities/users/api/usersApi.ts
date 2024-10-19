@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { TChangeUserRoleDto, TChangeUserStatusDto, TUser } from "../models";
+import { TChangeUserRoleDto, TChangeUserStatusDto, TRemoveUserDto, TUser } from "../models";
 
 export const usersApi = createApi({
     reducerPath: "users/api",
@@ -40,6 +40,18 @@ export const usersApi = createApi({
                 url: "/role",
                 method: "PATCH",
                 body: dto.data,
+                headers: {
+                    Authorization: `Bearer ${dto.authToken}`,
+                },
+            }),
+
+            invalidatesTags: ["Users"],
+        }),
+
+        remove: builder.mutation<void, TRemoveUserDto>({
+            query: (dto: TRemoveUserDto) => ({
+                url: `/${dto.id}`,
+                method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${dto.authToken}`,
                 },

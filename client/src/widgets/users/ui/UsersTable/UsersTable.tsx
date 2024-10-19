@@ -9,11 +9,18 @@ export function UsersTable({ users }: TUsersTableProps) {
 
     const [changeStatus] = usersApi.useChangeStatusMutation();
     const [changeRole] = usersApi.useChangeRoleMutation();
+    const [remove] = usersApi.useRemoveMutation();
+
+    const handlers = {
+        changeStatus,
+        changeRole,
+        remove,
+    };
 
     return (
         <Table
             items={users}
-            renderItem={createRowRenderer(changeStatus, changeRole, authToken!)}
+            renderItem={createRowRenderer(handlers, authToken!)}
             renderHeaders={renderUsersTableHeaders}
         />
     );

@@ -1,6 +1,8 @@
 import { UserRoles, UserStatuses } from "@/entities/users";
 import { Button } from "@/shared/ui";
 import { TCreateRowRenderer, TUserData } from "./types";
+import { MdDeleteOutline } from "react-icons/md";
+import { iconsSize } from "./constants";
 
 export const renderUsersTableHeaders = () => {
     return (
@@ -10,17 +12,18 @@ export const renderUsersTableHeaders = () => {
             <th className="text-left">Role</th>
             <th className="text-left">Change status</th>
             <th className="text-left">Change role</th>
+            <th className="text-left"></th>
         </tr>
     );
 };
 
-export const createRowRenderer: TCreateRowRenderer = (changeStatus, changeRole, authToken) => {
+export const createRowRenderer: TCreateRowRenderer = (handlers, authToken) => {
     return (user: TUserData) => {
         const handleChangeStatus = () => {
             const nextStatus =
                 user.status === UserStatuses.Active ? UserStatuses.Blocked : UserStatuses.Active;
 
-            changeStatus({
+            handlers.changeStatus({
                 data: {
                     id: user.id,
                     status: nextStatus,
@@ -33,11 +36,18 @@ export const createRowRenderer: TCreateRowRenderer = (changeStatus, changeRole, 
             const nextRole =
                 user.role === UserRoles.Admin ? UserRoles.AuthorizedUser : UserRoles.Admin;
 
-            changeRole({
+            handlers.changeRole({
                 data: {
                     id: user.id,
                     role: nextRole,
                 },
+                authToken,
+            });
+        };
+
+        const handleRemove = () => {
+            handlers.remove({
+                id: user.id,
                 authToken,
             });
         };
@@ -64,6 +74,12 @@ export const createRowRenderer: TCreateRowRenderer = (changeStatus, changeRole, 
                         size="md"
                         onClick={handleChangeRole}
                     />
+                </td>
+
+                <td className="text-left">
+                    <button title="Delete" onClick={handleRemove}>
+                        <MdDeleteOutline size={iconsSize} />
+                    </button>
                 </td>
             </tr>
         );

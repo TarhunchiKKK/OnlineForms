@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, UseGuards } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 import { ProvidesOperation } from "src/roles/decorators/provides-operation.decorator";
@@ -14,7 +14,7 @@ export class UsersController {
     @Get()
     @ProvidesOperation(OperationsOnTheAccounts.ViewUsers)
     @UseGuards(JwtAuthGuard, OperationPermissionsGuard)
-    public async findAll() {
+    public async findAllUsers() {
         return await this.usersService.findAll();
     }
 
@@ -28,7 +28,14 @@ export class UsersController {
     @Patch("/role")
     @ProvidesOperation(OperationsOnTheAccounts.ChangeAdminPermissions)
     @UseGuards(JwtAuthGuard, OperationPermissionsGuard)
-    public async changeAdminPermissions(@Body() dto: ChangeUserRoleDto) {
+    public async changeUserRole(@Body() dto: ChangeUserRoleDto) {
         return await this.usersService.changeUserRole(dto);
+    }
+
+    @Delete(":userId")
+    @ProvidesOperation(OperationsOnTheAccounts.RemoveUser)
+    @UseGuards(JwtAuthGuard, OperationPermissionsGuard)
+    public async removeUser(@Param("userId") userId: string) {
+        await this.usersService.remove(userId);
     }
 }
