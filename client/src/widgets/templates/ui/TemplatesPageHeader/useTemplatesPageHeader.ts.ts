@@ -21,6 +21,7 @@ export function useTemplatesPageHeader() {
     const handleAuth = () => {
         if (authToken) {
             localStorageService.auth.removeAuthToken();
+            localStorageService.user.removeProfile();
         }
         navigate(routes.SignIn);
     };

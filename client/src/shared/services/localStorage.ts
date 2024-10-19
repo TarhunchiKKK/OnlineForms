@@ -34,5 +34,9 @@ export const localStorageService = {
             const parsedProfile = JSON.stringify(userProfile);
             localStorage.setItem(this.userKey, parsedProfile);
         },
+
+        removeProfile() {
+            localStorage.removeItem(this.userKey);
+        },
     },
 };

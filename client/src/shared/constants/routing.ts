@@ -11,6 +11,8 @@ export const routes = {
     SignIn: "/auth/sign-in",
     SignUp: "/auth/sign-up",
 
+    Users: "/users",
+
     createEditTemplateRoute: (templateId: string) => {
         return `/templates/${templateId}/edit`;
     },

@@ -10,6 +10,7 @@ import {
     CreateFormPage,
     EditFormPage,
     TemplateFormsPage,
+    UsersPage,
 } from "@/pages";
 
 export const router = createBrowserRouter([
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <TemplatesPage />,
+            },
+            {
+                path: routes.Users,
+                element: <UsersPage />,
             },
             {
                 path: routes.Auth,
