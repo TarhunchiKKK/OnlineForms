@@ -1,7 +1,10 @@
 import { answersApi } from "@/entities/answers";
 import { formsApi } from "@/entities/forms";
 import { TQuestion } from "@/entities/questions";
+import { OperationsOnTheForm } from "@/entities/roles";
+import { useAnswersEditor, useDisabledAnswersEditor } from "@/features/answers-editing";
 import { AnswersToQuestionsAdapter, useQuestions } from "@/features/questions-editing";
+import { checkAvailability, useUserRoleOnTheForm } from "@/features/roles-separation";
 import { useTemplate } from "@/features/template-editing";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
@@ -31,4 +34,21 @@ export function useEditForm() {
         },
         questions: questions as TQuestion[],
     };
+}
+
+export function useFormEditor() {
+    const { userRoleOnTheForm: userRole } = useUserRoleOnTheForm();
+
+    const answersEditor = useAnswersEditor();
+    const disabledAnswersEditor = useDisabledAnswersEditor();
+
+    const questionsEditor = useMemo(() => {
+        if (userRole && checkAvailability(userRole, OperationsOnTheForm.EditForm)) {
+            return answersEditor;
+        } else {
+            return disabledAnswersEditor;
+        }
+    }, [userRole, answersEditor, disabledAnswersEditor]);
+
+    return questionsEditor;
 }

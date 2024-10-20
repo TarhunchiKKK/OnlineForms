@@ -6,7 +6,8 @@ import {
     transformCreateResponse,
     transformFindAllResponse,
     transformFindOneResponse,
-} from "../ws/helpers";
+} from "./helpers";
+import { createAuthHeaders } from "@/shared/helpers";
 
 export const templatesApi = createApi({
     reducerPath: "templates/api",
@@ -23,9 +24,7 @@ export const templatesApi = createApi({
                 url: "",
                 method: "POST",
                 body: defaultTemplate,
-                headers: {
-                    Authorization: `Bearer ${authToken}`,
-                },
+                headers: createAuthHeaders(authToken),
             }),
             transformResponse: transformCreateResponse,
             invalidatesTags: ["Template"],
@@ -36,9 +35,7 @@ export const templatesApi = createApi({
                 url: "",
                 method: "POST",
                 body: dto.data,
-                headers: {
-                    Authorization: `Bearer ${dto.authToken}`,
-                },
+                headers: createAuthHeaders(dto.authToken),
             }),
             transformResponse: transformCreateResponse,
             invalidatesTags: ["Template"],
@@ -56,10 +53,9 @@ export const templatesApi = createApi({
         findUserTemplates: builder.query<TTemplate[], string>({
             query: (authToken: string) => ({
                 url: "/user",
-                headers: {
-                    Authorization: `Bearer ${authToken}`,
-                },
+                headers: createAuthHeaders(authToken),
             }),
+            transformResponse: transformFindAllResponse,
             providesTags: ["Template"],
         }),
 

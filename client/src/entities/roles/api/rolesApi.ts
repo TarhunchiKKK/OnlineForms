@@ -1,7 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { UserRolesOnTheAccounts, UserRolesOnTheTemplate } from "../models";
-import { TCheckUserRoleOnTheTemplateDto, TCheckUSerRolesOnTheAccountsDto } from "../models/dtos";
+import { UserRolesOnTheAccounts, UserRolesOnTheForm, UserRolesOnTheTemplate } from "../models";
+import {
+    TCheckUserRoleOnTheForm,
+    TCheckUserRoleOnTheTemplateDto,
+    TCheckUSerRolesOnTheAccountsDto,
+} from "../models/dtos";
 import { TResponse } from "./types";
+import { createAuthHeaders } from "@/shared/helpers";
 
 export const rolesApi = createApi({
     reducerPath: "roles/api",
@@ -17,9 +22,7 @@ export const rolesApi = createApi({
         >({
             query: (dto: TCheckUSerRolesOnTheAccountsDto) => ({
                 url: `/accounts/${dto.accountId}`,
-                headers: {
-                    Authorization: `Bearer ${dto.authToken}`,
-                },
+                headers: createAuthHeaders(dto.authToken),
             }),
         }),
 
@@ -29,9 +32,14 @@ export const rolesApi = createApi({
         >({
             query: (dto: TCheckUserRoleOnTheTemplateDto) => ({
                 url: `/templates/${dto.templateId}`,
-                headers: {
-                    Authorization: `Bearer ${dto.authToken}`,
-                },
+                headers: createAuthHeaders(dto.authToken),
+            }),
+        }),
+
+        checRolesOnTheForm: builder.query<TResponse<UserRolesOnTheForm>, TCheckUserRoleOnTheForm>({
+            query: (dto: TCheckUserRoleOnTheForm) => ({
+                url: `/forms/${dto.formId}`,
+                headers: createAuthHeaders(dto.authToken),
             }),
         }),
     }),

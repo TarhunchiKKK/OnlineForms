@@ -4,9 +4,11 @@ import { UsersModule } from "src/users/users.module";
 import { RolesController } from "./roles.controller";
 import { JwtModule } from "@nestjs/jwt";
 import { ConfigModule, ConfigService } from "@nestjs/config";
+import { FormsModule } from "src/forms/forms.module";
 
 @Module({
     imports: [
+        FormsModule,
         forwardRef(() => UsersModule),
         JwtModule.registerAsync({
             imports: [ConfigModule],

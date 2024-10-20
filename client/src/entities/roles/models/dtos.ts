@@ -9,3 +9,9 @@ export type TCheckUserRoleOnTheTemplateDto = {
 
     templateId?: string;
 };
+
+export type TCheckUserRoleOnTheForm = {
+    authToken: string;
+
+    formId?: string;
+};

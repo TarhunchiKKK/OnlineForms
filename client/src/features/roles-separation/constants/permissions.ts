@@ -48,8 +48,6 @@ export const permissionsOnTheForms: Record<UserRolesOnTheForm, OperationsOnTheFo
         OperationsOnTheForm.ViewTemplateForms,
     ],
     [UserRolesOnTheForm.FormTemplateCreator]: [
-        OperationsOnTheForm.CreateForm,
-        OperationsOnTheForm.EditForm,
         OperationsOnTheForm.ViewForm,
         OperationsOnTheForm.ViewTemplateForms,
     ],

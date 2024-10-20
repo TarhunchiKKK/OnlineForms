@@ -29,4 +29,14 @@ export class RolesController {
         );
         return { role };
     }
+
+    @Get("/forms/:formId")
+    @UseGuards(JwtAuthGuard)
+    public async defineUserRoleOnForm(
+        @Req() request: TAuthorizedRequest,
+        @Param("formId") formId?: string,
+    ) {
+        const role = await this.rolesService.defineUserRoleOnTheForm(request.user.id, formId);
+        return { role };
+    }
 }

@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { TChangeUserRoleDto, TChangeUserStatusDto, TRemoveUserDto, TUser } from "../models";
+import { createAuthHeaders } from "@/shared/helpers";
 
 export const usersApi = createApi({
     reducerPath: "users/api",
@@ -14,9 +15,7 @@ export const usersApi = createApi({
         findAll: builder.query<TUser[], string>({
             query: (authToken: string) => ({
                 url: "",
-                headers: {
-                    Authorization: `Bearer ${authToken}`,
-                },
+                headers: createAuthHeaders(authToken),
             }),
 
             providesTags: ["Users"],
@@ -25,9 +24,7 @@ export const usersApi = createApi({
         findMe: builder.query<TUser, string>({
             query: (authToken: string) => ({
                 url: "/me",
-                headers: {
-                    Authorization: `Bearer ${authToken}`,
-                },
+                headers: createAuthHeaders(authToken),
             }),
         }),
 
@@ -36,9 +33,7 @@ export const usersApi = createApi({
                 url: "/status",
                 method: "PATCH",
                 body: dto.data,
-                headers: {
-                    Authorization: `Bearer ${dto.authToken}`,
-                },
+                headers: createAuthHeaders(dto.authToken),
             }),
 
             invalidatesTags: ["Users"],
@@ -49,9 +44,7 @@ export const usersApi = createApi({
                 url: "/role",
                 method: "PATCH",
                 body: dto.data,
-                headers: {
-                    Authorization: `Bearer ${dto.authToken}`,
-                },
+                headers: createAuthHeaders(dto.authToken),
             }),
 
             invalidatesTags: ["Users"],
@@ -61,9 +54,7 @@ export const usersApi = createApi({
             query: (dto: TRemoveUserDto) => ({
                 url: `/${dto.id}`,
                 method: "DELETE",
-                headers: {
-                    Authorization: `Bearer ${dto.authToken}`,
-                },
+                headers: createAuthHeaders(dto.authToken),
             }),
 
             invalidatesTags: ["Users"],
