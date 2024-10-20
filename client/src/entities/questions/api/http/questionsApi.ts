@@ -5,7 +5,7 @@ export const questionsApi = createApi({
     reducerPath: "questions/api",
 
     baseQuery: fetchBaseQuery({
-        baseUrl: `${import.meta.env.VITE_SERVER_URL}/templates`,
+        baseUrl: `${import.meta.env.VITE_SERVER_URL}/questions`,
     }),
 
     tagTypes: ["Question"],
@@ -13,7 +13,7 @@ export const questionsApi = createApi({
     endpoints: (builder) => ({
         findByTemplate: builder.query<TQuestion[], string>({
             query: (templateId: string) => ({
-                url: `/${templateId}/questions`,
+                url: `/template/${templateId}`,
             }),
             providesTags: ["Question"],
         }),

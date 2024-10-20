@@ -1,9 +1,9 @@
 import { Repository } from "typeorm";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Form } from "../entities/form.entity";
-import { CreateFormDto } from "../dto/create-form.dto";
-import { AnswersService } from "./answers.service";
+import { Form } from "./entities/form.entity";
+import { CreateFormDto } from "./dto/create-form.dto";
+import { AnswersService } from "src/answers/answers.service";
 
 @Injectable()
 export class FormsService {

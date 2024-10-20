@@ -1,10 +1,10 @@
 import { MessageBody, SubscribeMessage, WebSocketGateway } from "@nestjs/websockets";
 import { webSocketGatewayProps } from "src/shared/constants/websockets";
-import { AnswersService } from "./services/answers.service";
-import { UpdateAnswerDto } from "./dto/update-answer.dto";
+import { UpdateAnswerDto } from "../answers/dto/update-answer.dto";
+import { AnswersService } from "./answers.service";
 
 @WebSocketGateway(webSocketGatewayProps)
-export class FormsGateway {
+export class AnswersGateway {
     constructor(private readonly answersService: AnswersService) {}
 
     @SubscribeMessage("updateAnswer")

@@ -1,11 +1,11 @@
 import { Repository } from "typeorm";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Answer } from "../entities/answer.entity";
-import { CreateAnswerDto } from "../dto/create-answer.dto";
-import { questionSequenceNumberSortCompareer } from "../helpers/sort-compareers";
-import { UpdateAnswerDto } from "../dto/update-answer.dto";
-import { AnswerNotFoundException } from "../exceptions/answer-not-found.exception";
+import { questionSequenceNumberSortCompareer } from "src/answers/helpers/sort-compareers";
+import { CreateAnswerDto } from "./dto/create-answer.dto";
+import { UpdateAnswerDto } from "./dto/update-answer.dto";
+import { Answer } from "./entities/answer.entity";
+import { AnswerNotFoundException } from "./exceptions/answer-not-found.exception";
 
 @Injectable()
 export class AnswersService {

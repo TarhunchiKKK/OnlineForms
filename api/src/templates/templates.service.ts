@@ -1,18 +1,15 @@
 import { Injectable } from "@nestjs/common";
-import { CreateTemplateDto } from "../dto/create-template.dto";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Template } from "../entities/template.entity";
 import { Repository } from "typeorm";
-import { QuestionsService } from "src/templates/services/questions.service";
-import { UpdateTemplateDto } from "../dto/update-template.dto";
-import { TemplateNotFoundException } from "../exceptions/template-not-found.exception";
+import { CreateTemplateDto } from "./dto/create-template.dto";
+import { UpdateTemplateDto } from "./dto/update-template.dto";
+import { Template } from "./entities/template.entity";
+import { TemplateNotFoundException } from "./exceptions/template-not-found.exception";
 
 @Injectable()
 export class TemplatesService {
     constructor(
         @InjectRepository(Template) private readonly templatesRepository: Repository<Template>,
-
-        private readonly questionsService: QuestionsService,
     ) {}
 
     public async create(createTemplateDto: CreateTemplateDto) {

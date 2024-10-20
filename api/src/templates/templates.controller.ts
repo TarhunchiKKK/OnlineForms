@@ -1,16 +1,12 @@
 import { Controller, Get, Post, Body, Param, Query, Req, UseGuards } from "@nestjs/common";
-import { TemplatesService } from "./services/templates.service";
 import { CreateTemplateDto } from "./dto/create-template.dto";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
-import { QuestionsService } from "./services/questions.service";
 import { TAuthorizedRequest } from "src/auth/types/request";
+import { TemplatesService } from "./templates.service";
 
 @Controller("templates")
 export class TemplatesController {
-    constructor(
-        private readonly templatesService: TemplatesService,
-        private readonly questionsService: QuestionsService,
-    ) {}
+    constructor(private readonly templatesService: TemplatesService) {}
 
     @Post()
     @UseGuards(JwtAuthGuard)
@@ -45,10 +41,5 @@ export class TemplatesController {
     @Get(":id")
     public async findOneTemplateById(@Param("id") templateId: string) {
         return this.templatesService.findOneById(templateId);
-    }
-
-    @Get("/:id/questions")
-    public async getTemplatesQuestions(@Param("id") templateId: string) {
-        return await this.questionsService.findAllByTemplateId(templateId);
     }
 }

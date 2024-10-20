@@ -7,6 +7,8 @@ import { AuthModule } from "./auth/auth.module";
 import { TemplatesModule } from "./templates/templates.module";
 import { FormsModule } from "./forms/forms.module";
 import { RolesModule } from './roles/roles.module';
+import { QuestionsModule } from './questions/questions.module';
+import { AnswersModule } from './answers/answers.module';
 
 @Module({
     imports: [
@@ -44,6 +46,8 @@ import { RolesModule } from './roles/roles.module';
             }),
         }),
         RolesModule,
+        QuestionsModule,
+        AnswersModule,
     ],
 })
 export class AppModule {}
