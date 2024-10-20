@@ -53,6 +53,16 @@ export const templatesApi = createApi({
             providesTags: ["Template"],
         }),
 
+        findUserTemplates: builder.query<TTemplate[], string>({
+            query: (authToken: string) => ({
+                url: "/user",
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            }),
+            providesTags: ["Template"],
+        }),
+
         findOne: builder.query<TFullTemplate, string>({
             query: (id: string) => ({
                 url: `/${id}`,

@@ -1,7 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import { templatesApi } from "@/entities/templates";
 import { routes } from "@/shared/constants";
 import { localStorageService } from "@/shared/services";
-import { useNavigate } from "react-router-dom";
 
 export function useTemplatesPageHeader() {
     const navigate = useNavigate();
@@ -19,11 +19,8 @@ export function useTemplatesPageHeader() {
     };
 
     const handleAuth = () => {
-        if (authToken) {
-            localStorageService.auth.removeAuthToken();
-            localStorageService.user.removeProfile();
-        }
-        navigate(routes.SignIn);
+        const route = authToken ? routes.CurrentUserTemplates : routes.SignIn;
+        navigate(route);
     };
 
     return { handleCreateTemplate, authToken, handleAuth };

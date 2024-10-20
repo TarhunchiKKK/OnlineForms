@@ -23,6 +23,18 @@ export const formsApi = createApi({
             }),
             invalidatesTags: ["Forms"],
         }),
+
+        findUserForms: builder.query<TForm[], string>({
+            query: (authToken: string) => ({
+                url: "/user",
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            }),
+            transformResponse: transformFindAllResponse,
+            providesTags: ["Forms"],
+        }),
+
         findAllByTemplateId: builder.query<TForm[], string>({
             query: (templateId: string) => ({
                 url: `/${templateId}`,
@@ -30,6 +42,7 @@ export const formsApi = createApi({
             transformResponse: transformFindAllResponse,
             providesTags: ["Forms"],
         }),
+
         findOne: builder.query<TFullForm, string>({
             query: (id: string) => ({
                 url: `${id}`,

@@ -3,6 +3,7 @@ import { AnswersService } from "./services/answers.service";
 import { CreateFormDto } from "./dto/create-form.dto";
 import { FormsService } from "./services/forms.service";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
+import { TAuthorizedRequest } from "src/auth/types/request";
 
 @Controller("forms")
 export class FormsController {
@@ -13,13 +14,22 @@ export class FormsController {
 
     @Post()
     @UseGuards(JwtAuthGuard)
-    public async createForm(@Req() request, @Body() createFormDto: CreateFormDto) {
+    public async createForm(
+        @Req() request: TAuthorizedRequest,
+        @Body() createFormDto: CreateFormDto,
+    ) {
         return this.formsService.create({
             ...createFormDto,
             creator: {
                 id: request.user.id,
             },
         });
+    }
+
+    @Get("/user")
+    @UseGuards(JwtAuthGuard)
+    public async findUserForms(@Req() request: TAuthorizedRequest) {
+        return this.formsService.findAllByTemplateId(request.user.id);
     }
 
     @Get("/answers/:formId")

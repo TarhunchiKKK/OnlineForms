@@ -22,6 +22,15 @@ export const usersApi = createApi({
             providesTags: ["Users"],
         }),
 
+        findMe: builder.query<TUser, string>({
+            query: (authToken: string) => ({
+                url: "/me",
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            }),
+        }),
+
         changeStatus: builder.mutation<void, TChangeUserStatusDto>({
             query: (dto: TChangeUserStatusDto) => ({
                 url: "/status",

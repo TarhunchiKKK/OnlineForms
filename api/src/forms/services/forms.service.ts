@@ -36,6 +36,19 @@ export class FormsService {
         });
     }
 
+    public async findAllByUserId(userId: string) {
+        return await this.formsRepository.find({
+            relations: {
+                creator: true,
+            },
+            where: {
+                creator: {
+                    id: userId,
+                },
+            },
+        });
+    }
+
     public async findOne(formId: string) {
         return await this.formsRepository.findOne({
             where: {

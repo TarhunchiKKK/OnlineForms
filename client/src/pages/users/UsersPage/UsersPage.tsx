@@ -1,5 +1,6 @@
 import { UsersTable } from "@/widgets/users";
 import { useUsers } from "./useUsers";
+import { contentWrapperClassName } from "@/shared/constants";
 
 export function UsersPage() {
     const { users } = useUsers();
@@ -9,7 +10,7 @@ export function UsersPage() {
     return (
         <main className="py-4">
             <div className="container mx-auto">
-                <div className="px-6 py-4 shadow-md rounded-xl">
+                <div className={contentWrapperClassName}>
                     {users && <UsersTable users={users} />}
                 </div>
             </div>

@@ -3,6 +3,7 @@ import { TemplatesService } from "./services/templates.service";
 import { CreateTemplateDto } from "./dto/create-template.dto";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 import { QuestionsService } from "./services/questions.service";
+import { TAuthorizedRequest } from "src/auth/types/request";
 
 @Controller("templates")
 export class TemplatesController {
@@ -14,7 +15,7 @@ export class TemplatesController {
     @Post()
     @UseGuards(JwtAuthGuard)
     public async createTemplate(
-        @Req() request,
+        @Req() request: TAuthorizedRequest,
         @Body() createTemplateDto: Omit<CreateTemplateDto, "creator">,
     ) {
         return this.templatesService.create({
@@ -33,6 +34,12 @@ export class TemplatesController {
     @Get("/count")
     public async getTemplatesCount() {
         return this.templatesService.getCount();
+    }
+
+    @Get("/user")
+    @UseGuards(JwtAuthGuard)
+    public async findUserTemplates(@Req() request: TAuthorizedRequest) {
+        return await this.templatesService.findAllByUserId(request.user.id);
     }
 
     @Get(":id")

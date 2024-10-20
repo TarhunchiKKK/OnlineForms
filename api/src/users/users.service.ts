@@ -52,6 +52,14 @@ export class UsersService {
         });
     }
 
+    public async findMe(userId: string) {
+        return await this.usersRepository.findOne({
+            where: {
+                id: userId,
+            },
+        });
+    }
+
     public async findOneByEmail(email: string) {
         return await this.usersRepository.findOne({
             where: {

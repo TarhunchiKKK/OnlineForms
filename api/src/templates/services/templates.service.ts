@@ -29,6 +29,19 @@ export class TemplatesService {
         });
     }
 
+    public async findAllByUserId(userId: string) {
+        return await this.templatesRepository.find({
+            where: {
+                creator: {
+                    id: userId,
+                },
+            },
+            relations: {
+                creator: true,
+            },
+        });
+    }
+
     public async findOneById(templateId: string) {
         return await this.templatesRepository.findOne({
             where: {

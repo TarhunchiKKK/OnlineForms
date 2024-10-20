@@ -1,13 +1,8 @@
 import ReactPaginate from "react-paginate";
 import { TemplatesPageHeader, TemplatesTable } from "@/widgets/templates";
 import { useTemplates } from "./useTemplates";
-import {
-    pageRangeDisplayed,
-    paginationBreakLabel,
-    paginationNextLabel,
-    paginationPreviousLabel,
-    wrapperClassName,
-} from "./constants";
+import { pageRangeDisplayed, paginationBreakLabel, paginationNextLabel, paginationPreviousLabel } from "./constants";
+import { contentWrapperClassName } from "@/shared/constants";
 
 export function TemplatesPage() {
     const { templates, pagesCount, handlePageChange, limit, handleLimitChange } = useTemplates();
@@ -15,13 +10,11 @@ export function TemplatesPage() {
     return (
         <main className="py-4">
             <div className="container mx-auto">
-                <div
-                    className={`${wrapperClassName} mb-8 flex flex-row justify-between items-center`}
-                >
+                <div className={`${contentWrapperClassName} mb-8 flex flex-row justify-between items-center`}>
                     <TemplatesPageHeader limit={limit} handleLimitChange={handleLimitChange} />
                 </div>
 
-                <div className={`${wrapperClassName} mb-6`}>
+                <div className={`${contentWrapperClassName} mb-6`}>
                     {templates && <TemplatesTable templates={templates} />}
                 </div>
 

@@ -1,5 +1,6 @@
 export const routes = {
     Home: "/",
+
     Templates: "/templates",
     EditTemplate: "/templates/:id/edit",
     TemplateForms: "/templates/:id/forms",
@@ -7,11 +8,12 @@ export const routes = {
     CreateForm: "/templates/:id/create-form",
     EditForm: "/templates/form/:id/edit",
 
-    Auth: "/auth",
     SignIn: "/auth/sign-in",
     SignUp: "/auth/sign-up",
 
     Users: "/users",
+    CurrentUserTemplates: "/users/me/templates",
+    CurrentUserForms: "/users/me/forms",
 
     createEditTemplateRoute: (templateId: string) => {
         return `/templates/${templateId}/edit`;

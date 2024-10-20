@@ -1,0 +1,1 @@
+export { PrivilegentAccess } from "./PrivilegentAccess";

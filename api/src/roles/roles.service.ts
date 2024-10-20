@@ -7,6 +7,8 @@ import { UserRolesOnTheTemplate } from "./enums/templates";
 import { UserRolesOnTheForm } from "./enums/forms";
 import { OperationOnTheAccountDto } from "./dto/operation-on-the-account.dto";
 import { permissionsOnTheAccounts } from "./constants/permissions-on-the-accounts";
+import { OperationOnTheTemplateDto } from "./dto/operation-on-the-template.dto";
+import { permissionsOnTheTemplates } from "./constants/permissions-on-the-templates";
 
 @Injectable()
 export class RolesService {
@@ -26,7 +28,7 @@ export class RolesService {
         return user;
     }
 
-    private async defineUserRoleOnTheAccount(userId: string | null, accountId?: string) {
+    public async defineUserRoleOnTheAccount(userId: string | null, accountId?: string) {
         const user = await this.checkForGuest(userId);
         if (!user) {
             return UserRolesOnTheAccounts.Guest;
@@ -48,7 +50,7 @@ export class RolesService {
         return permissionsOnTheAccounts[userRole].includes(dto.operation);
     }
 
-    private async defineUserRoleOnTheTemplate(userId: string | null, templateId: string) {
+    public async defineUserRoleOnTheTemplate(userId: string | null, templateId: string) {
         const user = await this.checkForGuest(userId);
         if (!user) {
             return UserRolesOnTheTemplate.Guest;
@@ -65,7 +67,12 @@ export class RolesService {
         return UserRolesOnTheTemplate.AuthorizedUser;
     }
 
-    private async defineUserRoleOnTheForm(userId: string | null, formId: string) {
+    public async checkTemplateOperationAvailability(dto: OperationOnTheTemplateDto) {
+        const userRole = await this.defineUserRoleOnTheTemplate(dto.userId, dto.templateId);
+        return permissionsOnTheTemplates[userRole].includes(dto.operation);
+    }
+
+    public async defineUserRoleOnTheForm(userId: string | null, formId: string) {
         const user = await this.checkForGuest(userId);
         if (!user) {
             return UserRolesOnTheForm.Guest;
