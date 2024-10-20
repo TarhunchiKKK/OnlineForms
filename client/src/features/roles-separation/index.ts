@@ -1,2 +1,2 @@
 export { useUserRoleOnTheAccounts, useUserRoleOnTheTemplate } from "./hooks";
-export { PrivilegentAccess } from "./ui";
+export { PrivilegentAccess, PrivilegentRedirect } from "./ui";

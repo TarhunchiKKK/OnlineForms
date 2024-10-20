@@ -1,5 +1,5 @@
+import { checkAvailability } from "../../helpers";
 import { TPrivilegentAccessProps } from "./types";
-import { checkAvailability } from "./helpers";
 
 export function PrivilegentAccess({ role, operation, children }: TPrivilegentAccessProps) {
     if (!role) {

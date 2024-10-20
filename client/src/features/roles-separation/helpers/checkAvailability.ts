@@ -6,13 +6,16 @@ import {
     UserRolesOnTheForm,
     UserRolesOnTheTemplate,
 } from "@/entities/roles/models";
-import { accountOperations, templateOperations } from "./constants";
-import { TOperations, TRoles } from "./types";
 import {
     permissionsOnTheAccounts,
-    permissionsOnTheForms,
     permissionsOnTheTemplates,
-} from "../../constants";
+    permissionsOnTheForms,
+} from "../constants";
+import { TRoles, TOperations } from "../types";
+
+export const accountOperations = Object.values(OperationsOnTheAccounts);
+export const templateOperations = Object.values(OperationsOnTheTemplate);
+export const formOperations = Object.values(OperationsOnTheForm);
 
 export const checkAvailability = (role: TRoles, operation: TOperations) => {
     if (accountOperations.includes(operation as OperationsOnTheAccounts)) {

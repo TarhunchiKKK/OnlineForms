@@ -1,9 +1,11 @@
 import { TOperations, TRoles } from "../../types";
 
-export type TPrivilegentAccessProps = {
-    role: TRoles | undefined;
+export type TPrivilegentRedirectProps = {
+    role?: TRoles;
 
     operation: TOperations;
 
     children: string | JSX.Element | JSX.Element[];
+
+    route: string;
 };

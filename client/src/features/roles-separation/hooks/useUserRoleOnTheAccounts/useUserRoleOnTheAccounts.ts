@@ -3,7 +3,7 @@ import { localStorageService } from "@/shared/services";
 import { useParams } from "react-router-dom";
 
 export function useUserRoleOnTheAccounts() {
-    const { id: accountId } = useParams();
+    const { accountId } = useParams();
 
     const authToken = localStorageService.auth.getAuthToken();
 

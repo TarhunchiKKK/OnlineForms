@@ -11,9 +11,11 @@ import {
     EditFormPage,
     TemplateFormsPage,
     UsersPage,
+    CurrentUserLayout,
+    UserFormsPage,
+    UserTemplatesPage,
 } from "@/pages";
-import { CurrentUserLayout } from "@/pages/layouts";
-import { UserFormsPage, UserTemplatesPage } from "@/pages/users";
+import { FormLayout } from "@/pages/layouts";
 
 export const router = createBrowserRouter([
     {
@@ -41,7 +43,6 @@ export const router = createBrowserRouter([
                 ],
             },
             {
-                path: routes.Templates,
                 element: <TemplateLayout />,
                 children: [
                     {
@@ -52,6 +53,11 @@ export const router = createBrowserRouter([
                         path: routes.TemplateForms,
                         element: <TemplateFormsPage />,
                     },
+                ],
+            },
+            {
+                element: <FormLayout />,
+                children: [
                     {
                         path: routes.CreateForm,
                         element: <CreateFormPage />,

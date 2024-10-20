@@ -30,7 +30,7 @@ export const rolesApi = createApi({
             query: (dto: TCheckUserRoleOnTheTemplateDto) => ({
                 url: `/templates/${dto.templateId}`,
                 headers: {
-                    Authorization: "Bearer ${dto.authToken}",
+                    Authorization: `Bearer ${dto.authToken}`,
                 },
             }),
         }),

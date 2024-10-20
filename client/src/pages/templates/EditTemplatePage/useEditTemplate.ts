@@ -5,7 +5,7 @@ import { templatesApi } from "@/entities/templates";
 import { questionsApi, TQuestion } from "@/entities/questions";
 
 export function useEditTemplate() {
-    const { id: templateId } = useParams();
+    const { templateId } = useParams();
 
     const { data: fetchedTemplate } = templatesApi.useFindOneQuery(templateId!);
     const { data: fetchedQuestions } = questionsApi.useFindByTemplateQuery(templateId!);

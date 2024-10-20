@@ -6,6 +6,7 @@ export const renderTab = (tab: TTab, index: number) => {
         <li key={index}>
             <NavLink
                 to={tab.route}
+                replace={true}
                 className={({ isActive }) =>
                     `${isActive ? "text-green-secondary underline" : ""} cursor-pointer`
                 }

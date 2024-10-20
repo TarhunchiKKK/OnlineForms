@@ -7,7 +7,7 @@ import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 
 export function useEditForm() {
-    const { id: formId } = useParams();
+    const { formId } = useParams();
 
     const { data: form } = formsApi.useFindOneQuery(formId!);
     const { data: fetchedAnswers } = answersApi.useFindAllByFormIdQuery(formId!);

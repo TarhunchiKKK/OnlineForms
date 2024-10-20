@@ -25,11 +25,13 @@ export const permissionsOnTheAccounts: Record<UserRolesOnTheAccounts, Operations
 export const permissionsOnTheTemplates: Record<UserRolesOnTheTemplate, OperationsOnTheTemplate[]> =
     {
         [UserRolesOnTheTemplate.Admin]: [
+            OperationsOnTheTemplate.SeeFullTemplate,
             OperationsOnTheTemplate.CreateTemplate,
             OperationsOnTheTemplate.EditTemplate,
             OperationsOnTheTemplate.OpenTemplateForUser,
         ],
         [UserRolesOnTheTemplate.TemplateCreator]: [
+            OperationsOnTheTemplate.SeeFullTemplate,
             OperationsOnTheTemplate.CreateTemplate,
             OperationsOnTheTemplate.EditTemplate,
             OperationsOnTheTemplate.OpenTemplateForUser,

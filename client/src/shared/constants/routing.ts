@@ -2,11 +2,11 @@ export const routes = {
     Home: "/",
 
     Templates: "/templates",
-    EditTemplate: "/templates/:id/edit",
-    TemplateForms: "/templates/:id/forms",
+    EditTemplate: "/templates/:templateId/edit",
+    TemplateForms: "/templates/:templateId/forms",
+    CreateForm: "/templates/:templateId/create-form",
 
-    CreateForm: "/templates/:id/create-form",
-    EditForm: "/templates/form/:id/edit",
+    EditForm: "/templates/form/:formId/edit",
 
     SignIn: "/auth/sign-in",
     SignUp: "/auth/sign-up",
