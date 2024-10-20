@@ -1,17 +1,15 @@
 import { Module } from "@nestjs/common";
-import { TemplatesService } from "./services/templates.service";
+import { TemplatesService } from "./templates.service";
 import { TemplatesController } from "./templates.controller";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Template } from "./entities/template.entity";
 import { JwtModule } from "@nestjs/jwt";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import { Question } from "./entities/question.entity";
-import { QuestionsService } from "./services/questions.service";
 import { TemplatesGateway } from "./templates.gateway";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([Template, Question]),
+        TypeOrmModule.forFeature([Template]),
         JwtModule.registerAsync({
             imports: [ConfigModule],
             inject: [ConfigService],
@@ -24,6 +22,6 @@ import { TemplatesGateway } from "./templates.gateway";
         }),
     ],
     controllers: [TemplatesController],
-    providers: [TemplatesGateway, TemplatesService, QuestionsService],
+    providers: [TemplatesGateway, TemplatesService],
 })
 export class TemplatesModule {}

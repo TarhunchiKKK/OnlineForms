@@ -1,7 +1,7 @@
 import { CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Template } from "src/templates/entities/template.entity";
 import { User } from "src/users/entities/user.entity";
-import { Answer } from "./answer.entity";
+import { Answer } from "../../answers/entities/answer.entity";
 
 @Entity()
 export class Form {

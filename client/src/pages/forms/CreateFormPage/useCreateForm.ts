@@ -9,7 +9,7 @@ import { useMemo } from "react";
 import { QuestionsToAnswersAdapter } from "@/features/answers-editing";
 
 export function useCreateForm() {
-    const { id: templateId } = useParams();
+    const { templateId } = useParams();
     const [createForm] = formsApi.useCreateMutation();
 
     const { data: fetchedTemplate } = templatesApi.useFindOneQuery(templateId!);

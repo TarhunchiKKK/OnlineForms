@@ -10,7 +10,12 @@ import {
     CreateFormPage,
     EditFormPage,
     TemplateFormsPage,
+    UsersPage,
+    CurrentUserLayout,
+    UserFormsPage,
+    UserTemplatesPage,
 } from "@/pages";
+import { FormLayout } from "@/pages/layouts";
 
 export const router = createBrowserRouter([
     {
@@ -21,7 +26,10 @@ export const router = createBrowserRouter([
                 element: <TemplatesPage />,
             },
             {
-                path: routes.Auth,
+                path: routes.Users,
+                element: <UsersPage />,
+            },
+            {
                 element: <AuthLayout />,
                 children: [
                     {
@@ -35,7 +43,6 @@ export const router = createBrowserRouter([
                 ],
             },
             {
-                path: routes.Templates,
                 element: <TemplateLayout />,
                 children: [
                     {
@@ -46,6 +53,11 @@ export const router = createBrowserRouter([
                         path: routes.TemplateForms,
                         element: <TemplateFormsPage />,
                     },
+                ],
+            },
+            {
+                element: <FormLayout />,
+                children: [
                     {
                         path: routes.CreateForm,
                         element: <CreateFormPage />,
@@ -53,6 +65,19 @@ export const router = createBrowserRouter([
                     {
                         path: routes.EditForm,
                         element: <EditFormPage />,
+                    },
+                ],
+            },
+            {
+                element: <CurrentUserLayout />,
+                children: [
+                    {
+                        path: routes.CurrentUserTemplates,
+                        element: <UserTemplatesPage />,
+                    },
+                    {
+                        path: routes.CurrentUserForms,
+                        element: <UserFormsPage />,
                     },
                 ],
             },

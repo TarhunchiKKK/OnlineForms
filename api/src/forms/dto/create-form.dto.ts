@@ -1,4 +1,4 @@
-import { CreateAnswerDto } from "./create-answer.dto";
+import { CreateAnswerDto } from "../../answers/dto/create-answer.dto";
 
 export class CreateFormDto {
     creator: {

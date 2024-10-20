@@ -1,0 +1,1 @@
+export { PrivilegentRedirect } from "./PrivilegentRedirect";

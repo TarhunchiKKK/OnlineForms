@@ -1,20 +1,17 @@
 import { Controller, Get, Post, Body, Param, Query, Req, UseGuards } from "@nestjs/common";
-import { TemplatesService } from "./services/templates.service";
 import { CreateTemplateDto } from "./dto/create-template.dto";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
-import { QuestionsService } from "./services/questions.service";
+import { TAuthorizedRequest } from "src/auth/types/request";
+import { TemplatesService } from "./templates.service";
 
 @Controller("templates")
 export class TemplatesController {
-    constructor(
-        private readonly templatesService: TemplatesService,
-        private readonly questionsService: QuestionsService,
-    ) {}
+    constructor(private readonly templatesService: TemplatesService) {}
 
     @Post()
     @UseGuards(JwtAuthGuard)
     public async createTemplate(
-        @Req() request,
+        @Req() request: TAuthorizedRequest,
         @Body() createTemplateDto: Omit<CreateTemplateDto, "creator">,
     ) {
         return this.templatesService.create({
@@ -35,13 +32,14 @@ export class TemplatesController {
         return this.templatesService.getCount();
     }
 
+    @Get("/user")
+    @UseGuards(JwtAuthGuard)
+    public async findUserTemplates(@Req() request: TAuthorizedRequest) {
+        return await this.templatesService.findAllByUserId(request.user.id);
+    }
+
     @Get(":id")
     public async findOneTemplateById(@Param("id") templateId: string) {
         return this.templatesService.findOneById(templateId);
-    }
-
-    @Get("/:id/questions")
-    public async getTemplatesQuestions(@Param("id") templateId: string) {
-        return await this.questionsService.findAllByTemplateId(templateId);
     }
 }

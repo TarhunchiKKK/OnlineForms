@@ -1,15 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { templatesApi } from "@/entities/templates";
 import { routes } from "@/shared/constants";
 import { localStorageService } from "@/shared/services";
-import { useNavigate } from "react-router-dom";
 
 export function useTemplatesPageHeader() {
     const navigate = useNavigate();
     const [createDefaultTemplate] = templatesApi.useCreateDefaultMutation();
 
-    const handleCreateTemplate = async () => {
-        const authToken = localStorageService.auth.getAuthToken();
+    const authToken = localStorageService.auth.getAuthToken();
 
+    const handleCreateTemplate = async () => {
         const { data: template } = await createDefaultTemplate(authToken!);
 
         if (template) {
@@ -18,5 +18,10 @@ export function useTemplatesPageHeader() {
         }
     };
 
-    return { handleCreateTemplate };
+    const handleAuth = () => {
+        const route = authToken ? routes.CurrentUserTemplates : routes.SignIn;
+        navigate(route);
+    };
+
+    return { handleCreateTemplate, authToken, handleAuth };
 }

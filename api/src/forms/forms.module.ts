@@ -1,17 +1,16 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Form } from "./entities/form.entity";
-import { Answer } from "./entities/answer.entity";
 import { FormsController } from "./forms.controller";
-import { AnswersService } from "./services/answers.service";
-import { FormsService } from "./services/forms.service";
+import { FormsService } from "./forms.service";
 import { JwtModule } from "@nestjs/jwt";
+import { AnswersModule } from "src/answers/answers.module";
 import { ConfigModule, ConfigService } from "@nestjs/config";
-import { FormsGateway } from "./forms.gateway";
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([Form, Answer]),
+        AnswersModule,
+        TypeOrmModule.forFeature([Form]),
         JwtModule.registerAsync({
             imports: [ConfigModule],
             inject: [ConfigService],
@@ -24,6 +23,6 @@ import { FormsGateway } from "./forms.gateway";
         }),
     ],
     controllers: [FormsController],
-    providers: [FormsGateway, AnswersService, FormsService],
+    providers: [FormsService],
 })
 export class FormsModule {}

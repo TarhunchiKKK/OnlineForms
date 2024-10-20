@@ -1,0 +1,1 @@
+export { useUserRoleOnTheAccounts } from "./useUserRoleOnTheAccounts";

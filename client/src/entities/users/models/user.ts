@@ -1,3 +1,5 @@
+import { UserRoles, UserStatuses } from "./enums";
+
 export type TUser = {
     id: string;
 
@@ -6,4 +8,16 @@ export type TUser = {
     email: string;
 
     password: string | null;
+
+    role: UserRoles;
+
+    status: UserStatuses;
+};
+
+export type TUserProfile = {
+    id: string;
+
+    email: string;
+
+    role: UserRoles;
 };
