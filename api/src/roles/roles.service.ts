@@ -9,10 +9,14 @@ import { OperationOnTheAccountDto } from "./dto/operation-on-the-account.dto";
 import { permissionsOnTheAccounts } from "./constants/permissions-on-the-accounts";
 import { OperationOnTheTemplateDto } from "./dto/operation-on-the-template.dto";
 import { permissionsOnTheTemplates } from "./constants/permissions-on-the-templates";
+import { FormsService } from "src/forms/forms.service";
 
 @Injectable()
 export class RolesService {
-    constructor(private readonly userService: UsersService) {}
+    constructor(
+        private readonly userService: UsersService,
+        private readonly formsService: FormsService,
+    ) {}
 
     private async checkForGuest(userId: string | null): Promise<User | null> {
         if (!userId) {
@@ -84,6 +88,11 @@ export class RolesService {
 
         if (user.forms.find((form) => form.id === formId)) {
             return UserRolesOnTheForm.FormCreator;
+        }
+
+        const form = await this.formsService.findOne(formId!);
+        if (user.templates.find((template) => template.id === form.template.id)) {
+            return UserRolesOnTheForm.FormTemplateCreator;
         }
 
         return UserRolesOnTheForm.AuthorizedUser;

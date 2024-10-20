@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { transformFindAllResponse, transformFindOneResponse } from "./helpers";
 import { TCreateFormDto, TForm, TFullForm } from "../models";
+import { createAuthHeaders } from "@/shared/helpers";
 
 export const formsApi = createApi({
     reducerPath: "forms/api",
@@ -17,9 +18,7 @@ export const formsApi = createApi({
                 url: "",
                 method: "POST",
                 body: dto.data,
-                headers: {
-                    Authorization: `Bearer ${dto.authToken}`,
-                },
+                headers: createAuthHeaders(dto.authToken),
             }),
             invalidatesTags: ["Forms"],
         }),
@@ -27,9 +26,7 @@ export const formsApi = createApi({
         findUserForms: builder.query<TForm[], string>({
             query: (authToken: string) => ({
                 url: "/user",
-                headers: {
-                    Authorization: `Bearer ${authToken}`,
-                },
+                headers: createAuthHeaders(authToken),
             }),
             transformResponse: transformFindAllResponse,
             providesTags: ["Forms"],

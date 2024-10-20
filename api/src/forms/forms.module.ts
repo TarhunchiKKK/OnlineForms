@@ -24,5 +24,6 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
     ],
     controllers: [FormsController],
     providers: [FormsService],
+    exports: [FormsService],
 })
 export class FormsModule {}

@@ -1,10 +1,6 @@
 import { Descendant } from "slate";
 import { TFullTemplate, TTemplate } from "../../models";
-import {
-    TCreateResponse,
-    TFindAllTemplatesResponse,
-    TFindOneTemplateResponse,
-} from "../http/types";
+import { TCreateResponse, TFindAllTemplatesResponse, TFindOneTemplateResponse } from "./types";
 
 export function transformFindAllResponse(response: TFindAllTemplatesResponse): TTemplate[] {
     return response.map((template) => ({
