@@ -2,6 +2,7 @@ import { TQuestion } from "@/entities/questions";
 import { TUser } from "@/entities/users";
 import { TemplateTopics } from "./enums";
 import { Descendant } from "slate";
+import { TTag } from "@/entities/tags";
 
 export type TTemplate = {
     id: string;
@@ -19,6 +20,8 @@ export type TTemplate = {
     createdAt: Date;
 
     updatedAt: Date;
+
+    tags: TTag[];
 };
 
 export type TFullTemplate = TTemplate & {

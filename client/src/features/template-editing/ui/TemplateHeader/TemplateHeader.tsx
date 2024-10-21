@@ -3,10 +3,16 @@ import { Dropdown, ImageInput, QuestionWrapper, TextInput } from "@/shared/ui";
 import { TTemplateHeaderProps } from "./types";
 import { templateTopicDropdownOptions } from "./constants";
 import { useTemplateHeader } from "./useTemplateHeader";
+import { TagsAutocomplete } from "@/widgets/tags";
 
 export function TemplateHeader({ templateEditor }: TTemplateHeaderProps) {
-    const { handleTitleChange, handleDescriptionChange, handleTopicChange, handleImageChange } =
-        useTemplateHeader(templateEditor);
+    const {
+        handleTitleChange,
+        handleDescriptionChange,
+        handleTopicChange,
+        handleImageChange,
+        handleAddTags,
+    } = useTemplateHeader(templateEditor);
 
     return (
         <QuestionWrapper>
@@ -40,6 +46,14 @@ export function TemplateHeader({ templateEditor }: TTemplateHeaderProps) {
                     value={templateEditor.template.image || ""}
                     placeholder="Enter image url"
                     onChange={handleImageChange}
+                    disabled={!templateEditor.editable}
+                />
+            </div>
+
+            <div>
+                <TagsAutocomplete
+                    selectedTags={templateEditor.template.tags}
+                    handleAddTag={handleAddTags}
                     disabled={!templateEditor.editable}
                 />
             </div>

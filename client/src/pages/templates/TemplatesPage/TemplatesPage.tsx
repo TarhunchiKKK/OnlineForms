@@ -1,5 +1,6 @@
-import { TagsCloud, TemplatesPageHeader, TemplatesTable } from "@/widgets/templates";
 import { useTemplates } from "./useTemplates";
+import { TemplatesPageHeader, TemplatesTable } from "@/widgets/templates";
+import { TagsCloud } from "@/widgets/tags";
 import { contentWrapperClassName } from "@/shared/constants";
 
 export function TemplatesPage() {
