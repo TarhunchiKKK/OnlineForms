@@ -29,6 +29,7 @@ export function TemplateHeader({ templateEditor }: TTemplateHeaderProps) {
                 <FormatableTextarea
                     value={templateEditor.template.description}
                     onChange={handleDescriptionChange}
+                    disabled={!templateEditor.editable}
                 />
             </div>
 
