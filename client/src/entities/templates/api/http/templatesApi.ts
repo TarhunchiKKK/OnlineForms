@@ -51,6 +51,16 @@ export const templatesApi = createApi({
             providesTags: ["Template"],
         }),
 
+        findMostPopular: builder.query<TTemplate[], number>({
+            query: (count: number) => ({
+                url: "/popular",
+                params: {
+                    count: count.toString(),
+                },
+                transformResponse: transformFindAllResponse,
+            }),
+        }),
+
         findUserTemplates: builder.query<TTemplate[], string>({
             query: (authToken: string) => ({
                 url: "/user",

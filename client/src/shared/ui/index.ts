@@ -8,3 +8,4 @@ export { Checkbox } from "./Checkbox";
 export { QuestionWrapper } from "./QustionWrapper";
 export { ImageInput } from "./ImageInput";
 export { AutocompletableInput } from "./AutocompletableInput";
+export { Gallery } from "./Gallery";

@@ -35,6 +35,20 @@ export class TemplatesService {
         return await this.templatesRepository.find(options);
     }
 
+    public async findMostPopular(count: number) {
+        return (
+            await this.templatesRepository.find({
+                relations: {
+                    creator: true,
+                    tags: true,
+                    forms: true,
+                },
+            })
+        )
+            .sort((a, b) => b.forms.length - a.forms.length)
+            .slice(0, count);
+    }
+
     public async findAllByUserId(userId: string) {
         return await this.templatesRepository.find({
             where: {

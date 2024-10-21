@@ -29,6 +29,11 @@ export class TemplatesController {
         return this.templatesService.findAll(parsedTagIds);
     }
 
+    @Get("/popular")
+    public async findMostPopularTemplates(@Query("count") count: string) {
+        return this.templatesService.findMostPopular(+count);
+    }
+
     @Get("/count")
     public async getTemplatesCount() {
         return this.templatesService.getCount();
