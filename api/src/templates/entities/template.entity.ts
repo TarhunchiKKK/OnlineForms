@@ -2,6 +2,8 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    JoinTable,
+    ManyToMany,
     ManyToOne,
     OneToMany,
     PrimaryGeneratedColumn,
@@ -11,6 +13,7 @@ import { TemplateTopics } from "../enums/template-topics.enum";
 import { User } from "src/users/entities/user.entity";
 import { Question } from "src/questions/entities/question.entity";
 import { Form } from "src/forms/entities/form.entity";
+import { Tag } from "../../tags/entities/tag.entity";
 
 @Entity()
 export class Template {
@@ -37,6 +40,10 @@ export class Template {
 
     @ManyToOne(() => User, (user) => user.templates)
     creator: User;
+
+    @ManyToMany(() => Tag, (tag) => tag.templates, {})
+    @JoinTable()
+    tags: Tag[];
 
     @OneToMany(() => Question, (question) => question.template)
     questions: Question[];

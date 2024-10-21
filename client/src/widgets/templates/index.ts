@@ -1,1 +1,1 @@
-export { TemplatesTable, TemplatesPageHeader } from "./ui";
+export { TemplatesTable, TemplatesPageHeader, TagsCloud } from "./ui";

@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { TFindTemplatesQueryArgs } from "./types";
 import { defaultTemplate } from "../../constants";
 import { TFullTemplate, TTemplate, TCreateTemplateDto } from "../../models";
 import {
@@ -41,10 +40,12 @@ export const templatesApi = createApi({
             invalidatesTags: ["Template"],
         }),
 
-        findAll: builder.query<TTemplate[], TFindTemplatesQueryArgs>({
-            query: (queryArgs: TFindTemplatesQueryArgs) => ({
+        findAll: builder.query<TTemplate[], string[]>({
+            query: (tagIds: string[]) => ({
                 url: "",
-                params: queryArgs,
+                params: {
+                    tagIds: tagIds.join(", "),
+                },
             }),
             transformResponse: transformFindAllResponse,
             providesTags: ["Template"],

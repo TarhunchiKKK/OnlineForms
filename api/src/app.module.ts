@@ -9,6 +9,7 @@ import { FormsModule } from "./forms/forms.module";
 import { RolesModule } from './roles/roles.module';
 import { QuestionsModule } from './questions/questions.module';
 import { AnswersModule } from './answers/answers.module';
+import { TagsModule } from './tags/tags.module';
 
 @Module({
     imports: [
@@ -48,6 +49,7 @@ import { AnswersModule } from './answers/answers.module';
         RolesModule,
         QuestionsModule,
         AnswersModule,
+        TagsModule,
     ],
 })
 export class AppModule {}

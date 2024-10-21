@@ -1,32 +1,30 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { templatesApi } from "@/entities/templates";
-import { useDebounce } from "@/shared/hooks";
-import { changeLimitDelay, defaultPage, defaultTemplatesLimit } from "./constants";
+import { TTag } from "@/entities/tags";
 
 export function useTemplates() {
-    const [page, setPage] = useState<number>(defaultPage);
-    const [limit, setLimit] = useState<number>(defaultTemplatesLimit);
-    const debouncedLimit = useDebounce(limit, changeLimitDelay);
+    const [tags, setTags] = useState<TTag[]>([]);
 
-    const { data: templates } = templatesApi.useFindAllQuery({ page, limit: debouncedLimit });
-    const { data: templatesCount } = templatesApi.useGetCountQuery();
+    const { data: templates } = templatesApi.useFindAllQuery(tags.map((tag) => tag.id));
 
-    const pagesCount = Math.ceil((templatesCount || 0) / limit);
+    const handleSelectTag = (newTag: unknown) => {
+        const { id: newTagId, title } = newTag as TTag;
 
-    const handlePageChange = (e: { selected: number }) => {
-        setPage(+e.selected);
-    };
+        const tagToAdding = {
+            id: newTagId,
+            title,
+        };
 
-    const handleLimitChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setLimit(+e.target.value);
+        const newTags = tags.find((tag) => tag.id === newTagId)
+            ? tags.filter((tag) => tag.id !== newTagId)
+            : [...tags, tagToAdding];
+
+        setTags(newTags);
     };
 
     return {
         templates,
-        page,
-        pagesCount,
-        handlePageChange,
-        limit,
-        handleLimitChange,
+        tags,
+        handleSelectTag,
     };
 }
