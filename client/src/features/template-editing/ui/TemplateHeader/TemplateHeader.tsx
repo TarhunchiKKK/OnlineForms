@@ -8,8 +8,6 @@ export function TemplateHeader({ templateEditor }: TTemplateHeaderProps) {
     const { handleTitleChange, handleDescriptionChange, handleTopicChange, handleImageChange } =
         useTemplateHeader(templateEditor);
 
-    console.log(templateEditor.editable);
-
     return (
         <QuestionWrapper>
             <div className="mb-6 w-[600px]">

@@ -8,7 +8,7 @@ export function QuestionHeader({ question, questionEditor }: IQuestionHeaderProp
 
     return (
         <div className="flex flex-row justify-between items-center mb-4">
-            <div className="shadow-sm">
+            <div className="w-[280px]">
                 <TextInput
                     placeholder={defaultTitlePlaceholder}
                     value={question.title}
@@ -17,7 +17,7 @@ export function QuestionHeader({ question, questionEditor }: IQuestionHeaderProp
                 />
             </div>
 
-            <div className="shadow-sm w-[240px]">
+            <div className="w-[240px]">
                 <Dropdown
                     value={question.type}
                     disabled={!questionEditor.headerEditable}

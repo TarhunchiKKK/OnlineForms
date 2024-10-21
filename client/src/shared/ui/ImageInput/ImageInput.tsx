@@ -1,21 +1,17 @@
-import { inputClassName } from "@/shared/constants";
 import { TImageInputProps } from "./types";
 import { DefaultImage } from "@/shared/assets";
+import { TextField } from "@mui/material";
 
-export function ImageInput({ label, ...inputProps }: TImageInputProps) {
+export function ImageInput(props: TImageInputProps) {
     return (
         <>
-            {label && (
-                <label className="text-lg text-white font-medium block mb-[6px]">{label}</label>
+            {!props.disabled && (
+                <TextField {...props} style={{ width: "100%" }} variant="standard" />
             )}
 
-            {!inputProps.disabled && (
-                <input type="text" {...inputProps} className={inputClassName} />
-            )}
-
-            {inputProps.value && (
+            {props.value && (
                 <div className="mt-4">
-                    <img src={inputProps.value || DefaultImage} alt="" />
+                    <img src={props.value || DefaultImage} alt="" />
                 </div>
             )}
         </>
