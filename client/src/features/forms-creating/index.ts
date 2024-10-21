@@ -1,1 +1,1 @@
-export { useFormCreatingEdoitor } from "./hooks";
+export { useFormCreatingEditor } from "./hooks";

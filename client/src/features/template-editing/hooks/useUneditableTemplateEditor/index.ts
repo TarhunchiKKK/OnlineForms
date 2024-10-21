@@ -1,0 +1,1 @@
+export { useUneditableTemplate } from "./useUneditableTemplate";

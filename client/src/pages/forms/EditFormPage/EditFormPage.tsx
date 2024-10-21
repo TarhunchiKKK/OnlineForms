@@ -2,19 +2,13 @@ import { QuestionsList, TemplateHeader } from "@/features/template-editing";
 import { useEditForm, useFormEditor } from "./hooks";
 
 export function EditFormPage() {
-    const { template, questions } = useEditForm();
+    const { templateEditor, questions } = useEditForm();
 
     const questionsEditor = useFormEditor();
 
     return (
         <>
-            {template.template && (
-                <TemplateHeader
-                    template={template.template}
-                    handlers={template.handlers}
-                    editable={template.editable}
-                />
-            )}
+            {templateEditor.template && <TemplateHeader templateEditor={templateEditor} />}
 
             <QuestionsList questions={questions} questionsEditor={questionsEditor} />
         </>

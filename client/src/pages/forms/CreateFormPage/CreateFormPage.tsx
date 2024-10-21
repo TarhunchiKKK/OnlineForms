@@ -1,22 +1,16 @@
-import { useFormCreatingEdoitor } from "@/features/forms-creating";
+import { useFormCreatingEditor } from "@/features/forms-creating";
 import { QuestionsList, TemplateHeader } from "@/features/template-editing";
 import { Button } from "@/shared/ui";
 import { useCreateForm } from "./useCreateForm";
 
 export function CreateFormPage() {
-    const { template, questions, handleSaveForm } = useCreateForm();
+    const { templateEditor, questions, handleSaveForm } = useCreateForm();
 
-    const questionsEditor = useFormCreatingEdoitor();
+    const questionsEditor = useFormCreatingEditor();
 
     return (
         <>
-            {template.template && (
-                <TemplateHeader
-                    template={template.template}
-                    handlers={template.handlers}
-                    editable={template.editable}
-                />
-            )}
+            {templateEditor.template && <TemplateHeader templateEditor={templateEditor} />}
 
             <QuestionsList questions={questions} questionsEditor={questionsEditor} />
 

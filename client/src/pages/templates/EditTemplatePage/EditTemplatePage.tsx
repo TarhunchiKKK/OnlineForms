@@ -3,23 +3,17 @@ import { useEditTemplate } from "./useEditTemplate";
 import { useQuestionsEditor } from "@/features/questions-editing";
 
 export function EditTemplatePage() {
-    const { template, questions } = useEditTemplate();
+    const { templateEditor, questions } = useEditTemplate();
 
     const questionsEditor = useQuestionsEditor();
 
     const handleCreateQuestion = () => {
-        questionsEditor.create(template.template!.id);
+        questionsEditor.create(templateEditor.template!.id);
     };
 
     return (
         <>
-            {template.template && (
-                <TemplateHeader
-                    template={template.template}
-                    handlers={template.handlers}
-                    editable={template.editable}
-                />
-            )}
+            {templateEditor.template && <TemplateHeader templateEditor={templateEditor} />}
 
             <QuestionsList questions={questions} questionsEditor={questionsEditor} />
 

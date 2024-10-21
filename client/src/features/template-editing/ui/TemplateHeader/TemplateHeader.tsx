@@ -1,33 +1,48 @@
 import { FormatableTextarea } from "@/features/text-formatting";
-import { Dropdown, QuestionWrapper, TextInput } from "@/shared/ui";
+import { Dropdown, ImageInput, QuestionWrapper, TextInput } from "@/shared/ui";
 import { TTemplateHeaderProps } from "./types";
 import { templateTopicDropdownOptions } from "./constants";
+import { useTemplateHeader } from "./useTemplateHeader";
 
-export function TemplateHeader({ template, handlers, editable }: TTemplateHeaderProps) {
+export function TemplateHeader({ templateEditor }: TTemplateHeaderProps) {
+    const { handleTitleChange, handleDescriptionChange, handleTopicChange, handleImageChange } =
+        useTemplateHeader(templateEditor);
+
+    console.log(templateEditor.editable);
+
     return (
         <QuestionWrapper>
             <div className="mb-6 w-[600px]">
                 <TextInput
                     placeholder="Template title"
-                    value={template.title}
-                    onChange={handlers?.handleTitleChange}
-                    disabled={!editable}
+                    value={templateEditor.template.title}
+                    onChange={handleTitleChange}
+                    disabled={!templateEditor.editable}
                 />
             </div>
 
             <div className="mb-6 w-[800px]">
                 <FormatableTextarea
-                    value={template.description}
-                    onChange={handlers.handleDescriptionChange}
+                    value={templateEditor.template.description}
+                    onChange={handleDescriptionChange}
                 />
             </div>
 
-            <div className="shadow-sm w-[240px]">
+            <div className="mb-6 shadow-sm w-[240px]">
                 <Dropdown
-                    value={template.topic}
-                    onSelect={handlers.handleTopicChange}
+                    value={templateEditor.template.topic}
+                    onSelect={handleTopicChange}
                     options={templateTopicDropdownOptions}
-                    disabled={!editable}
+                    disabled={!templateEditor.editable}
+                />
+            </div>
+
+            <div className="mb-6 shadow-sm w-[240px]">
+                <ImageInput
+                    value={templateEditor.template.image || ""}
+                    placeholder="Enter image url"
+                    onChange={handleImageChange}
+                    disabled={!templateEditor.editable}
                 />
             </div>
         </QuestionWrapper>

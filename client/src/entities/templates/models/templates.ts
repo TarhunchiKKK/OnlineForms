@@ -12,6 +12,8 @@ export type TTemplate = {
 
     topic: TemplateTopics;
 
+    image: string | null;
+
     creator: TUser;
 
     createdAt: Date;

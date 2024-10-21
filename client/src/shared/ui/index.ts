@@ -6,3 +6,4 @@ export { Dropdown } from "./Dropdown";
 export { TextArea } from "./TextArea";
 export { Checkbox } from "./Checkbox";
 export { QuestionWrapper } from "./QustionWrapper";
+export { ImageInput } from "./ImageInput";

@@ -5,7 +5,7 @@ import { OperationsOnTheForm } from "@/entities/roles";
 import { useAnswersEditor, useDisabledAnswersEditor } from "@/features/answers-editing";
 import { AnswersToQuestionsAdapter, useQuestions } from "@/features/questions-editing";
 import { checkAvailability, useUserRoleOnTheForm } from "@/features/roles-separation";
-import { useTemplate } from "@/features/template-editing";
+import { useUneditableTemplate } from "@/features/template-editing/hooks";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 
@@ -15,7 +15,7 @@ export function useEditForm() {
     const { data: form } = formsApi.useFindOneQuery(formId!);
     const { data: fetchedAnswers } = answersApi.useFindAllByFormIdQuery(formId!);
 
-    const { template, handlers } = useTemplate(form?.template);
+    const templateEditor = useUneditableTemplate(form?.template);
 
     const answers = useMemo(() => {
         if (fetchedAnswers) {
@@ -27,11 +27,7 @@ export function useEditForm() {
     const { questions } = useQuestions(answers);
 
     return {
-        template: {
-            template,
-            handlers,
-            editable: false,
-        },
+        templateEditor,
         questions: questions as TQuestion[],
     };
 }

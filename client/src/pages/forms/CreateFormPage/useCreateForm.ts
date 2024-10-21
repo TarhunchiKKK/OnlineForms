@@ -2,11 +2,11 @@ import { formsApi } from "@/entities/forms";
 import { questionsApi, TQuestion } from "@/entities/questions";
 import { templatesApi } from "@/entities/templates";
 import { useQuestions } from "@/features/questions-editing";
-import { useTemplate } from "@/features/template-editing";
 import { useParams } from "react-router-dom";
 import { localStorageService } from "@/shared/services";
 import { useMemo } from "react";
 import { QuestionsToAnswersAdapter } from "@/features/answers-editing";
+import { useUneditableTemplate } from "@/features/template-editing/hooks";
 
 export function useCreateForm() {
     const { templateId } = useParams();
@@ -15,7 +15,7 @@ export function useCreateForm() {
     const { data: fetchedTemplate } = templatesApi.useFindOneQuery(templateId!);
     const { data: fetchedQuestions } = questionsApi.useFindByTemplateQuery(templateId!);
 
-    const { template, handlers } = useTemplate(fetchedTemplate);
+    const templateEditor = useUneditableTemplate(fetchedTemplate);
     const { questions } = useQuestions(fetchedQuestions);
 
     const answers = useMemo(
@@ -38,11 +38,7 @@ export function useCreateForm() {
     };
 
     return {
-        template: {
-            template,
-            handlers,
-            editable: false,
-        },
+        templateEditor,
         questions: questions as TQuestion[],
         handleSaveForm,
     };

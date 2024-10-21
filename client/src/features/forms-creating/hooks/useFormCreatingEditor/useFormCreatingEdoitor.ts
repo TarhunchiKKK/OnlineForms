@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { questionsSlice, TQuestion, TQuestionEditor } from "@/entities/questions";
 
-export function useFormCreatingEdoitor(): TQuestionEditor {
+export function useFormCreatingEditor(): TQuestionEditor {
     const dispatch = useDispatch();
 
     const update = (question: TQuestion) => {
