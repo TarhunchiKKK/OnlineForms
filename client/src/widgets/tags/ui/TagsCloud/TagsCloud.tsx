@@ -7,8 +7,6 @@ import { TTagsCloudProps } from "./types";
 export function TagsCloud({ selectedTags, onSelect }: TTagsCloudProps) {
     const tags = useTagsCloud(selectedTags);
 
-    console.log("Length: ", selectedTags.length);
-
     return (
         <TagCloud
             className="flex flex-row justify-start items-center flex-wrap gap-4"

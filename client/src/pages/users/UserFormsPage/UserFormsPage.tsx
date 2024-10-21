@@ -5,5 +5,9 @@ import { contentWrapperClassName } from "@/shared/constants";
 export function UserFormsPage() {
     const { forms } = useUserForms();
 
-    return <div className={contentWrapperClassName}>{forms && <FormsTable forms={forms} />}</div>;
+    return (
+        <div className={contentWrapperClassName}>
+            {forms && <FormsTable forms={forms} sortable />}
+        </div>
+    );
 }

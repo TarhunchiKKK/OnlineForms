@@ -1,7 +1,41 @@
-import { TTemplate } from "@/entities/templates";
+import { TemplatesSortOrders, TTemplate } from "@/entities/templates";
 import { routes } from "@/shared/constants";
 import { formatDate } from "@/shared/helpers";
 import { NavLink } from "react-router-dom";
+
+export const createSortableHeaders = (setSortOrder: (_: TemplatesSortOrders) => void) => {
+    return () => {
+        return (
+            <tr>
+                <th
+                    className="text-left cursor-pointer"
+                    onClick={() => setSortOrder(TemplatesSortOrders.Title)}
+                >
+                    Title
+                </th>
+                <th
+                    className="text-left cursor-pointer"
+                    onClick={() => setSortOrder(TemplatesSortOrders.Topic)}
+                >
+                    Topic
+                </th>
+                <th
+                    className="text-left cursor-pointer"
+                    onClick={() => setSortOrder(TemplatesSortOrders.Creator)}
+                >
+                    Creator
+                </th>
+                <th
+                    className="text-left cursor-pointer"
+                    onClick={() => setSortOrder(TemplatesSortOrders.CreatedAt)}
+                >
+                    Created
+                </th>
+                <th className="text-left">Last updated</th>
+            </tr>
+        );
+    };
+};
 
 export const renderTemplatesTableHeaders = () => {
     return (
