@@ -37,7 +37,7 @@ export function TemplateHeader({ templateEditor }: TTemplateHeaderProps) {
                 />
             </div>
 
-            <div className="mb-6 shadow-sm w-[240px]">
+            <div className="mb-6 w-2/3">
                 <ImageInput
                     value={templateEditor.template.image || ""}
                     placeholder="Enter image url"

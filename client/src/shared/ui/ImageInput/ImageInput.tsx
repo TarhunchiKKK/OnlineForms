@@ -9,11 +9,15 @@ export function ImageInput({ label, ...inputProps }: TImageInputProps) {
                 <label className="text-lg text-white font-medium block mb-[6px]">{label}</label>
             )}
 
-            <input type="text" {...inputProps} className={inputClassName} />
+            {!inputProps.disabled && (
+                <input type="text" {...inputProps} className={inputClassName} />
+            )}
 
-            <div className="w-min">
-                <img src={inputProps.value || DefaultImage} alt="" />
-            </div>
+            {inputProps.value && (
+                <div className="mt-4">
+                    <img src={inputProps.value || DefaultImage} alt="" />
+                </div>
+            )}
         </>
     );
 }

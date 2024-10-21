@@ -26,7 +26,7 @@ export class Template {
     @Column()
     topic: TemplateTopics;
 
-    @Column({ nullable: true, default: null })
+    @Column({ nullable: true, default: null, type: "text" })
     image: string;
 
     @CreateDateColumn()
