@@ -11,7 +11,7 @@ export function TemplateLayout() {
         <main className="px-6 py-4">
             <div className="mx-auto container">
                 <PrivilegentRedirect {...redirectProps}>
-                    <div className={`${contentWrapperClassName} bg-white mb-4`}>
+                    <div className={`${contentWrapperClassName} mb-4`}>
                         <Tabs tabs={tabs} />
                     </div>
 

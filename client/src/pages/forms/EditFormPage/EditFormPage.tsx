@@ -7,10 +7,12 @@ export function EditFormPage() {
     const questionsEditor = useFormEditor();
 
     return (
-        <>
-            {templateEditor.template && <TemplateHeader templateEditor={templateEditor} />}
+        <main className="px-6 py-4">
+            <div className="mx-auto container">
+                {templateEditor.template && <TemplateHeader templateEditor={templateEditor} />}
 
-            <QuestionsList questions={questions} questionsEditor={questionsEditor} />
-        </>
+                <QuestionsList questions={questions} questionsEditor={questionsEditor} />
+            </div>
+        </main>
     );
 }

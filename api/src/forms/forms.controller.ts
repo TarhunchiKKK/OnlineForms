@@ -25,7 +25,7 @@ export class FormsController {
     @Get("/user")
     @UseGuards(JwtAuthGuard)
     public async findUserForms(@Req() request: TAuthorizedRequest) {
-        return this.formsService.findAllByTemplateId(request.user.id);
+        return this.formsService.findAllByUserId(request.user.id, request.query?.templateId);
     }
 
     @Get(":templateId")

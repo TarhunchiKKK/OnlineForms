@@ -7,3 +7,9 @@ export type TFindAllFormsResponse = (TForm & {
 export type TFindOneFormResponse = TFullForm & {
     createdAt: string;
 };
+
+export type TFindUserFormsQUeryArgs = {
+    authToken: string;
+
+    templateId?: string;
+};

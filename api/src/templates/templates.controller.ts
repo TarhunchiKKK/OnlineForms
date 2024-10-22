@@ -34,11 +34,6 @@ export class TemplatesController {
         return this.templatesService.findMostPopular(+count);
     }
 
-    @Get("/count")
-    public async getTemplatesCount() {
-        return this.templatesService.getCount();
-    }
-
     @Get("/user")
     @UseGuards(JwtAuthGuard)
     public async findUserTemplates(@Req() request: TAuthorizedRequest) {

@@ -76,11 +76,5 @@ export const templatesApi = createApi({
             }),
             transformResponse: transformFindOneResponse,
         }),
-
-        getCount: builder.query<number, void>({
-            query: () => ({
-                url: "/count",
-            }),
-        }),
     }),
 });

@@ -88,8 +88,4 @@ export class TemplatesService {
 
         return await this.templatesRepository.save(updateTemplateDto);
     }
-
-    public async getCount() {
-        return await this.templatesRepository.count();
-    }
 }

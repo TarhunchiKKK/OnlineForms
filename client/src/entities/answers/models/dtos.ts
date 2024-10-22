@@ -1,7 +1,11 @@
-import { TQuestion } from "@/entities/questions";
+import { QuestionTypes } from "@/entities/questions";
 
 export type TCreateAnswerDto = {
-    question: TQuestion;
+    title: string;
+
+    sequenceNumber: number;
+
+    type: QuestionTypes;
 };
 
 export type TCreateSingleLineAnswerDto = TCreateAnswerDto & {

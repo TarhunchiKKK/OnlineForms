@@ -14,6 +14,7 @@ import {
     CurrentUserLayout,
     UserFormsPage,
     UserTemplatesPage,
+    UserFormsOnTemplatePage,
 } from "@/pages";
 import { FormLayout } from "@/pages/layouts";
 import { TemplateDocumentLayout } from "@/shared/utils";
@@ -72,10 +73,18 @@ export const router = createBrowserRouter([
                         element: <CreateFormPage />,
                     },
                     {
-                        path: routes.EditForm,
-                        element: <EditFormPage />,
+                        path: routes.UserFormsOnTemplate,
+                        element: <UserFormsOnTemplatePage />,
                     },
                 ],
+            },
+            {
+                path: routes.EditForm,
+                element: (
+                    <TemplateDocumentLayout>
+                        <EditFormPage />
+                    </TemplateDocumentLayout>
+                ),
             },
             {
                 element: <CurrentUserLayout />,

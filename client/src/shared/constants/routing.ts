@@ -2,11 +2,14 @@ export const routes = {
     Home: "/",
 
     Templates: "/templates",
+
     EditTemplate: "/templates/:templateId/edit",
     TemplateForms: "/templates/:templateId/forms",
-    CreateForm: "/templates/:templateId/create-form",
 
-    EditForm: "/templates/form/:formId/edit",
+    CreateForm: "/templates/:templateId/create-form",
+    UserFormsOnTemplate: "/templates/:templateId/your-answers",
+
+    EditForm: "/forms/:formId/edit",
 
     SignIn: "/auth/sign-in",
     SignUp: "/auth/sign-up",
@@ -27,7 +30,11 @@ export const routes = {
         return `/templates/${templateId}/create-form`;
     },
 
+    createUserFormsOnTemplateRoute: (templateId: string) => {
+        return `/templates/${templateId}/your-answers`;
+    },
+
     createEditFormRoute: (formId: string) => {
-        return `/templates/form/${formId}/edit`;
+        return `/forms/${formId}/edit`;
     },
 };
