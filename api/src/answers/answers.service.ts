@@ -27,12 +27,13 @@ export class AnswersService {
         return await Promise.all(creationPromises);
     }
 
-    public async findAllByFormId(templateId: string) {
+    public async findAllByFormId(formId: string) {
         return await this.answersRepository.find({
             where: {
                 form: {
-                    id: templateId,
+                    id: formId,
                 },
+                isDisplayed: true,
             },
             order: {
                 sequenceNumber: "ASC",

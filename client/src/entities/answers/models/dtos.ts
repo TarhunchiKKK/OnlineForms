@@ -5,6 +5,8 @@ export type TCreateAnswerDto = {
 
     sequenceNumber: number;
 
+    isDisplayed: boolean;
+
     type: QuestionTypes;
 };
 

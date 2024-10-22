@@ -11,9 +11,10 @@ import {
 
 export function parseQuestionToCreateAnswerDto(question: TQuestion): TCreateAnyAnswerDto {
     const questionData = {
-        sequenceNumber: question.sequenceNumber,
-        type: question.type,
         title: question.title,
+        sequenceNumber: question.sequenceNumber,
+        isDisplayed: question.isDisplayed,
+        type: question.type,
     };
     switch (question.type) {
         case QuestionTypes.SingleLine:

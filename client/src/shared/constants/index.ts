@@ -1,2 +1,2 @@
 export { routes } from "./routing";
-export { contentWrapperClassName } from "./styles";
+export { contentWrapperClassName, colors } from "./styles";

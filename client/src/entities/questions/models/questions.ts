@@ -12,6 +12,8 @@ export type TQuestion = {
 
     sequenceNumber: number;
 
+    isDisplayed: boolean;
+
     type: QuestionTypes;
 };
 

@@ -7,6 +7,8 @@ export class CreateQuestionDto {
 
     type: QuestionTypes;
 
+    isDisplayed: boolean;
+
     template: {
         id: string;
     };

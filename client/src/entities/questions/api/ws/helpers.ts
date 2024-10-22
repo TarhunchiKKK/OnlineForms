@@ -6,5 +6,6 @@ export function parseUpdateQuestionDto(dto: TUpdateQuestionDto): TUpdateQuestion
         sequenceNumber: dto.sequenceNumber,
         title: dto.title,
         type: dto.type,
+        isDisplayed: dto.isDisplayed,
     };
 }

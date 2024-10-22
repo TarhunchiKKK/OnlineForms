@@ -7,6 +7,8 @@ export type TAnswer = {
 
     sequenceNumber: number;
 
+    isDisplayed: boolean;
+
     type: QuestionTypes;
 
     line: string | null;

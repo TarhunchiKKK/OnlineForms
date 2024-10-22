@@ -7,5 +7,7 @@ export class UpdateQuestionDto {
 
     sequenceNumber?: number;
 
+    isDisplayed?: boolean;
+
     type?: QuestionTypes;
 }

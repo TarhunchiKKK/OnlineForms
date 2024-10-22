@@ -13,6 +13,9 @@ export class Question {
     @Column()
     sequenceNumber: number;
 
+    @Column({ default: true })
+    isDisplayed: boolean;
+
     @Column()
     type: QuestionTypes;
 

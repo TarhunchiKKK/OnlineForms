@@ -5,6 +5,8 @@ export class CreateAnswerDto {
 
     sequenceNumber: number;
 
+    isDisplayed: boolean;
+
     type: QuestionTypes;
 
     line?: string;
