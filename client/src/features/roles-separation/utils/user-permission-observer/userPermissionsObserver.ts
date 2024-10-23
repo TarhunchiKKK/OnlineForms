@@ -1,5 +1,6 @@
 import { UsersWsApi } from "@/entities/users";
 import { TCallback, TCallbacksState } from "./types";
+import { refreshAuthToken } from "../../api";
 
 export class UserPermissionsObserver {
     private usersWsApi: UsersWsApi;
@@ -9,10 +10,12 @@ export class UserPermissionsObserver {
     constructor(userId: string) {
         this.usersWsApi = new UsersWsApi();
 
-        this.usersWsApi.onUserPermissionsChange(userId, () => this.handleChange());
+        this.usersWsApi.onUserPermissionsChange(userId, () => {
+            refreshAuthToken().then(() => this.executeCallbacks());
+        });
     }
 
-    private handleChange() {
+    private executeCallbacks() {
         this.callbacks.forEach((callback) => {
             if (callback) {
                 callback();

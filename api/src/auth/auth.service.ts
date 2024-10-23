@@ -100,4 +100,18 @@ export class AuthService {
 
         return { id, email, status, role };
     }
+
+    public async refreshAuthToken(userId: string) {
+        const user = await this.usersService.findOneById(userId);
+
+        if (!user) {
+            throw new UserNotFounException();
+        }
+
+        const accessToken = this.generateToken(user);
+
+        return {
+            access: accessToken,
+        };
+    }
 }

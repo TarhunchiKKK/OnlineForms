@@ -4,6 +4,7 @@ import { SignUpDto } from "./dto/sign-up.dto";
 import { SignInDto } from "./dto/sign-in.dto";
 import { AuthWithProviderDto } from "./dto/auth-with-provider.dto";
 import { JwtAuthGuard } from "./guards/jwt-auth.guard";
+import { TAuthorizedRequest } from "./types/request";
 
 @Controller("auth")
 export class AuthController {
@@ -28,5 +29,11 @@ export class AuthController {
     @UseGuards(JwtAuthGuard)
     public async getProfile(@Req() request) {
         return await this.authService.getProfile(request.user.id);
+    }
+
+    @Post("/refresh")
+    @UseGuards(JwtAuthGuard)
+    public async refreshAuthToken(@Req() request: TAuthorizedRequest) {
+        return await this.authService.refreshAuthToken(request.user.id);
     }
 }
