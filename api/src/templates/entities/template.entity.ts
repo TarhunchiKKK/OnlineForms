@@ -45,6 +45,13 @@ export class Template {
     @JoinTable()
     tags: Tag[];
 
+    @Column({ default: true })
+    publicAccess: boolean;
+
+    @ManyToMany(() => User, (user) => user.availableTemplates)
+    @JoinTable()
+    availableUsers: User[];
+
     @OneToMany(() => Question, (question) => question.template)
     questions: Question[];
 

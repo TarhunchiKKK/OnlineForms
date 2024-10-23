@@ -13,7 +13,3 @@ export type TQuestionEditor = {
 
     remove: (_: TQuestion) => void;
 };
-
-export type TQuestionEditorFactory = {
-    useEditor(): TQuestionEditor;
-};

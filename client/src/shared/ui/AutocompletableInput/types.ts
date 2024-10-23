@@ -9,5 +9,7 @@ export type TAutocompletableInputProps<Type> = {
 
     getOptionLabel: (_: Type) => string;
 
-    onSubmit: (_: string) => void;
+    onSubmit?: (_: string) => void;
+
+    onInputChange?: (_: string) => void;
 };

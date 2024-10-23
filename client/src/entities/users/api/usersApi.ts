@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { TChangeUserRoleDto, TChangeUserStatusDto, TRemoveUserDto, TUser } from "../models";
 import { createAuthHeaders } from "@/shared/helpers";
+import { TSearchUsersQueryArgs } from "./types";
 
 export const usersApi = createApi({
     reducerPath: "users/api",
@@ -21,6 +22,15 @@ export const usersApi = createApi({
             providesTags: ["Users"],
         }),
 
+        search: builder.query<TUser[], TSearchUsersQueryArgs>({
+            query: (args: TSearchUsersQueryArgs) => ({
+                url: "/search",
+                params: {
+                    ...args,
+                    ids: args.ids.join(", "),
+                },
+            }),
+        }),
         findMe: builder.query<TUser, string>({
             query: (authToken: string) => ({
                 url: "/me",

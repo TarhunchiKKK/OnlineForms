@@ -15,6 +15,7 @@ import {
     UserFormsPage,
     UserTemplatesPage,
     UserFormsOnTemplatePage,
+    TemplateSettingsPage,
 } from "@/pages";
 import { FormLayout } from "@/pages/layouts";
 import { TemplateDocumentLayout } from "@/shared/utils";
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
                     {
                         path: routes.TemplateForms,
                         element: <TemplateFormsPage />,
+                    },
+                    {
+                        path: routes.TemplateSettings,
+                        element: <TemplateSettingsPage />,
                     },
                 ],
             },

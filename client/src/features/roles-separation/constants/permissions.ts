@@ -36,6 +36,7 @@ export const permissionsOnTheTemplates: Record<UserRolesOnTheTemplate, Operation
             OperationsOnTheTemplate.EditTemplate,
             OperationsOnTheTemplate.OpenTemplateForUser,
         ],
+        [UserRolesOnTheTemplate.AvailableUser]: [OperationsOnTheTemplate.CreateForm],
         [UserRolesOnTheTemplate.AuthorizedUser]: [OperationsOnTheTemplate.CreateTemplate],
         [UserRolesOnTheTemplate.Guest]: [],
     };

@@ -22,6 +22,10 @@ export type TTemplate = {
     updatedAt: Date;
 
     tags: TTag[];
+
+    publicAccess: boolean;
+
+    availableUsers: TUser[];
 };
 
 export type TFullTemplate = TTemplate & {

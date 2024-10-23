@@ -7,6 +7,9 @@ import { localStorageService } from "@/shared/services";
 import { useMemo } from "react";
 import { QuestionsToAnswersAdapter } from "@/features/answers-editing";
 import { useUneditableTemplate } from "@/features/template-editing/hooks";
+import { checkAvailability, useUserRoleOnTheTemplate } from "@/features/roles-separation";
+import { OperationsOnTheTemplate } from "@/entities/roles";
+import { useFormEditor, useUneditableFormEditor } from "@/features/forms-creating";
 
 export function useCreateForm() {
     const { templateId } = useParams();
@@ -42,4 +45,21 @@ export function useCreateForm() {
         questions: questions as TQuestion[],
         handleSaveForm,
     };
+}
+
+export function useEditor() {
+    const { userRoleOnTheTemplate: userRole } = useUserRoleOnTheTemplate();
+
+    const formEditor = useFormEditor();
+    const disabledFormEditor = useUneditableFormEditor();
+
+    const questionsEditor = useMemo(() => {
+        if (userRole && checkAvailability(userRole, OperationsOnTheTemplate.CreateForm)) {
+            return formEditor;
+        } else {
+            return disabledFormEditor;
+        }
+    }, [userRole, formEditor, disabledFormEditor]);
+
+    return questionsEditor;
 }

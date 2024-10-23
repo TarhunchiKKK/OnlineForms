@@ -4,9 +4,9 @@ import { parseTags, separateTags } from "./helpers";
 export function useTags(selectedTags: TTag[]) {
     const { data: fetchedTags } = tagsApi.useFindAllQuery();
 
-    const dropdownTags = fetchedTags ? separateTags(selectedTags, fetchedTags) : [];
-
     const cloudTags = parseTags(selectedTags);
+
+    const dropdownTags = fetchedTags ? separateTags(selectedTags, fetchedTags) : [];
 
     return { dropdownTags, cloudTags };
 }

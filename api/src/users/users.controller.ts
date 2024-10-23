@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Req, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Query, Req, UseGuards } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 import { ProvidesOperation } from "src/roles/decorators/provides-operation.decorator";
@@ -7,6 +7,7 @@ import { ChangeUserStatusDto } from "./dto/change-user-status.dto";
 import { ChangeUserRoleDto } from "./dto/change-user-role.dto";
 import { AccountOperationGuard } from "src/roles/guards/acoount-operation.guard";
 import { TAuthorizedRequest } from "src/auth/types/request";
+import { parseArrayParam } from "src/shared/helpers/http";
 
 @Controller("users")
 export class UsersController {
@@ -17,6 +18,16 @@ export class UsersController {
     @UseGuards(JwtAuthGuard, AccountOperationGuard)
     public async findAllUsers() {
         return await this.usersService.findAll();
+    }
+
+    @Get("/search")
+    public async search(
+        @Query("count") count: string,
+        @Query("search") search: string,
+        @Query("ids") ids: string,
+    ) {
+        const parsedIds = parseArrayParam(ids, ", ");
+        return await this.usersService.search(+count, search, parsedIds);
     }
 
     @Get("/me")

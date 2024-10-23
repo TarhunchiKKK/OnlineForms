@@ -5,6 +5,7 @@ export const routes = {
 
     EditTemplate: "/templates/:templateId/edit",
     TemplateForms: "/templates/:templateId/forms",
+    TemplateSettings: "/templates/:templateId/settings",
 
     CreateForm: "/templates/:templateId/create-form",
     UserFormsOnTemplate: "/templates/:templateId/your-answers",
@@ -24,6 +25,10 @@ export const routes = {
 
     createTemplateFormsRoute: (templateId: string) => {
         return `/templates/${templateId}/forms`;
+    },
+
+    createTemplateSettingsRoute: (templateId: string) => {
+        return `/templates/${templateId}/settings`;
     },
 
     createCreateFormRoute: (templateId: string) => {

@@ -10,12 +10,14 @@ import { permissionsOnTheAccounts } from "./constants/permissions-on-the-account
 import { OperationOnTheTemplateDto } from "./dto/operation-on-the-template.dto";
 import { permissionsOnTheTemplates } from "./constants/permissions-on-the-templates";
 import { FormsService } from "src/forms/forms.service";
+import { TemplatesService } from "src/templates/templates.service";
 
 @Injectable()
 export class RolesService {
     constructor(
         private readonly userService: UsersService,
         private readonly formsService: FormsService,
+        private readonly templatesService: TemplatesService,
     ) {}
 
     private async checkForGuest(userId: string | null): Promise<User | null> {
@@ -66,6 +68,11 @@ export class RolesService {
 
         if (user.templates.find((template) => template.id === templateId)) {
             return UserRolesOnTheTemplate.TemplateCreator;
+        }
+
+        const template = await this.templatesService.findOneById(templateId);
+        if (template.publicAccess || template.availableUsers.find((u) => u.id === userId)) {
+            return UserRolesOnTheTemplate.AvailableUser;
         }
 
         return UserRolesOnTheTemplate.AuthorizedUser;

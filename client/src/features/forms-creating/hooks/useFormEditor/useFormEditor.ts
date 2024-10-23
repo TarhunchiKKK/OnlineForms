@@ -1,23 +1,19 @@
 import { useDispatch } from "react-redux";
 import { questionsSlice, TQuestion, TQuestionEditor } from "@/entities/questions";
 
-export function useFormCreatingEditor(): TQuestionEditor {
+export function useFormEditor(): TQuestionEditor {
     const dispatch = useDispatch();
 
     const update = (question: TQuestion) => {
         dispatch(questionsSlice.actions.upsertQuestion(question));
     };
 
-    const create = () => {};
-
-    const remove = () => {};
-
     return {
         headerEditable: false,
         answerEditable: true,
         footerEnabled: false,
         update,
-        create,
-        remove,
+        create: () => {},
+        remove: () => {},
     };
 }

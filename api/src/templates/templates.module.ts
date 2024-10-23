@@ -23,5 +23,6 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
     ],
     controllers: [TemplatesController],
     providers: [TemplatesGateway, TemplatesService],
+    exports: [TemplatesService],
 })
 export class TemplatesModule {}

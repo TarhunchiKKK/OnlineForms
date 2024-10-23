@@ -70,7 +70,8 @@ export class TemplatesService {
             relations: {
                 creator: true,
                 tags: true,
-                questions: true,
+                // questions: true,
+                availableUsers: true,
             },
         });
     }
