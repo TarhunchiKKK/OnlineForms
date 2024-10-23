@@ -15,7 +15,6 @@ export function PrivilegentRedirect({
     const isAvailable = checkAvailability(role, operation);
 
     if (!isAvailable) {
-        console.log("redirect");
         return <Navigate to={route} replace={true} />;
     }
 

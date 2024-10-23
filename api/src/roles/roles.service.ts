@@ -10,12 +10,15 @@ import { permissionsOnTheAccounts } from "./constants/permissions-on-the-account
 import { OperationOnTheTemplateDto } from "./dto/operation-on-the-template.dto";
 import { permissionsOnTheTemplates } from "./constants/permissions-on-the-templates";
 import { FormsService } from "src/forms/forms.service";
+import { TemplatesService } from "src/templates/templates.service";
+import { UserStatuses } from "src/users/enums/user-statuses.enum";
 
 @Injectable()
 export class RolesService {
     constructor(
         private readonly userService: UsersService,
         private readonly formsService: FormsService,
+        private readonly templatesService: TemplatesService,
     ) {}
 
     private async checkForGuest(userId: string | null): Promise<User | null> {
@@ -34,7 +37,8 @@ export class RolesService {
 
     public async defineUserRoleOnTheAccount(userId: string | null, accountId?: string) {
         const user = await this.checkForGuest(userId);
-        if (!user) {
+
+        if (!user || user.status === UserStatuses.Blocked) {
             return UserRolesOnTheAccounts.Guest;
         }
 
@@ -56,7 +60,8 @@ export class RolesService {
 
     public async defineUserRoleOnTheTemplate(userId: string | null, templateId: string) {
         const user = await this.checkForGuest(userId);
-        if (!user) {
+
+        if (!user || user.status === UserStatuses.Blocked) {
             return UserRolesOnTheTemplate.Guest;
         }
 
@@ -66,6 +71,11 @@ export class RolesService {
 
         if (user.templates.find((template) => template.id === templateId)) {
             return UserRolesOnTheTemplate.TemplateCreator;
+        }
+
+        const template = await this.templatesService.findOneById(templateId);
+        if (template.publicAccess || template.availableUsers.find((u) => u.id === userId)) {
+            return UserRolesOnTheTemplate.AvailableUser;
         }
 
         return UserRolesOnTheTemplate.AuthorizedUser;
@@ -78,7 +88,8 @@ export class RolesService {
 
     public async defineUserRoleOnTheForm(userId: string | null, formId: string) {
         const user = await this.checkForGuest(userId);
-        if (!user) {
+
+        if (!user || user.status === UserStatuses.Blocked) {
             return UserRolesOnTheForm.Guest;
         }
 

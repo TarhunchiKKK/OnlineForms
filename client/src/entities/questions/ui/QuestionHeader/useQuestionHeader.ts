@@ -12,10 +12,8 @@ export function useQuestionHeader(question: TQuestion, questionEditor: TQuestion
     };
 
     const handleTypeChange = (type: string) => {
-        const questionType = type as QuestionTypes;
-
         questionEditor.update({
-            ...defaultQuestions[questionType],
+            ...defaultQuestions[type as QuestionTypes],
             title: question.title,
             sequenceNumber: question.sequenceNumber,
             id: question.id,

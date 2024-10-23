@@ -1,11 +1,5 @@
 import { TFullTemplate, TTemplate } from "../../models";
 
-export type TFindTemplatesQueryArgs = {
-    page: number;
-
-    limit: number;
-};
-
 export type TFindAllTemplatesResponse = (TTemplate & {
     description: string;
 

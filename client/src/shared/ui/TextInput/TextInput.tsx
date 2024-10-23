@@ -1,14 +1,6 @@
-import { inputClassName } from "@/shared/constants";
 import { TTextInputProps } from "./types";
+import { TextField } from "@mui/material";
 
-export function TextInput({ label, ...inputProps }: TTextInputProps) {
-    return (
-        <>
-            {label && (
-                <label className="text-lg text-white font-medium block mb-[6px]">{label}</label>
-            )}
-
-            <input type="text" {...inputProps} className={inputClassName} />
-        </>
-    );
+export function TextInput(props: TTextInputProps) {
+    return <TextField {...props} style={{ width: "100%" }} variant="standard" />;
 }

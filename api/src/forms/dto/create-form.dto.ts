@@ -9,5 +9,5 @@ export class CreateFormDto {
         id: string;
     };
 
-    answers: Omit<CreateAnswerDto, "template">[];
+    answers: Omit<CreateAnswerDto, "form">[];
 }

@@ -6,6 +6,7 @@ import { User } from "./entities/user.entity";
 import { JwtModule } from "@nestjs/jwt";
 import { RolesModule } from "src/roles/roles.module";
 import { ConfigModule, ConfigService } from "@nestjs/config";
+import { UsersGateway } from "./users.gateway";
 
 @Module({
     imports: [
@@ -23,7 +24,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
         }),
     ],
     controllers: [UsersController],
-    providers: [UsersService],
+    providers: [UsersService, UsersGateway],
     exports: [UsersService],
 })
 export class UsersModule {}

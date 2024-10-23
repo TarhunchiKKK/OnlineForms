@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { FindManyOptions, Repository } from "typeorm";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Form } from "./entities/form.entity";
@@ -36,17 +36,31 @@ export class FormsService {
         });
     }
 
-    public async findAllByUserId(userId: string) {
-        return await this.formsRepository.find({
+    public async findAllByUserId(userId: string, templateId?: string) {
+        const options: FindManyOptions<Form> = {
             relations: {
                 creator: true,
+                template: true,
             },
             where: {
                 creator: {
                     id: userId,
                 },
             },
-        });
+        };
+
+        if (templateId) {
+            options.where = {
+                creator: {
+                    id: userId,
+                },
+                template: {
+                    id: templateId,
+                },
+            };
+        }
+
+        return await this.formsRepository.find(options);
     }
 
     public async findOne(formId: string) {
@@ -56,8 +70,9 @@ export class FormsService {
             },
             relations: {
                 creator: true,
-                template: true,
-                answers: true,
+                template: {
+                    tags: true,
+                },
             },
         });
     }

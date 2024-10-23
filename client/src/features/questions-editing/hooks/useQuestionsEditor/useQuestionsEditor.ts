@@ -9,14 +9,15 @@ import {
     TQuestionEditor,
 } from "@/entities/questions";
 import { useQuestions } from "../useQuestions/useQuestions";
+import { TTemplate } from "@/entities/templates";
 
-export function useQuestionsEditor(): TQuestionEditor {
+export function useQuestionsEditor(template?: TTemplate): TQuestionEditor {
     const dispatch = useDispatch();
     const { nextSequenceNumber } = useQuestions();
 
     const questionsWsApi = QuestionsWsApiProvider.getInstance();
 
-    questionsWsApi.onCreateQuestion((question) => {
+    questionsWsApi.onCreateQuestion(template?.id || null, (question) => {
         dispatch(questionsSlice.actions.upsertQuestion(question));
     });
 

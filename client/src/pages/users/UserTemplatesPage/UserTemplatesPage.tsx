@@ -7,7 +7,7 @@ export function UserTemplatesPage() {
 
     return (
         <div className={contentWrapperClassName}>
-            {templates && <TemplatesTable templates={templates} />}
+            {templates && <TemplatesTable templates={templates} sortable />}
         </div>
     );
 }

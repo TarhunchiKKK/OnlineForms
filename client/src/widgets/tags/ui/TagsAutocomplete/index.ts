@@ -1,0 +1,1 @@
+export { TagsAutocomplete } from "./TagsAutocomplete";

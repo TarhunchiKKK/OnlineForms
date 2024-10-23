@@ -20,7 +20,7 @@ export class QuestionsGateway {
     @SubscribeMessage("createQuestion")
     public async handleCreateQuestion(@MessageBody() createQuestionDto: CreateQuestionDto) {
         const question = await this.questionsService.create(createQuestionDto);
-        this.server.emit("onCreateQuestion", question);
+        this.server.emit(`onCreateQuestion${question.template.id}`, question);
     }
 
     @SubscribeMessage("updateQuestion")

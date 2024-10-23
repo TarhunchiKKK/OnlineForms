@@ -1,2 +1,3 @@
 export { useAppSelector } from "./useAppSelector";
-export { useDebounce } from "./useDebounce";
+export { useDebounced } from "./useDebounced";
+export { useContextObserver } from "./useContextObserver";

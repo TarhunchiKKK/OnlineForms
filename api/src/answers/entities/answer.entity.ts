@@ -1,11 +1,23 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Question } from "src/questions/entities/question.entity";
 import { Form } from "../../forms/entities/form.entity";
+import { QuestionTypes } from "src/questions/enums/question-types.enum";
 
 @Entity()
 export class Answer {
     @PrimaryGeneratedColumn("uuid")
     id: string;
+
+    @Column()
+    title: string;
+
+    @Column()
+    sequenceNumber: number;
+
+    @Column({ default: true })
+    isDisplayed: boolean;
+
+    @Column()
+    type: QuestionTypes;
 
     @Column({ nullable: true })
     line: string | null;
@@ -21,7 +33,4 @@ export class Answer {
 
     @ManyToOne(() => Form, (form) => form.answers)
     form: Form;
-
-    @ManyToOne(() => Question, (question) => question.answers)
-    question: Question;
 }

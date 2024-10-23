@@ -8,6 +8,8 @@ export type TCreateTemplateDto = {
         description: string;
 
         topic: TemplateTopics;
+
+        image: string | null;
     };
 
     authToken: string;
@@ -22,5 +24,7 @@ export type TUpdateTemplateDto = {
         description: Descendant[];
 
         topic: TemplateTopics;
+
+        image: string | null;
     };
 };

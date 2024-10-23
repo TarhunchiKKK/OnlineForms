@@ -2,21 +2,17 @@ import { QuestionsList, TemplateHeader } from "@/features/template-editing";
 import { useEditForm, useFormEditor } from "./hooks";
 
 export function EditFormPage() {
-    const { template, questions } = useEditForm();
+    const { templateEditor, questions } = useEditForm();
 
     const questionsEditor = useFormEditor();
 
     return (
-        <>
-            {template.template && (
-                <TemplateHeader
-                    template={template.template}
-                    handlers={template.handlers}
-                    editable={template.editable}
-                />
-            )}
+        <main className="px-6 py-4">
+            <div className="mx-auto container">
+                {templateEditor.template && <TemplateHeader templateEditor={templateEditor} />}
 
-            <QuestionsList questions={questions} questionsEditor={questionsEditor} />
-        </>
+                <QuestionsList questions={questions} questionsEditor={questionsEditor} />
+            </div>
+        </main>
     );
 }

@@ -1,14 +1,6 @@
-import { inputClassName } from "@/shared/constants";
 import { TTextAreaProps } from "./types";
+import { TextField } from "@mui/material";
 
-export function TextArea({ label, ...inputProps }: TTextAreaProps) {
-    return (
-        <>
-            {label && (
-                <label className="text-lg text-white font-medium block mb-[6px]">{label}</label>
-            )}
-
-            <textarea {...inputProps} className={inputClassName} />
-        </>
-    );
+export function TextArea(props: TTextAreaProps) {
+    return <TextField {...props} style={{ width: "100%" }} type="text" />;
 }

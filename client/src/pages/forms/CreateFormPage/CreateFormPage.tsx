@@ -1,28 +1,23 @@
-import { useFormCreatingEdoitor } from "@/features/forms-creating";
 import { QuestionsList, TemplateHeader } from "@/features/template-editing";
 import { Button } from "@/shared/ui";
-import { useCreateForm } from "./useCreateForm";
+import { useCreateForm, useEditor } from "./hooks";
 
 export function CreateFormPage() {
-    const { template, questions, handleSaveForm } = useCreateForm();
+    const { templateEditor, questions, handleSaveForm } = useCreateForm();
 
-    const questionsEditor = useFormCreatingEdoitor();
+    const { questionsEditor, submitAvailable } = useEditor();
 
     return (
         <>
-            {template.template && (
-                <TemplateHeader
-                    template={template.template}
-                    handlers={template.handlers}
-                    editable={template.editable}
-                />
-            )}
+            {templateEditor.template && <TemplateHeader templateEditor={templateEditor} />}
 
             <QuestionsList questions={questions} questionsEditor={questionsEditor} />
 
-            <div className="mx-auto w-min mb-6">
-                <Button content="Save" size="lg" onClick={handleSaveForm} />
-            </div>
+            {submitAvailable && (
+                <div className="mx-auto w-min mb-6">
+                    <Button content="Save" size="lg" onClick={handleSaveForm} />
+                </div>
+            )}
         </>
     );
 }

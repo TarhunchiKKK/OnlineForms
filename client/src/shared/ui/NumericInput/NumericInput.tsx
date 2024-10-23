@@ -1,12 +1,6 @@
-import { inputClassName } from "@/shared/constants";
 import { TNumericInputProps } from "./types";
+import { TextField } from "@mui/material";
 
-export function NumericInput({ label, ...inputProps }: TNumericInputProps) {
-    return (
-        <>
-            {label && <label className="text-lg min-w-max">{label}</label>}
-
-            <input type="number" {...inputProps} className={inputClassName} />
-        </>
-    );
+export function NumericInput(props: TNumericInputProps) {
+    return <TextField type="number" size="small" style={{ width: "100%" }} {...props} />;
 }

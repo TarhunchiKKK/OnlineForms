@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { FindManyOptions, In, Repository } from "typeorm";
 import { CreateTemplateDto } from "./dto/create-template.dto";
 import { UpdateTemplateDto } from "./dto/update-template.dto";
 import { Template } from "./entities/template.entity";
@@ -16,14 +16,37 @@ export class TemplatesService {
         return await this.templatesRepository.save(createTemplateDto);
     }
 
-    public async findAll(page: number, limit: number) {
-        return await this.templatesRepository.find({
-            skip: (page - 1) * limit,
-            take: limit,
+    public async findAll(tagIds: string[]) {
+        const options: FindManyOptions<Template> = {
             relations: {
                 creator: true,
+                tags: true,
             },
-        });
+        };
+
+        if (tagIds && tagIds.length > 0) {
+            options.where = {
+                tags: {
+                    id: In(tagIds),
+                },
+            };
+        }
+
+        return await this.templatesRepository.find(options);
+    }
+
+    public async findMostPopular(count: number) {
+        return (
+            await this.templatesRepository.find({
+                relations: {
+                    creator: true,
+                    tags: true,
+                    forms: true,
+                },
+            })
+        )
+            .sort((a, b) => b.forms.length - a.forms.length)
+            .slice(0, count);
     }
 
     public async findAllByUserId(userId: string) {
@@ -46,7 +69,9 @@ export class TemplatesService {
             },
             relations: {
                 creator: true,
-                questions: true,
+                tags: true,
+                // questions: true,
+                availableUsers: true,
             },
         });
     }
@@ -63,9 +88,5 @@ export class TemplatesService {
         }
 
         return await this.templatesRepository.save(updateTemplateDto);
-    }
-
-    public async getCount() {
-        return await this.templatesRepository.count();
     }
 }

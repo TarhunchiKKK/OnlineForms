@@ -1,7 +1,15 @@
-import { TQuestion } from "@/entities/questions";
+import { QuestionTypes, TQuestion } from "@/entities/questions";
 
 export type TAnswer = {
     id: string;
+
+    title: string;
+
+    sequenceNumber: number;
+
+    isDisplayed: boolean;
+
+    type: QuestionTypes;
 
     line: string | null;
 

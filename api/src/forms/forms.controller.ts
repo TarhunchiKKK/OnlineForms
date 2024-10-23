@@ -25,11 +25,16 @@ export class FormsController {
     @Get("/user")
     @UseGuards(JwtAuthGuard)
     public async findUserForms(@Req() request: TAuthorizedRequest) {
-        return this.formsService.findAllByTemplateId(request.user.id);
+        return this.formsService.findAllByUserId(request.user.id, request.query?.templateId);
     }
 
-    @Get(":templateId")
+    @Get("/template/:templateId")
     public async findAllByTemplateId(@Param("templateId") templateId: string) {
         return this.formsService.findAllByTemplateId(templateId);
+    }
+
+    @Get(":formId")
+    public async findOne(@Param("formId") formId: string) {
+        return await this.formsService.findOne(formId);
     }
 }

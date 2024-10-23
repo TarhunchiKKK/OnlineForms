@@ -1,1 +1,1 @@
-export { UsersTable } from "./ui";
+export { UsersTable, AvailableUsersAutocomplete } from "./ui";

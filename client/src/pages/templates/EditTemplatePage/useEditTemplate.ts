@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import { useTemplate } from "@/features/template-editing";
 import { useQuestions } from "@/features/questions-editing";
 import { templatesApi } from "@/entities/templates";
 import { questionsApi, TQuestion } from "@/entities/questions";
+import { useTemplateEditor } from "@/features/template-editing/hooks";
 
 export function useEditTemplate() {
     const { templateId } = useParams();
@@ -10,16 +10,12 @@ export function useEditTemplate() {
     const { data: fetchedTemplate } = templatesApi.useFindOneQuery(templateId!);
     const { data: fetchedQuestions } = questionsApi.useFindByTemplateQuery(templateId!);
 
-    const { template, handlers } = useTemplate(fetchedTemplate);
+    const templateEditor = useTemplateEditor(fetchedTemplate);
 
     const { questions } = useQuestions(fetchedQuestions);
 
     return {
-        template: {
-            template,
-            handlers,
-            editable: true,
-        },
+        templateEditor,
         questions: questions as TQuestion[],
     };
 }

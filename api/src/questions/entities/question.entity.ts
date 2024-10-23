@@ -1,7 +1,6 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { QuestionTypes } from "src/questions/enums/question-types.enum";
 import { Template } from "src/templates/entities/template.entity";
-import { Answer } from "src/answers/entities/answer.entity";
 
 @Entity()
 export class Question {
@@ -14,12 +13,12 @@ export class Question {
     @Column()
     sequenceNumber: number;
 
+    @Column({ default: true })
+    isDisplayed: boolean;
+
     @Column()
     type: QuestionTypes;
 
     @ManyToOne(() => Template, (template) => template.questions)
     template: Template;
-
-    @OneToMany(() => Answer, (answer) => answer.question)
-    answers: Answer[];
 }

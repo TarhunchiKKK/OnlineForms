@@ -1,7 +1,6 @@
 import { Repository } from "typeorm";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { questionSequenceNumberSortCompareer } from "src/answers/helpers/sort-compareers";
 import { CreateAnswerDto } from "./dto/create-answer.dto";
 import { UpdateAnswerDto } from "./dto/update-answer.dto";
 import { Answer } from "./entities/answer.entity";
@@ -28,19 +27,18 @@ export class AnswersService {
         return await Promise.all(creationPromises);
     }
 
-    public async findAllByFormId(templateId: string) {
-        const answers = await this.answersRepository.find({
-            relations: {
-                question: true,
-            },
+    public async findAllByFormId(formId: string) {
+        return await this.answersRepository.find({
             where: {
                 form: {
-                    id: templateId,
+                    id: formId,
                 },
+                isDisplayed: true,
+            },
+            order: {
+                sequenceNumber: "ASC",
             },
         });
-
-        return answers.sort(questionSequenceNumberSortCompareer);
     }
 
     public async update(updateAnswerDto: UpdateAnswerDto) {

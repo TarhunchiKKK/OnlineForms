@@ -50,12 +50,29 @@ export function useTemplate(inputTemplate?: TTemplate) {
         });
     };
 
+    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const newValue = {
+            ...(template as TTemplate),
+            image: e.target.value || null,
+        };
+
+        setTemplate(newValue);
+
+        templatesWsApi.updateTemplate({
+            data: newValue,
+        });
+    };
+
     return {
-        template,
+        template: {
+            ...template,
+            image: template?.image || "",
+        },
         handlers: {
             handleTitleChange,
             handleDescriptionChange,
             handleTopicChange,
+            handleImageChange,
         },
     };
 }

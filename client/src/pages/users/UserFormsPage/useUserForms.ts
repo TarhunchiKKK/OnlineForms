@@ -4,7 +4,7 @@ import { localStorageService } from "@/shared/services";
 export function useUserForms() {
     const authToken = localStorageService.auth.getAuthToken();
 
-    const { data: forms } = formsApi.useFindUserFormsQuery(authToken!);
+    const { data: forms } = formsApi.useFindUserFormsQuery({ authToken: authToken! });
 
     return { forms };
 }

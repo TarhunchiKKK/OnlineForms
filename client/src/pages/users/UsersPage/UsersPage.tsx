@@ -1,17 +1,20 @@
 import { UsersTable } from "@/widgets/users";
-import { useUsers } from "./useUsers";
+import { useRedirectProps, useUsers } from "./hooks";
 import { contentWrapperClassName } from "@/shared/constants";
+import { PrivilegentRedirect } from "@/features/roles-separation";
 
 export function UsersPage() {
     const { users } = useUsers();
 
-    console.log(users);
+    const redirectProps = useRedirectProps();
 
     return (
         <main className="py-4">
             <div className="container mx-auto">
                 <div className={contentWrapperClassName}>
-                    {users && <UsersTable users={users} />}
+                    <PrivilegentRedirect {...redirectProps}>
+                        <>{users && <UsersTable users={users} />}</>
+                    </PrivilegentRedirect>
                 </div>
             </div>
         </main>

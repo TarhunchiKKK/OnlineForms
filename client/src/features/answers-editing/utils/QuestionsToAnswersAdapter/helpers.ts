@@ -11,31 +11,31 @@ import {
 
 export function parseQuestionToCreateAnswerDto(question: TQuestion): TCreateAnyAnswerDto {
     const questionData = {
-        id: question.id,
-        sequenceNumber: question.sequenceNumber,
-        type: question.type,
         title: question.title,
+        sequenceNumber: question.sequenceNumber,
+        isDisplayed: question.isDisplayed,
+        type: question.type,
     };
     switch (question.type) {
         case QuestionTypes.SingleLine:
             return {
-                question: questionData,
+                ...questionData,
                 line: (question as TSingleLineQuestion).line,
             };
 
         case QuestionTypes.MultipleLines:
             return {
-                question: questionData,
+                ...questionData,
                 text: (question as TMultipleLineQuestion).text,
             };
         case QuestionTypes.Checkbox:
             return {
-                question: questionData,
+                ...questionData,
                 isChecked: (question as TCheckboxQuestion).isChecked,
             };
         case QuestionTypes.PositiveInteger:
             return {
-                question: questionData,
+                ...questionData,
                 value: (question as TPositiveIntegerQuestion).value,
             };
     }

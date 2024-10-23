@@ -1,9 +1,30 @@
-import { TForm } from "@/entities/forms";
+import { FormsSortOrders, TForm } from "@/entities/forms";
 import { routes } from "@/shared/constants";
 import { formatDate } from "@/shared/helpers";
 import { NavLink } from "react-router-dom";
 
-export const renderFormsTableheaders = () => {
+export const createSortableHeaders = (setSortOrder: (_: FormsSortOrders) => void) => {
+    return () => {
+        return (
+            <tr>
+                <th
+                    className="text-left cursor-pointer"
+                    onClick={() => setSortOrder(FormsSortOrders.Creator)}
+                >
+                    Creator
+                </th>
+                <th
+                    className="text-left cursor-pointer"
+                    onClick={() => setSortOrder(FormsSortOrders.CreatedAt)}
+                >
+                    Created
+                </th>
+            </tr>
+        );
+    };
+};
+
+export const renderFormsTableHeaders = () => {
     return (
         <tr>
             <th className="text-left">Creator</th>

@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { transformFindAllResponse, transformFindOneResponse } from "./helpers";
 import { TCreateFormDto, TForm, TFullForm } from "../models";
 import { createAuthHeaders } from "@/shared/helpers";
+import { TFindUserFormsQUeryArgs } from "./types";
 
 export const formsApi = createApi({
     reducerPath: "forms/api",
@@ -23,10 +24,15 @@ export const formsApi = createApi({
             invalidatesTags: ["Forms"],
         }),
 
-        findUserForms: builder.query<TForm[], string>({
-            query: (authToken: string) => ({
+        findUserForms: builder.query<TForm[], TFindUserFormsQUeryArgs>({
+            query: (queryArgs: TFindUserFormsQUeryArgs) => ({
                 url: "/user",
-                headers: createAuthHeaders(authToken),
+                params: queryArgs.templateId
+                    ? {
+                          templateId: queryArgs.templateId,
+                      }
+                    : {},
+                headers: createAuthHeaders(queryArgs.authToken),
             }),
             transformResponse: transformFindAllResponse,
             providesTags: ["Forms"],
@@ -34,7 +40,7 @@ export const formsApi = createApi({
 
         findAllByTemplateId: builder.query<TForm[], string>({
             query: (templateId: string) => ({
-                url: `/${templateId}`,
+                url: `/templates/${templateId}`,
             }),
             transformResponse: transformFindAllResponse,
             providesTags: ["Forms"],

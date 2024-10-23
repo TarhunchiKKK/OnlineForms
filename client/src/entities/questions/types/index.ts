@@ -1,1 +1,1 @@
-export type { TQuestionEditor, TQuestionEditorFactory } from "./questionsEditor";
+export type { TQuestionEditor } from "./questionsEditor";

@@ -14,8 +14,11 @@ import {
     CurrentUserLayout,
     UserFormsPage,
     UserTemplatesPage,
+    UserFormsOnTemplatePage,
+    TemplateSettingsPage,
 } from "@/pages";
 import { FormLayout } from "@/pages/layouts";
+import { TemplateDocumentLayout } from "@/shared/utils";
 
 export const router = createBrowserRouter([
     {
@@ -43,7 +46,11 @@ export const router = createBrowserRouter([
                 ],
             },
             {
-                element: <TemplateLayout />,
+                element: (
+                    <TemplateDocumentLayout>
+                        <TemplateLayout />
+                    </TemplateDocumentLayout>
+                ),
                 children: [
                     {
                         path: routes.EditTemplate,
@@ -53,20 +60,36 @@ export const router = createBrowserRouter([
                         path: routes.TemplateForms,
                         element: <TemplateFormsPage />,
                     },
+                    {
+                        path: routes.TemplateSettings,
+                        element: <TemplateSettingsPage />,
+                    },
                 ],
             },
             {
-                element: <FormLayout />,
+                element: (
+                    <TemplateDocumentLayout>
+                        <FormLayout />
+                    </TemplateDocumentLayout>
+                ),
                 children: [
                     {
                         path: routes.CreateForm,
                         element: <CreateFormPage />,
                     },
                     {
-                        path: routes.EditForm,
-                        element: <EditFormPage />,
+                        path: routes.UserFormsOnTemplate,
+                        element: <UserFormsOnTemplatePage />,
                     },
                 ],
+            },
+            {
+                path: routes.EditForm,
+                element: (
+                    <TemplateDocumentLayout>
+                        <EditFormPage />
+                    </TemplateDocumentLayout>
+                ),
             },
             {
                 element: <CurrentUserLayout />,
