@@ -1,11 +1,14 @@
 import { QuestionsList, TemplateHeader } from "@/features/template-editing";
 import { Button } from "@/shared/ui";
 import { useCreateForm, useEditor } from "./hooks";
+import { OperationsOnTheTemplate } from "@/entities/roles";
+import { PrivilegentAccess } from "@/features/roles-separation";
+import { CommentsList } from "@/widgets/comments";
 
 export function CreateFormPage() {
     const { templateEditor, questions, handleSaveForm } = useCreateForm();
 
-    const { questionsEditor, submitAvailable } = useEditor();
+    const { questionsEditor, submitAvailable, userRole } = useEditor();
 
     return (
         <>
@@ -18,6 +21,10 @@ export function CreateFormPage() {
                     <Button content="Save" size="lg" onClick={handleSaveForm} />
                 </div>
             )}
+
+            <PrivilegentAccess role={userRole} operation={OperationsOnTheTemplate.CreateComment}>
+                <CommentsList />
+            </PrivilegentAccess>
         </>
     );
 }
