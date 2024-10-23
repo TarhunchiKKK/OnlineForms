@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { TChangeUserRoleDto, TChangeUserStatusDto, TRemoveUserDto, TUser } from "../models";
+import { TChangeUserRoleDto, TChangeUserStatusDto, TRemoveUserDto, TUser } from "../../models";
 import { createAuthHeaders } from "@/shared/helpers";
 import { TSearchUsersQueryArgs } from "./types";
 

@@ -11,6 +11,7 @@ import { OperationOnTheTemplateDto } from "./dto/operation-on-the-template.dto";
 import { permissionsOnTheTemplates } from "./constants/permissions-on-the-templates";
 import { FormsService } from "src/forms/forms.service";
 import { TemplatesService } from "src/templates/templates.service";
+import { UserStatuses } from "src/users/enums/user-statuses.enum";
 
 @Injectable()
 export class RolesService {
@@ -36,7 +37,8 @@ export class RolesService {
 
     public async defineUserRoleOnTheAccount(userId: string | null, accountId?: string) {
         const user = await this.checkForGuest(userId);
-        if (!user) {
+
+        if (!user || user.status === UserStatuses.Blocked) {
             return UserRolesOnTheAccounts.Guest;
         }
 
@@ -58,7 +60,8 @@ export class RolesService {
 
     public async defineUserRoleOnTheTemplate(userId: string | null, templateId: string) {
         const user = await this.checkForGuest(userId);
-        if (!user) {
+
+        if (!user || user.status === UserStatuses.Blocked) {
             return UserRolesOnTheTemplate.Guest;
         }
 
@@ -85,7 +88,8 @@ export class RolesService {
 
     public async defineUserRoleOnTheForm(userId: string | null, formId: string) {
         const user = await this.checkForGuest(userId);
-        if (!user) {
+
+        if (!user || user.status === UserStatuses.Blocked) {
             return UserRolesOnTheForm.Guest;
         }
 

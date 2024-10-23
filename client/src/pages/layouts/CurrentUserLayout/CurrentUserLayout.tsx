@@ -13,7 +13,9 @@ export function CurrentUserLayout() {
         <main className="py-4">
             <div className="container mx-auto">
                 {user && (
-                    <div className={`mb-4 ${contentWrapperClassName} flex flex-row justify-between items-start`}>
+                    <div
+                        className={`mb-4 ${contentWrapperClassName} flex flex-row justify-between items-start`}
+                    >
                         {renderUserData(user)}
 
                         <Button content="Sign Out" size="md" onClick={handleSignOut} />

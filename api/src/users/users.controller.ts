@@ -8,10 +8,15 @@ import { ChangeUserRoleDto } from "./dto/change-user-role.dto";
 import { AccountOperationGuard } from "src/roles/guards/acoount-operation.guard";
 import { TAuthorizedRequest } from "src/auth/types/request";
 import { parseArrayParam } from "src/shared/helpers/http";
+import { EventEmitter2 } from "@nestjs/event-emitter";
+import { UserPermissionsChangeEvent } from "./events/user-permissions-change.event";
 
 @Controller("users")
 export class UsersController {
-    constructor(private readonly usersService: UsersService) {}
+    constructor(
+        private readonly usersService: UsersService,
+        private readonly eventEmitter: EventEmitter2,
+    ) {}
 
     @Get()
     @ProvidesOperation(OperationsOnTheAccounts.ViewUsers)
@@ -40,14 +45,24 @@ export class UsersController {
     @ProvidesOperation(OperationsOnTheAccounts.ChangeUserStatus)
     @UseGuards(JwtAuthGuard, AccountOperationGuard)
     public async chageUserStatus(@Body() dto: ChangeUserStatusDto) {
-        return await this.usersService.changeUserStatus(dto);
+        await this.usersService.changeUserStatus(dto);
+
+        this.eventEmitter.emit(
+            UserPermissionsChangeEvent.EventName,
+            new UserPermissionsChangeEvent(dto.id),
+        );
     }
 
     @Patch("/role")
     @ProvidesOperation(OperationsOnTheAccounts.ChangeAdminPermissions)
     @UseGuards(JwtAuthGuard, AccountOperationGuard)
     public async changeUserRole(@Body() dto: ChangeUserRoleDto) {
-        return await this.usersService.changeUserRole(dto);
+        await this.usersService.changeUserRole(dto);
+
+        this.eventEmitter.emit(
+            UserPermissionsChangeEvent.EventName,
+            new UserPermissionsChangeEvent(dto.id),
+        );
     }
 
     @Delete(":userId")
@@ -55,5 +70,10 @@ export class UsersController {
     @UseGuards(JwtAuthGuard, AccountOperationGuard)
     public async removeUser(@Param("userId") userId: string) {
         await this.usersService.remove(userId);
+
+        this.eventEmitter.emit(
+            UserPermissionsChangeEvent.EventName,
+            new UserPermissionsChangeEvent(userId),
+        );
     }
 }

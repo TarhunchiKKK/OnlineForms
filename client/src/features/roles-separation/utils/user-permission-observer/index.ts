@@ -1,0 +1,1 @@
+export { UserPermissionsObserver } from "./userPermissionsObserver";

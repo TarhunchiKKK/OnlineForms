@@ -6,10 +6,11 @@ import { JwtModule } from "@nestjs/jwt";
 import { AuthModule } from "./auth/auth.module";
 import { TemplatesModule } from "./templates/templates.module";
 import { FormsModule } from "./forms/forms.module";
-import { RolesModule } from './roles/roles.module';
-import { QuestionsModule } from './questions/questions.module';
-import { AnswersModule } from './answers/answers.module';
-import { TagsModule } from './tags/tags.module';
+import { RolesModule } from "./roles/roles.module";
+import { QuestionsModule } from "./questions/questions.module";
+import { AnswersModule } from "./answers/answers.module";
+import { TagsModule } from "./tags/tags.module";
+import { EventEmitterModule } from "@nestjs/event-emitter";
 
 @Module({
     imports: [
@@ -46,6 +47,7 @@ import { TagsModule } from './tags/tags.module';
                 },
             }),
         }),
+        EventEmitterModule.forRoot(),
         RolesModule,
         QuestionsModule,
         AnswersModule,
