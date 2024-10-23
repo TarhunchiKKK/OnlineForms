@@ -2,16 +2,19 @@ import { formsApi } from "@/entities/forms";
 import { questionsApi, TQuestion } from "@/entities/questions";
 import { templatesApi } from "@/entities/templates";
 import { useQuestions } from "@/features/questions-editing";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { localStorageService } from "@/shared/services";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { QuestionsToAnswersAdapter } from "@/features/answers-editing";
 import { useUneditableTemplate } from "@/features/template-editing/hooks";
 import { checkAvailability, useUserRoleOnTheTemplate } from "@/features/roles-separation";
 import { OperationsOnTheTemplate } from "@/entities/roles";
 import { useFormEditor, useUneditableFormEditor } from "@/features/forms-creating";
+import { routes } from "@/shared/constants";
 
 export function useCreateForm() {
+    const navigate = useNavigate();
+
     const { templateId } = useParams();
     const [createForm] = formsApi.useCreateMutation();
 
@@ -29,7 +32,7 @@ export function useCreateForm() {
     const handleSaveForm = async () => {
         const authToken = localStorageService.auth.getAuthToken();
 
-        await createForm({
+        const { data: form } = await createForm({
             data: {
                 template: {
                     id: templateId!,
@@ -38,6 +41,10 @@ export function useCreateForm() {
             },
             authToken: authToken!,
         });
+
+        if (form) {
+            navigate(routes.createEditFormRoute(form.id));
+        }
     };
 
     return {
@@ -49,17 +56,20 @@ export function useCreateForm() {
 
 export function useEditor() {
     const { userRoleOnTheTemplate: userRole } = useUserRoleOnTheTemplate();
+    const submitable = useRef(false);
 
     const formEditor = useFormEditor();
     const disabledFormEditor = useUneditableFormEditor();
 
     const questionsEditor = useMemo(() => {
         if (userRole && checkAvailability(userRole, OperationsOnTheTemplate.CreateForm)) {
+            submitable.current = true;
             return formEditor;
         } else {
+            submitable.current = false;
             return disabledFormEditor;
         }
     }, [userRole, formEditor, disabledFormEditor]);
 
-    return questionsEditor;
+    return { questionsEditor, submitAvailable: submitable.current };
 }

@@ -70,8 +70,9 @@ export class FormsService {
             },
             relations: {
                 creator: true,
-                template: true,
-                answers: true,
+                template: {
+                    tags: true,
+                },
             },
         });
     }

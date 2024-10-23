@@ -28,8 +28,13 @@ export class FormsController {
         return this.formsService.findAllByUserId(request.user.id, request.query?.templateId);
     }
 
-    @Get(":templateId")
+    @Get("/template/:templateId")
     public async findAllByTemplateId(@Param("templateId") templateId: string) {
         return this.formsService.findAllByTemplateId(templateId);
+    }
+
+    @Get(":formId")
+    public async findOne(@Param("formId") formId: string) {
+        return await this.formsService.findOne(formId);
     }
 }

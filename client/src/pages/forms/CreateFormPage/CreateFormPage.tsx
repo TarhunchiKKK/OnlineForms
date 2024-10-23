@@ -5,7 +5,7 @@ import { useCreateForm, useEditor } from "./hooks";
 export function CreateFormPage() {
     const { templateEditor, questions, handleSaveForm } = useCreateForm();
 
-    const questionsEditor = useEditor();
+    const { questionsEditor, submitAvailable } = useEditor();
 
     return (
         <>
@@ -13,7 +13,7 @@ export function CreateFormPage() {
 
             <QuestionsList questions={questions} questionsEditor={questionsEditor} />
 
-            {templateEditor.editable && (
+            {submitAvailable && (
                 <div className="mx-auto w-min mb-6">
                     <Button content="Save" size="lg" onClick={handleSaveForm} />
                 </div>

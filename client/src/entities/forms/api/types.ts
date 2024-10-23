@@ -1,3 +1,4 @@
+import { TTemplate } from "@/entities/templates";
 import { TForm, TFullForm } from "../models";
 
 export type TFindAllFormsResponse = (TForm & {
@@ -6,6 +7,10 @@ export type TFindAllFormsResponse = (TForm & {
 
 export type TFindOneFormResponse = TFullForm & {
     createdAt: string;
+
+    template: TTemplate & {
+        description: string;
+    };
 };
 
 export type TFindUserFormsQUeryArgs = {

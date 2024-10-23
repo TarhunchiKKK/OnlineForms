@@ -1,3 +1,4 @@
+import { Descendant } from "slate";
 import { TForm, TFullForm } from "../models";
 import { TFindAllFormsResponse, TFindOneFormResponse } from "./types";
 
@@ -13,5 +14,9 @@ export function transformFindOneResponse(response: TFindOneFormResponse): TFullF
     return {
         ...response,
         createdAt: new Date(response.createdAt),
+        template: {
+            ...response.template,
+            description: JSON.parse(response.template.description) as Descendant[],
+        },
     };
 }

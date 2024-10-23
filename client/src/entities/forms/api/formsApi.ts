@@ -40,7 +40,7 @@ export const formsApi = createApi({
 
         findAllByTemplateId: builder.query<TForm[], string>({
             query: (templateId: string) => ({
-                url: `/${templateId}`,
+                url: `/templates/${templateId}`,
             }),
             transformResponse: transformFindAllResponse,
             providesTags: ["Forms"],
