@@ -31,8 +31,10 @@ export class QuestionsWsApi {
         this.socket.emit("removeQuestion", questionId);
     }
 
-    public onCreateQuestion(callback: (question: TQuestion) => void) {
-        this.socket.on("onCreateQuestion", callback);
+    public onCreateQuestion(templateId: string | null, callback: (question: TQuestion) => void) {
+        if (templateId) {
+            this.socket.on(`onCreateQuestion%${templateId}`, callback);
+        }
     }
 }
 

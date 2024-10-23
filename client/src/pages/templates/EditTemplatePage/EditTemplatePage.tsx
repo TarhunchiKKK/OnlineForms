@@ -5,7 +5,7 @@ import { useQuestionsEditor } from "@/features/questions-editing";
 export function EditTemplatePage() {
     const { templateEditor, questions } = useEditTemplate();
 
-    const questionsEditor = useQuestionsEditor();
+    const questionsEditor = useQuestionsEditor(templateEditor.template);
 
     const handleCreateQuestion = () => {
         questionsEditor.create(templateEditor.template!.id);
