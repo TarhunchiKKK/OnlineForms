@@ -1,5 +1,6 @@
-import { QuestionsList, TemplateHeader } from "@/features/template-editing";
+import { TemplateHeader } from "@/features/template-editing";
 import { useEditForm, useFormEditor } from "./hooks";
+import { QuestionsList } from "@/widgets/questions";
 
 export function EditFormPage() {
     const { templateEditor, questions } = useEditForm();

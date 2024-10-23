@@ -1,9 +1,10 @@
-import { QuestionsList, TemplateHeader } from "@/features/template-editing";
+import { LikeTemplateButton, TemplateHeader } from "@/features/template-editing";
 import { Button } from "@/shared/ui";
 import { useCreateForm, useEditor } from "./hooks";
 import { OperationsOnTheTemplate } from "@/entities/roles";
 import { PrivilegentAccess } from "@/features/roles-separation";
 import { CommentsList } from "@/widgets/comments";
+import { QuestionsList } from "@/widgets/questions";
 
 export function CreateFormPage() {
     const { templateEditor, questions, handleSaveForm } = useCreateForm();
@@ -21,6 +22,12 @@ export function CreateFormPage() {
                     <Button content="Save" size="lg" onClick={handleSaveForm} />
                 </div>
             )}
+
+            <div className="fixed top-4 right-4 flex flex-row justify-start items-center gap-4 w-min">
+                <PrivilegentAccess role={userRole} operation={OperationsOnTheTemplate.LikeTemplate}>
+                    <LikeTemplateButton />
+                </PrivilegentAccess>
+            </div>
 
             <PrivilegentAccess role={userRole} operation={OperationsOnTheTemplate.CreateComment}>
                 <CommentsList />

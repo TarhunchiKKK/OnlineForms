@@ -61,4 +61,8 @@ export class Template {
 
     @OneToMany(() => Comment, (comment) => comment.template)
     comments: Comment[];
+
+    @ManyToMany(() => User, (user) => user.likedTemplates)
+    @JoinTable()
+    likers: User[];
 }

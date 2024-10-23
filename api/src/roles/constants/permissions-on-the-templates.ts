@@ -8,6 +8,7 @@ export const permissionsOnTheTemplates: Record<UserRolesOnTheTemplate, Operation
             OperationsOnTheTemplate.EditTemplate,
             OperationsOnTheTemplate.OpenTemplateForUser,
             OperationsOnTheTemplate.CreateComment,
+            OperationsOnTheTemplate.LikeTemplate,
         ],
         [UserRolesOnTheTemplate.TemplateCreator]: [
             OperationsOnTheTemplate.SeeFullTemplate,
@@ -15,11 +16,16 @@ export const permissionsOnTheTemplates: Record<UserRolesOnTheTemplate, Operation
             OperationsOnTheTemplate.EditTemplate,
             OperationsOnTheTemplate.OpenTemplateForUser,
             OperationsOnTheTemplate.CreateComment,
+            OperationsOnTheTemplate.LikeTemplate,
         ],
         [UserRolesOnTheTemplate.AvailableUser]: [
             OperationsOnTheTemplate.CreateForm,
             OperationsOnTheTemplate.CreateComment,
+            OperationsOnTheTemplate.LikeTemplate,
         ],
-        [UserRolesOnTheTemplate.AuthorizedUser]: [OperationsOnTheTemplate.CreateTemplate],
+        [UserRolesOnTheTemplate.AuthorizedUser]: [
+            OperationsOnTheTemplate.CreateTemplate,
+            OperationsOnTheTemplate.LikeTemplate,
+        ],
         [UserRolesOnTheTemplate.Guest]: [],
     };

@@ -13,4 +13,5 @@ export enum OperationsOnTheTemplate {
     EditTemplate = "Edit template",
     OpenTemplateForUser = "Open template for user",
     CreateComment = "Create comment",
+    LikeTemplate = "Like template",
 }

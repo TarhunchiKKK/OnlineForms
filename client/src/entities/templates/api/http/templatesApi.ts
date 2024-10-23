@@ -7,6 +7,7 @@ import {
     transformFindOneResponse,
 } from "./helpers";
 import { createAuthHeaders } from "@/shared/helpers";
+import { TCheckIsLikedDto, TCheckIsLikedResponse, TLikeTemplateDto } from "./types";
 
 export const templatesApi = createApi({
     reducerPath: "templates/api",
@@ -15,7 +16,7 @@ export const templatesApi = createApi({
         baseUrl: `${import.meta.env.VITE_SERVER_URL}/templates`,
     }),
 
-    tagTypes: ["Template"],
+    tagTypes: ["Template", "Like"],
 
     endpoints: (builder) => ({
         createDefault: builder.mutation<TTemplate, string>({
@@ -75,6 +76,23 @@ export const templatesApi = createApi({
                 url: `/${id}`,
             }),
             transformResponse: transformFindOneResponse,
+        }),
+
+        checkIsLiked: builder.query<TCheckIsLikedResponse, TCheckIsLikedDto>({
+            query: (dto: TCheckIsLikedDto) => ({
+                url: `/likes/${dto.templateId}`,
+                headers: createAuthHeaders(dto.authToken),
+            }),
+            providesTags: ["Like"],
+        }),
+
+        like: builder.mutation<void, TLikeTemplateDto>({
+            query: (dto: TLikeTemplateDto) => ({
+                url: `/likes/${dto.templateId}`,
+                method: "PATCH",
+                headers: createAuthHeaders(dto.authToken),
+            }),
+            invalidatesTags: ["Like"],
         }),
     }),
 });

@@ -36,4 +36,7 @@ export class User {
 
     @OneToMany(() => Comment, (comment) => comment.creator)
     comments: Comment[];
+
+    @ManyToMany(() => Template, (template) => template.likers)
+    likedTemplates: Template[];
 }
