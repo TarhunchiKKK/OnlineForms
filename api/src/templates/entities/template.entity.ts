@@ -14,6 +14,7 @@ import { User } from "src/users/entities/user.entity";
 import { Question } from "src/questions/entities/question.entity";
 import { Form } from "src/forms/entities/form.entity";
 import { Tag } from "../../tags/entities/tag.entity";
+import { Comment } from "src/comments/entities/comment.entity";
 
 @Entity()
 export class Template {
@@ -57,4 +58,11 @@ export class Template {
 
     @OneToMany(() => Form, (form) => form.template)
     forms: Form[];
+
+    @OneToMany(() => Comment, (comment) => comment.template)
+    comments: Comment[];
+
+    @ManyToMany(() => User, (user) => user.likedTemplates)
+    @JoinTable()
+    likers: User[];
 }

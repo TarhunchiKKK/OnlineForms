@@ -11,6 +11,7 @@ import { QuestionsModule } from "./questions/questions.module";
 import { AnswersModule } from "./answers/answers.module";
 import { TagsModule } from "./tags/tags.module";
 import { EventEmitterModule } from "@nestjs/event-emitter";
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
     imports: [
@@ -52,6 +53,7 @@ import { EventEmitterModule } from "@nestjs/event-emitter";
         QuestionsModule,
         AnswersModule,
         TagsModule,
+        CommentsModule,
     ],
 })
 export class AppModule {}

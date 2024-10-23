@@ -5,6 +5,8 @@ import { CreateTemplateDto } from "./dto/create-template.dto";
 import { UpdateTemplateDto } from "./dto/update-template.dto";
 import { Template } from "./entities/template.entity";
 import { TemplateNotFoundException } from "./exceptions/template-not-found.exception";
+import { LikeTemplateDto } from "./dto/like-template.dto";
+import { User } from "src/users/entities/user.entity";
 
 @Injectable()
 export class TemplatesService {
@@ -70,7 +72,6 @@ export class TemplatesService {
             relations: {
                 creator: true,
                 tags: true,
-                // questions: true,
                 availableUsers: true,
             },
         });
@@ -88,5 +89,45 @@ export class TemplatesService {
         }
 
         return await this.templatesRepository.save(updateTemplateDto);
+    }
+
+    public async likeTemplate(dto: LikeTemplateDto) {
+        const template = await this.templatesRepository.findOne({
+            where: {
+                id: dto.template.id,
+            },
+            relations: {
+                likers: true,
+            },
+        });
+
+        if (!template) {
+            throw new TemplateNotFoundException(dto.template.id);
+        }
+
+        if (template.likers.some((liker) => liker.id === dto.user.id)) {
+            template.likers = template.likers.filter((liker) => liker.id !== dto.user.id);
+        } else {
+            template.likers.push(dto.user as User);
+        }
+
+        return await this.templatesRepository.save(template);
+    }
+
+    public async checkIsLiked(templateId: string, userId: string) {
+        const template = await this.templatesRepository.findOne({
+            where: {
+                id: templateId,
+            },
+            relations: {
+                likers: true,
+            },
+        });
+
+        if (!template) {
+            throw new TemplateNotFoundException(templateId);
+        }
+
+        return template.likers.some((liker) => liker.id === userId);
     }
 }

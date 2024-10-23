@@ -1,4 +1,5 @@
 import { answersApi } from "@/entities/answers";
+import { commentsApi } from "@/entities/comments";
 import { formsApi } from "@/entities/forms";
 import { questionsApi, questionsSlice } from "@/entities/questions";
 import { rolesApi } from "@/entities/roles";
@@ -19,6 +20,7 @@ export const reduxStore = configureStore({
         [questionsApi.reducerPath]: questionsApi.reducer,
         [formsApi.reducerPath]: formsApi.reducer,
         [answersApi.reducerPath]: answersApi.reducer,
+        [commentsApi.reducerPath]: commentsApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({ serializableCheck: false })
@@ -29,5 +31,6 @@ export const reduxStore = configureStore({
             .concat(tagsApi.middleware)
             .concat(questionsApi.middleware)
             .concat(formsApi.middleware)
-            .concat(answersApi.middleware),
+            .concat(answersApi.middleware)
+            .concat(commentsApi.middleware),
 });

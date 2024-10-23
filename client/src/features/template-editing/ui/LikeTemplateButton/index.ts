@@ -1,0 +1,1 @@
+export { LikeTemplateButton } from "./LikeTemplateButton";

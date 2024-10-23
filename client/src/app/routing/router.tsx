@@ -19,6 +19,7 @@ import {
 } from "@/pages";
 import { FormLayout } from "@/pages/layouts";
 import { TemplateDocumentLayout } from "@/shared/utils";
+import { CommentsContextProvider } from "@/features/comments-creating";
 
 export const router = createBrowserRouter([
     {
@@ -54,7 +55,11 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: routes.EditTemplate,
-                        element: <EditTemplatePage />,
+                        element: (
+                            <CommentsContextProvider>
+                                <EditTemplatePage />
+                            </CommentsContextProvider>
+                        ),
                     },
                     {
                         path: routes.TemplateForms,
@@ -75,7 +80,11 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: routes.CreateForm,
-                        element: <CreateFormPage />,
+                        element: (
+                            <CommentsContextProvider>
+                                <CreateFormPage />
+                            </CommentsContextProvider>
+                        ),
                     },
                     {
                         path: routes.UserFormsOnTemplate,

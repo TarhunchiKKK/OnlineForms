@@ -71,5 +71,9 @@ export function useEditor() {
         }
     }, [userRole, formEditor, disabledFormEditor]);
 
-    return { questionsEditor, submitAvailable: submitable.current };
+    return {
+        questionsEditor,
+        submitAvailable: submitable.current,
+        userRole,
+    };
 }

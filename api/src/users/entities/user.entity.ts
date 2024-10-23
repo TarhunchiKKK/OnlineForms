@@ -3,6 +3,7 @@ import { UserRoles } from "src/roles/enums/user-roles.enum";
 import { Template } from "src/templates/entities/template.entity";
 import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { UserStatuses } from "../enums/user-statuses.enum";
+import { Comment } from "src/comments/entities/comment.entity";
 
 @Entity()
 export class User {
@@ -32,4 +33,10 @@ export class User {
 
     @OneToMany(() => Form, (form) => form.creator)
     forms: Form[];
+
+    @OneToMany(() => Comment, (comment) => comment.creator)
+    comments: Comment[];
+
+    @ManyToMany(() => Template, (template) => template.likers)
+    likedTemplates: Template[];
 }

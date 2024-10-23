@@ -19,3 +19,19 @@ export type TFindOneTemplateResponse = TFullTemplate & {
 export type TCreateResponse = TTemplate & {
     description: string;
 };
+
+export type TLikeTemplateDto = {
+    templateId: string;
+
+    authToken: string;
+};
+
+export type TCheckIsLikedDto = {
+    templateId: string;
+
+    authToken: string;
+};
+
+export type TCheckIsLikedResponse = {
+    liked: boolean;
+};
