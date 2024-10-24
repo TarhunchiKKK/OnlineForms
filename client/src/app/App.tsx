@@ -5,18 +5,18 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./routing";
 import { UserPermissionsChangeContextProvider } from "@/features/roles-separation";
 import { ThemeContextProvider } from "@/features/dark-theme";
-import { IntlProvider } from "react-intl";
+import { LocalizationContextProvider } from "@/features/localization";
 
 export function App() {
     return (
         <Provider store={reduxStore}>
             <Setup>
                 <ThemeContextProvider>
-                    <IntlProvider locale="en" defaultLocale="en">
+                    <LocalizationContextProvider>
                         <UserPermissionsChangeContextProvider>
                             <RouterProvider router={router} />
                         </UserPermissionsChangeContextProvider>
-                    </IntlProvider>
+                    </LocalizationContextProvider>
                 </ThemeContextProvider>
             </Setup>
         </Provider>

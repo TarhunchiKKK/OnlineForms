@@ -1,4 +1,5 @@
 import { Themes } from "@/features/dark-theme/types";
+import { Locales } from "@/features/localization/types";
 
 export const localStorageService = {
     auth: {
@@ -30,6 +31,22 @@ export const localStorageService = {
 
         removeTheme() {
             localStorage.removeItem(this.themeKey);
+        },
+    },
+
+    locale: {
+        localeKey: import.meta.env.VITE_LOCALSTORAGE_LOCALE_KEY,
+
+        getLocale(): Locales | null {
+            return localStorage.getItem(this.localeKey) as Locales;
+        },
+
+        setLocale(locale: string) {
+            localStorage.setItem(this.localeKey, locale);
+        },
+
+        removeLocale() {
+            localStorage.removeItem(this.localeKey);
         },
     },
 };

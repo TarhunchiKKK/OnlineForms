@@ -5,6 +5,7 @@ import { tagSize } from "./constants";
 import { getUserLabel, renderTagsCloudUser, renderUser } from "./helpers";
 import { TUser } from "@/entities/users";
 import { AutocompletableInput } from "@/shared/ui";
+import { useIntl } from "react-intl";
 
 export function AvailableUsersAutocomplete(props: TAvailableUsersAutocompleteProps) {
     const { dropdownUsers, cloudUsers, handleSearchChange } = useUsers(props.selectedUsers);
@@ -12,6 +13,8 @@ export function AvailableUsersAutocomplete(props: TAvailableUsersAutocompletePro
     const handleRemoveUserTag = (tag: unknown) => {
         props.handleAddUser(tag as TUser);
     };
+
+    const intl = useIntl();
 
     return (
         <>
@@ -28,7 +31,7 @@ export function AvailableUsersAutocomplete(props: TAvailableUsersAutocompletePro
             </div>
 
             <div>
-                <p className="mb-2">Users:</p>
+                <p className="mb-2">{intl.formatMessage({ id: "users" })}</p>
 
                 <AutocompletableInput
                     options={dropdownUsers}

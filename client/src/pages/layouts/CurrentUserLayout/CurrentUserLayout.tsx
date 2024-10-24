@@ -1,13 +1,17 @@
 import { Outlet } from "react-router-dom";
 import { useCurrentUser } from "./useCurrentUser";
 import { Tabs } from "@/widgets/routing";
-import { tabs } from "./constants";
-import { renderUserData } from "./helpers";
+import { renderUserData, useCreateTabs } from "./helpers";
 import { Button } from "@/shared/ui";
 import { contentWrapperClassName } from "@/shared/constants";
+import { useIntl } from "react-intl";
 
 export function CurrentUserLayout() {
     const { user, handleSignOut } = useCurrentUser();
+
+    const tabs = useCreateTabs();
+
+    const intl = useIntl();
 
     return (
         <main className="py-4">
@@ -18,7 +22,11 @@ export function CurrentUserLayout() {
                     >
                         {renderUserData(user)}
 
-                        <Button content="Sign Out" size="md" onClick={handleSignOut} />
+                        <Button
+                            content={intl.formatMessage({ id: "sign_out" })}
+                            size="md"
+                            onClick={handleSignOut}
+                        />
                     </div>
                 )}
 

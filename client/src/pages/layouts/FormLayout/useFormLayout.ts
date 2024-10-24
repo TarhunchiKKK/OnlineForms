@@ -1,11 +1,10 @@
-import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { createTabs } from "./helpers";
+import { useCreateTabs } from "./helpers";
 
 export function useFormLayout() {
     const { templateId } = useParams();
 
-    const tabs = useMemo(() => createTabs(templateId!), [templateId]);
+    const tabs = useCreateTabs(templateId!);
 
     return { tabs };
 }

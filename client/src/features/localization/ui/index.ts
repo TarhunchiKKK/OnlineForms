@@ -1,0 +1,1 @@
+export { LocalesDropdown } from "./LocalesDropdown";

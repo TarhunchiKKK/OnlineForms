@@ -1,13 +1,16 @@
 import { routes } from "@/shared/constants";
+import { useIntl } from "react-intl";
 
-export const createTabs = (templateId: string) => {
+export const useCreateTabs = (templateId: string) => {
+    const intl = useIntl();
+
     return [
         {
-            title: "Create form",
+            title: intl.formatMessage({ id: "create_form" }),
             route: routes.createCreateFormRoute(templateId),
         },
         {
-            title: "Your forms",
+            title: intl.formatMessage({ id: "your_forms" }),
             route: routes.createUserFormsOnTemplateRoute(templateId),
         },
     ];

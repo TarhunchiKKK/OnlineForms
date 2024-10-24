@@ -2,14 +2,17 @@ import { Editable, Slate } from "slate-react";
 import { useEditor } from "./useEditor";
 import { IFormatableTextareaProps } from "./types";
 import { FormatButtons } from "../FormatButtons";
+import { useIntl } from "react-intl";
 
 export function FormatableTextarea({ value, onChange, disabled }: IFormatableTextareaProps) {
     const { editor, renderElement, renderLeaf, handleHotkeys } = useEditor();
 
+    const intl = useIntl();
+
     return (
         <Slate editor={editor} initialValue={value} onChange={onChange}>
             <Editable
-                placeholder="Enter your form description..."
+                placeholder={intl.formatMessage({ id: "enter_form_description" })}
                 renderElement={renderElement}
                 renderLeaf={renderLeaf}
                 onKeyDown={handleHotkeys}

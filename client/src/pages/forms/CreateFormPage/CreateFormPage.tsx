@@ -5,11 +5,14 @@ import { OperationsOnTheTemplate } from "@/entities/roles";
 import { PrivilegentAccess } from "@/features/roles-separation";
 import { CommentsList } from "@/widgets/comments";
 import { QuestionsList } from "@/widgets/questions";
+import { useIntl } from "react-intl";
 
 export function CreateFormPage() {
     const { templateEditor, questions, handleSaveForm } = useCreateForm();
 
     const { questionsEditor, submitAvailable, userRole } = useEditor();
+
+    const intl = useIntl();
 
     return (
         <>
@@ -19,7 +22,11 @@ export function CreateFormPage() {
 
             {submitAvailable && (
                 <div className="mx-auto w-min mb-6">
-                    <Button content="Save" size="lg" onClick={handleSaveForm} />
+                    <Button
+                        content={intl.formatMessage({ id: "save" })}
+                        size="lg"
+                        onClick={handleSaveForm}
+                    />
                 </div>
             )}
 

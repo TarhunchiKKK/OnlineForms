@@ -3,19 +3,24 @@ import { Button, TextInput } from "@/shared/ui";
 import { useSignInForm } from "./useSignInForm";
 import { Link } from "react-router-dom";
 import { routes } from "@/shared/constants";
+import { useIntl } from "react-intl";
 
 export function SignInForm() {
     const { email, handleEmailChange, password, handlePasswordChange, handleSignIn } =
         useSignInForm();
 
+    const intl = useIntl();
+
     return (
         <form onSubmit={handleSignIn} className="w-full px-6 py-6 rounded-lg bg-green-primary">
-            <h2 className="text-2xl text-white font-semibold text-center mb-6">Sign In</h2>
+            <h2 className="text-2xl text-white font-semibold text-center mb-6">
+                {intl.formatMessage({ id: "sign_in" })}
+            </h2>
 
             <div className="mb-4">
                 <TextInput
-                    label="Email:"
-                    placeholder="Enter your email address..."
+                    label={intl.formatMessage({ id: "email" }) + ":"}
+                    placeholder={intl.formatMessage({ id: "enter_your_email" })}
                     value={email}
                     onChange={handleEmailChange}
                 />
@@ -23,15 +28,15 @@ export function SignInForm() {
 
             <div className="mb-8">
                 <TextInput
-                    label="Password:"
-                    placeholder="Enter your password..."
+                    label={intl.formatMessage({ id: "password" })}
+                    placeholder={intl.formatMessage({ id: "enter_your_password" })}
                     value={password}
                     onChange={handlePasswordChange}
                 />
             </div>
 
             <div className="flex flex-row justify-center items-center mb-8">
-                <Button size="lg" content="Sign In" />
+                <Button size="lg" content={intl.formatMessage({ id: "sign_in" })} />
             </div>
 
             <p className="text-center text-white text-lg mb-4">Or continue with:</p>
@@ -41,7 +46,7 @@ export function SignInForm() {
             </div>
 
             <Link to={routes.SignUp} className="block mx-auto text-center text-blue-300">
-                Don't have an account?
+                {intl.formatMessage({ id: "dont_have_account" })}
             </Link>
         </form>
     );

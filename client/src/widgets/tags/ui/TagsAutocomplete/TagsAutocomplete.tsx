@@ -5,6 +5,7 @@ import { TTagsAutocompleteProps } from "./types";
 import { TTag } from "@/entities/tags";
 import { TagCloud } from "react-tagcloud";
 import { tagSize } from "./constants";
+import { FormattedMessage } from "react-intl";
 
 export function TagsAutocomplete(props: TTagsAutocompleteProps) {
     const { dropdownTags, cloudTags } = useTags(props.selectedTags);
@@ -29,7 +30,9 @@ export function TagsAutocomplete(props: TTagsAutocompleteProps) {
 
             {!props.disabled && (
                 <div>
-                    <p className="mb-2">Tags:</p>
+                    <p className="mb-2">
+                        <FormattedMessage id="tags" />
+                    </p>
 
                     <AutocompletableInput
                         options={dropdownTags}

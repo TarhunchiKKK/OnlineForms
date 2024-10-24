@@ -1,14 +1,14 @@
 import { useUserRoleOnTheTemplate } from "@/features/roles-separation";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { createTabs } from "./helpers";
+import { useCreateTabs } from "./helpers";
 import { OperationsOnTheTemplate } from "@/entities/roles";
 import { routes } from "@/shared/constants";
 
 export function useTemplateLayout() {
     const { templateId } = useParams();
 
-    const tabs = useMemo(() => createTabs(templateId!), [templateId]);
+    const tabs = useCreateTabs(templateId!);
 
     const { userRoleOnTheTemplate } = useUserRoleOnTheTemplate();
 
