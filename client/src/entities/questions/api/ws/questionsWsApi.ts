@@ -32,9 +32,7 @@ export class QuestionsWsApi {
     }
 
     public onCreateQuestion(templateId: string | null, callback: (question: TQuestion) => void) {
-        if (templateId) {
-            this.socket.on(`onCreateQuestion%${templateId}`, callback);
-        }
+        this.socket.on(`onCreateQuestion${templateId}`, callback);
     }
 }
 
