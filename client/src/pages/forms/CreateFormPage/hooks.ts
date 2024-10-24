@@ -24,7 +24,7 @@ export function useCreateForm() {
     });
 
     const templateEditor = useUneditableTemplate(fetchedTemplate);
-    const { questions } = useQuestions(fetchedQuestions);
+    const { questions } = useQuestions(fetchedQuestions ?? null, true);
 
     const answers = useMemo(
         () => QuestionsToAnswersAdapter.toCreateAnswerDtos(questions as TQuestion[]),

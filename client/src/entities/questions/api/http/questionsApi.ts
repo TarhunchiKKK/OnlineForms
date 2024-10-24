@@ -8,14 +8,12 @@ export const questionsApi = createApi({
         baseUrl: `${import.meta.env.VITE_SERVER_URL}/questions`,
     }),
 
-    tagTypes: ["Question"],
-
     endpoints: (builder) => ({
         findByTemplate: builder.query<TQuestion[], string>({
             query: (templateId: string) => ({
                 url: `/template/${templateId}`,
             }),
-            providesTags: ["Question"],
+            forceRefetch: () => true,
         }),
     }),
 });

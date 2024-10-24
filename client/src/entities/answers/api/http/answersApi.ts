@@ -8,14 +8,12 @@ export const answersApi = createApi({
         baseUrl: `${import.meta.env.VITE_SERVER_URL}/answers`,
     }),
 
-    tagTypes: ["Answers"],
-
     endpoints: (builder) => ({
         findAllByFormId: builder.query<TAnswer[], string>({
             query: (formId: string) => ({
                 url: `/form/${formId}`,
             }),
-            providesTags: ["Answers"],
+            forceRefetch: () => true,
         }),
     }),
 });

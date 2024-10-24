@@ -8,13 +8,13 @@ import {
     TQuestion,
     TQuestionEditor,
 } from "@/entities/questions";
-import { useQuestions } from "../useQuestions/useQuestions";
 import { TTemplate } from "@/entities/templates";
 import { useEffect } from "react";
+import { useQuestions } from "../useQuestions";
 
 export function useQuestionsEditor(template?: TTemplate): TQuestionEditor {
     const dispatch = useDispatch();
-    const { nextSequenceNumber } = useQuestions();
+    const { nextSequenceNumber } = useQuestions(null, false);
 
     const questionsWsApi = QuestionsWsApiProvider.getInstance();
 
@@ -25,12 +25,6 @@ export function useQuestionsEditor(template?: TTemplate): TQuestionEditor {
             });
         }
     }, [template, questionsWsApi, dispatch]);
-
-    useEffect(() => {
-        return () => {
-            dispatch(questionsSlice.actions.resetQuestions());
-        };
-    }, [dispatch]);
 
     const update = (question: TQuestion) => {
         dispatch(questionsSlice.actions.upsertQuestion(question));

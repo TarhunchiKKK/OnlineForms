@@ -4,7 +4,7 @@ import { useAppSelector } from "@/shared/hooks";
 import { questionsSlice, TQuestion } from "@/entities/questions";
 import { getNextSequenceNumber } from "./helpers";
 
-export function useQuestions(providedQuestions: TQuestion[] | null = null) {
+export function useQuestions(providedQuestions: TQuestion[] | null, forceReset: boolean) {
     const dispatch = useDispatch();
 
     const questionsRecord = useAppSelector((state) => state.questions.entities);
@@ -15,6 +15,12 @@ export function useQuestions(providedQuestions: TQuestion[] | null = null) {
         () => getNextSequenceNumber(questionsRecord),
         [questionsRecord],
     );
+
+    useEffect(() => {
+        if (forceReset) {
+            dispatch(questionsSlice.actions.resetQuestions());
+        }
+    }, [dispatch, forceReset]);
 
     useEffect(() => {
         if (providedQuestions) {

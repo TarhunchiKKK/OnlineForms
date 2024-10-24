@@ -24,7 +24,7 @@ export function useEditForm() {
         return fetchedAnswers;
     }, [fetchedAnswers]);
 
-    const { questions } = useQuestions(answers);
+    const { questions } = useQuestions(answers ?? null, true);
 
     return {
         templateEditor,
