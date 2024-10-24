@@ -29,6 +29,8 @@ export function TagsAutocomplete(props: TTagsAutocompleteProps) {
 
             {!props.disabled && (
                 <div>
+                    <p className="mb-2">Tags:</p>
+
                     <AutocompletableInput
                         options={dropdownTags}
                         renderOption={renderTag}

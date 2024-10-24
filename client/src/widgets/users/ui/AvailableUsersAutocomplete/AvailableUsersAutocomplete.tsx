@@ -28,6 +28,8 @@ export function AvailableUsersAutocomplete(props: TAvailableUsersAutocompletePro
             </div>
 
             <div>
+                <p className="mb-2">Users:</p>
+
                 <AutocompletableInput
                     options={dropdownUsers}
                     renderOption={renderUser}

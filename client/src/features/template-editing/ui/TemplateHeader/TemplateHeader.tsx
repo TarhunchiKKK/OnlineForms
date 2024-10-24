@@ -51,7 +51,7 @@ export function TemplateHeader({ templateEditor }: TTemplateHeaderProps) {
                 />
             </div>
 
-            <div>
+            <div className="w-1/2">
                 <TagsAutocomplete
                     selectedTags={templateEditor.template.tags}
                     handleAddTag={handleAddTags}

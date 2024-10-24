@@ -7,9 +7,9 @@ export function AddQuestionButton({ createQuestion }: TAddQuestionButtonProps) {
         <button
             title="Add question"
             onClick={createQuestion}
-            className="p-2 bg-white rounded-full shadow-md"
+            className="p-2 bg-white dark:bg-black rounded-full shadow-md"
         >
-            <LuPlus size={iconSize} />
+            <LuPlus size={iconSize} className="text-black dark:text-white" />
         </button>
     );
 }

@@ -9,7 +9,7 @@ export function LikeTemplateButton() {
         <button
             title="Add question"
             onClick={handleLike}
-            className="p-2 bg-white rounded-full shadow-md"
+            className="p-2 bg-white dark:bg-black rounded-full shadow-md"
         >
             {isLiked ? <FcLike size={iconsSize} /> : <FcLikePlaceholder size={iconsSize} />}
         </button>

@@ -9,7 +9,7 @@ export function FormatableTextarea({ value, onChange, disabled }: IFormatableTex
     return (
         <Slate editor={editor} initialValue={value} onChange={onChange}>
             <Editable
-                placeholder="Enter your text..."
+                placeholder="Enter your form description..."
                 renderElement={renderElement}
                 renderLeaf={renderLeaf}
                 onKeyDown={handleHotkeys}
