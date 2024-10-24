@@ -1,6 +1,7 @@
 import { TemplatesSortOrders, TTemplate } from "@/entities/templates";
 import { routes } from "@/shared/constants";
 import { formatDate } from "@/shared/helpers";
+import { FormattedMessage } from "react-intl";
 import { NavLink } from "react-router-dom";
 
 export const createSortableHeaders = (setSortOrder: (_: TemplatesSortOrders) => void) => {
@@ -11,27 +12,29 @@ export const createSortableHeaders = (setSortOrder: (_: TemplatesSortOrders) => 
                     className="text-left cursor-pointer"
                     onClick={() => setSortOrder(TemplatesSortOrders.Title)}
                 >
-                    Title
+                    <FormattedMessage id="title" />
                 </th>
                 <th
                     className="text-left cursor-pointer"
                     onClick={() => setSortOrder(TemplatesSortOrders.Topic)}
                 >
-                    Topic
+                    <FormattedMessage id="topic" />
                 </th>
                 <th
                     className="text-left cursor-pointer"
                     onClick={() => setSortOrder(TemplatesSortOrders.Creator)}
                 >
-                    Creator
+                    <FormattedMessage id="creator" />
                 </th>
                 <th
                     className="text-left cursor-pointer"
                     onClick={() => setSortOrder(TemplatesSortOrders.CreatedAt)}
                 >
-                    Created
+                    <FormattedMessage id="created" />
                 </th>
-                <th className="text-left">Last updated</th>
+                <th className="text-left">
+                    <FormattedMessage id="last_updated" />
+                </th>
             </tr>
         );
     };
@@ -40,11 +43,22 @@ export const createSortableHeaders = (setSortOrder: (_: TemplatesSortOrders) => 
 export const renderTemplatesTableHeaders = () => {
     return (
         <tr>
-            <th className="text-left">Title</th>
-            <th className="text-left">Topic</th>
-            <th className="text-left">Creator</th>
-            <th className="text-left">Created</th>
-            <th className="text-left">Last updated</th>
+            <th className="text-left">
+                <FormattedMessage id="title" />
+            </th>
+            <th className="text-left">
+                <FormattedMessage id="topic" />
+            </th>
+            <th className="text-left">
+                {" "}
+                <FormattedMessage id="creator" />
+            </th>
+            <th className="text-left">
+                <FormattedMessage id="created" />
+            </th>
+            <th className="text-left">
+                <FormattedMessage id="last_updated" />
+            </th>
         </tr>
     );
 };

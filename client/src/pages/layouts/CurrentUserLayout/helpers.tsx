@@ -1,4 +1,6 @@
 import { TUser } from "@/entities/users";
+import { routes } from "@/shared/constants";
+import { useIntl } from "react-intl";
 
 export const renderUserData = (user: TUser) => {
     return (
@@ -9,4 +11,19 @@ export const renderUserData = (user: TUser) => {
             <span>Role: {user.role}</span>
         </div>
     );
+};
+
+export const useCreateTabs = () => {
+    const intl = useIntl();
+
+    return [
+        {
+            title: intl.formatMessage({ id: "templates" }),
+            route: routes.CurrentUserTemplates,
+        },
+        {
+            title: intl.formatMessage({ id: "forms" }),
+            route: routes.CurrentUserForms,
+        },
+    ];
 };

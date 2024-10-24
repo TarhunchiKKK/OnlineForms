@@ -1,7 +1,5 @@
 import { QuestionTypes } from "../../models";
 
-export const defaultTitlePlaceholder = "Enter title";
-
 export const questionTypesDropdownOptions = [
     {
         label: "Single Line",

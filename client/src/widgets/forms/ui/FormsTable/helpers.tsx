@@ -1,6 +1,7 @@
 import { FormsSortOrders, TForm } from "@/entities/forms";
 import { routes } from "@/shared/constants";
 import { formatDate } from "@/shared/helpers";
+import { FormattedMessage } from "react-intl";
 import { NavLink } from "react-router-dom";
 
 export const createSortableHeaders = (setSortOrder: (_: FormsSortOrders) => void) => {
@@ -11,13 +12,13 @@ export const createSortableHeaders = (setSortOrder: (_: FormsSortOrders) => void
                     className="text-left cursor-pointer"
                     onClick={() => setSortOrder(FormsSortOrders.Creator)}
                 >
-                    Creator
+                    <FormattedMessage id="creator" />
                 </th>
                 <th
                     className="text-left cursor-pointer"
                     onClick={() => setSortOrder(FormsSortOrders.CreatedAt)}
                 >
-                    Created
+                    <FormattedMessage id="created" />
                 </th>
             </tr>
         );
@@ -27,8 +28,14 @@ export const createSortableHeaders = (setSortOrder: (_: FormsSortOrders) => void
 export const renderFormsTableHeaders = () => {
     return (
         <tr>
-            <th className="text-left">Creator</th>
-            <th className="text-left">Created</th>
+            <th className="text-left">
+                {" "}
+                <FormattedMessage id="creator" />
+            </th>
+            <th className="text-left">
+                {" "}
+                <FormattedMessage id="created" />
+            </th>
         </tr>
     );
 };

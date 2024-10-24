@@ -5,12 +5,12 @@ import {
     WebSocketServer,
 } from "@nestjs/websockets";
 import { Server } from "http";
-import { webSocketGatewayProps } from "src/shared/constants/websockets";
+import { webSocketGatewaySettings } from "src/shared/constants/websockets";
 import { CreateQuestionDto } from "./dto/create-question.dto";
 import { UpdateQuestionDto } from "./dto/update-question.dto";
 import { QuestionsService } from "./questions.service";
 
-@WebSocketGateway(webSocketGatewayProps)
+@WebSocketGateway(webSocketGatewaySettings)
 export class QuestionsGateway {
     @WebSocketServer()
     private readonly server: Server;

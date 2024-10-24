@@ -7,9 +7,9 @@ import {
 import { Server } from "socket.io";
 import { TemplatesService } from "./templates.service";
 import { UpdateTemplateDto } from "./dto/update-template.dto";
-import { webSocketGatewayProps } from "src/shared/constants/websockets";
+import { webSocketGatewaySettings } from "src/shared/constants/websockets";
 
-@WebSocketGateway(webSocketGatewayProps)
+@WebSocketGateway(webSocketGatewaySettings)
 export class TemplatesGateway {
     @WebSocketServer()
     private readonly server: Server;

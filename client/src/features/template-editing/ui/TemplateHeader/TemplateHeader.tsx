@@ -4,6 +4,7 @@ import { TTemplateHeaderProps } from "./types";
 import { templateTopicDropdownOptions } from "./constants";
 import { useTemplateHeader } from "./useTemplateHeader";
 import { TagsAutocomplete } from "@/widgets/tags";
+import { useIntl } from "react-intl";
 
 export function TemplateHeader({ templateEditor }: TTemplateHeaderProps) {
     const {
@@ -14,11 +15,13 @@ export function TemplateHeader({ templateEditor }: TTemplateHeaderProps) {
         handleAddTags,
     } = useTemplateHeader(templateEditor);
 
+    const intl = useIntl();
+
     return (
         <QuestionWrapper>
             <div className="mb-6 w-[600px]">
                 <TextInput
-                    placeholder="Template title"
+                    placeholder={intl.formatMessage({ id: "template_title" })}
                     value={templateEditor.template.title}
                     onChange={handleTitleChange}
                     disabled={!templateEditor.editable}
@@ -45,13 +48,13 @@ export function TemplateHeader({ templateEditor }: TTemplateHeaderProps) {
             <div className="mb-6 w-2/3">
                 <ImageInput
                     value={templateEditor.template.image || ""}
-                    placeholder="Enter image url"
+                    placeholder={intl.formatMessage({ id: "enter_image_url" })}
                     onChange={handleImageChange}
                     disabled={!templateEditor.editable}
                 />
             </div>
 
-            <div>
+            <div className="w-1/2">
                 <TagsAutocomplete
                     selectedTags={templateEditor.template.tags}
                     handleAddTag={handleAddTags}

@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+    body {
+        @apply dark:bg-black dark:text-white;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    i,
+    span,
+    p,
+    li,
+    a {
+        @apply dark:text-white;
+    }
+}

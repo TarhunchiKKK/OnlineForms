@@ -7,7 +7,7 @@ export function Button({ size, content, onClick }: TButtonProps) {
     return (
         <button
             onClick={onClick}
-            className={`${sizeStyles} rounded-md text-white bg-green-secondary hover:bg-green-secondary-hover cursor-pointer`}
+            className={`${sizeStyles} rounded-md text-white bg-green-secondary hover:bg-green-secondary-hover dark:bg-green-primary cursor-pointer`}
         >
             {content}
         </button>

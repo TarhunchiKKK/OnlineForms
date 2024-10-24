@@ -1,9 +1,12 @@
 import { Checkbox, QuestionWrapper } from "@/shared/ui";
 import { AvailableUsersAutocomplete } from "@/widgets/users";
 import { useTemplateSettings } from "./useTemplateSettings";
+import { useIntl } from "react-intl";
 
 export function TemplateSettingsPage() {
     const { templateEditor, handleShareAccess, handleAddAvailableUser } = useTemplateSettings();
+
+    const intl = useIntl();
 
     return (
         <QuestionWrapper>
@@ -23,7 +26,7 @@ export function TemplateSettingsPage() {
                     <Checkbox
                         isChecked={templateEditor.template.publicAccess}
                         onCheck={handleShareAccess}
-                        label="Access for all"
+                        label={intl.formatMessage({ id: "access_for_all" })}
                     />
                 </>
             )}

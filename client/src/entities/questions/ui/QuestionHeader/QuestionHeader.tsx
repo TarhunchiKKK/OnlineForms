@@ -1,16 +1,19 @@
 import { Dropdown, TextInput } from "@/shared/ui";
 import { IQuestionHeaderProps } from "./types";
-import { defaultTitlePlaceholder, questionTypesDropdownOptions } from "./constants";
+import { questionTypesDropdownOptions } from "./constants";
 import { useQuestionHeader } from "./useQuestionHeader";
+import { useIntl } from "react-intl";
 
 export function QuestionHeader({ question, questionEditor }: IQuestionHeaderProps) {
     const { handleTitleChange, handleTypeChange } = useQuestionHeader(question, questionEditor);
+
+    const intl = useIntl();
 
     return (
         <div className="flex flex-row justify-between items-center mb-4">
             <div className="w-[280px]">
                 <TextInput
-                    placeholder={defaultTitlePlaceholder}
+                    placeholder={intl.formatMessage({ id: "question_title_placeholder" })}
                     value={question.title}
                     disabled={!questionEditor.headerEditable}
                     onChange={handleTitleChange}

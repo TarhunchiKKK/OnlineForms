@@ -3,6 +3,7 @@ import { IQuestionFooterProps } from "./types";
 import { iconsSize } from "./constants";
 import { useQuestionsFooter } from "./useQuestionsFooter";
 import { Switch } from "@/shared/ui";
+import { useIntl } from "react-intl";
 
 export function QuestionFooter({ question, questionEditor }: IQuestionFooterProps) {
     const { handleRemoveQuestion, handleIsDisplayedChange } = useQuestionsFooter(
@@ -10,10 +11,14 @@ export function QuestionFooter({ question, questionEditor }: IQuestionFooterProp
         questionEditor,
     );
 
+    const intl = useIntl();
+
     return (
         <div className="mt-6 flex flex-row justify-between items-center">
             <Switch
-                label={question.isDisplayed ? "Displayed" : "Not displayed"}
+                label={intl.formatMessage({
+                    id: question.isDisplayed ? "displayed" : "not_displayed",
+                })}
                 checked={question.isDisplayed}
                 onChange={handleIsDisplayedChange}
                 disabled={false}

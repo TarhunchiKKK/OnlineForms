@@ -1,4 +1,4 @@
-export const webSocketGatewayProps = {
+export const webSocketGatewaySettings = {
     cors: {
         origin: "*",
     },
