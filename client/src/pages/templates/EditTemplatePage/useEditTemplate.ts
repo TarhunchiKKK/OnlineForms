@@ -8,7 +8,9 @@ export function useEditTemplate() {
     const { templateId } = useParams();
 
     const { data: fetchedTemplate } = templatesApi.useFindOneQuery(templateId!);
-    const { data: fetchedQuestions } = questionsApi.useFindByTemplateQuery(templateId!);
+    const { data: fetchedQuestions } = questionsApi.useFindByTemplateQuery(templateId!, {
+        refetchOnFocus: true,
+    });
 
     const templateEditor = useTemplateEditor(fetchedTemplate);
 

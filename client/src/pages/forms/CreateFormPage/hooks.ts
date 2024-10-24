@@ -19,7 +19,9 @@ export function useCreateForm() {
     const [createForm] = formsApi.useCreateMutation();
 
     const { data: fetchedTemplate } = templatesApi.useFindOneQuery(templateId!);
-    const { data: fetchedQuestions } = questionsApi.useFindByTemplateQuery(templateId!);
+    const { data: fetchedQuestions } = questionsApi.useFindByTemplateQuery(templateId!, {
+        refetchOnFocus: true,
+    });
 
     const templateEditor = useUneditableTemplate(fetchedTemplate);
     const { questions } = useQuestions(fetchedQuestions);
