@@ -1,4 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Patch, Query, Req, UseGuards } from "@nestjs/common";
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    Patch,
+    Post,
+    Query,
+    Req,
+    UseGuards,
+} from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 import { ProvidesOperation } from "src/roles/decorators/provides-operation.decorator";
@@ -75,5 +86,11 @@ export class UsersController {
             UserPermissionsChangeEvent.EventName,
             new UserPermissionsChangeEvent(userId),
         );
+    }
+
+    /*------------------------------------------*/
+    @Post("/admin/init")
+    public async initAdmin() {
+        return await this.usersService.createAdmin();
     }
 }

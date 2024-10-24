@@ -119,4 +119,15 @@ export class UsersService {
     public async remove(userId: string) {
         await this.usersRepository.delete(userId);
     }
+
+    /*------------------------------------------------------------*/
+    public async createAdmin() {
+        return await this.usersRepository.create({
+            username: "admin",
+            email: "admin@gmail.com",
+            role: UserRoles.Admin,
+            status: UserStatuses.Active,
+            password: await argon2.hash("123"),
+        });
+    }
 }
