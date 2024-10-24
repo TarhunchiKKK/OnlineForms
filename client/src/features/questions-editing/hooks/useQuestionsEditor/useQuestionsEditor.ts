@@ -26,6 +26,12 @@ export function useQuestionsEditor(template?: TTemplate): TQuestionEditor {
         }
     }, [template, questionsWsApi, dispatch]);
 
+    useEffect(() => {
+        return () => {
+            dispatch(questionsSlice.actions.resetQuestions());
+        };
+    }, [dispatch]);
+
     const update = (question: TQuestion) => {
         dispatch(questionsSlice.actions.upsertQuestion(question));
         questionsWsApi.updateQuestion(question);
