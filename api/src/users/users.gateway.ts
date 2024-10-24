@@ -1,10 +1,10 @@
 import { OnEvent } from "@nestjs/event-emitter";
 import { WebSocketGateway, WebSocketServer } from "@nestjs/websockets";
 import { Server } from "http";
-import { webSocketGatewayProps } from "src/shared/constants/websockets";
+import { webSocketGatewaySettings } from "src/shared/constants/websockets";
 import { UserPermissionsChangeEvent } from "./events/user-permissions-change.event";
 
-@WebSocketGateway(webSocketGatewayProps)
+@WebSocketGateway(webSocketGatewaySettings)
 export class UsersGateway {
     @WebSocketServer()
     private readonly server: Server;

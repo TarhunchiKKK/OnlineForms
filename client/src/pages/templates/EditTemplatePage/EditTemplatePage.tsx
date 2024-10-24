@@ -1,10 +1,11 @@
-import { LikeTemplateButton, TemplateHeader } from "@/features/template-editing";
+import { TemplateHeader } from "@/features/template-editing";
 import { useEditTemplate } from "./useEditTemplate";
 import { AddQuestionButton, useQuestionsEditor } from "@/features/questions-editing";
 import { CommentsList } from "@/widgets/comments";
 import { PrivilegentAccess, useUserRoleOnTheTemplate } from "@/features/roles-separation";
 import { OperationsOnTheTemplate } from "@/entities/roles";
 import { QuestionsList } from "@/widgets/questions";
+import { LikeTemplateButton } from "@/features/likes";
 
 export function EditTemplatePage() {
     const { userRoleOnTheTemplate: userRole } = useUserRoleOnTheTemplate();

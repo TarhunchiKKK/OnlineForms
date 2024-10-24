@@ -1,3 +1,3 @@
-export type TSetupProps = {
+export type TSetupContextsProps = {
     children: JSX.Element | JSX.Element[];
 };

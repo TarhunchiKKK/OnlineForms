@@ -1,10 +1,10 @@
 import { OnEvent } from "@nestjs/event-emitter";
 import { WebSocketGateway, WebSocketServer } from "@nestjs/websockets";
 import { Server } from "http";
-import { webSocketGatewayProps } from "src/shared/constants/websockets";
+import { webSocketGatewaySettings } from "src/shared/constants/websockets";
 import { CommentCreatedEvent } from "./events/comment-created.event";
 
-@WebSocketGateway(webSocketGatewayProps)
+@WebSocketGateway(webSocketGatewaySettings)
 export class CommentsGateway {
     @WebSocketServer()
     private readonly server: Server;

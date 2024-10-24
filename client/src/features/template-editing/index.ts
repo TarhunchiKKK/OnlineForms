@@ -1,2 +1,2 @@
 export { useTemplate } from "./hooks";
-export { TemplateHeader, LikeTemplateButton } from "./ui";
+export { TemplateHeader } from "./ui";

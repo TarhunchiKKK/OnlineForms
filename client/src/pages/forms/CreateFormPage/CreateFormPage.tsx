@@ -1,4 +1,4 @@
-import { LikeTemplateButton, TemplateHeader } from "@/features/template-editing";
+import { TemplateHeader } from "@/features/template-editing";
 import { Button } from "@/shared/ui";
 import { useCreateForm, useEditor } from "./hooks";
 import { OperationsOnTheTemplate } from "@/entities/roles";
@@ -6,6 +6,7 @@ import { PrivilegentAccess } from "@/features/roles-separation";
 import { CommentsList } from "@/widgets/comments";
 import { QuestionsList } from "@/widgets/questions";
 import { useIntl } from "react-intl";
+import { LikeTemplateButton } from "@/features/likes";
 
 export function CreateFormPage() {
     const { templateEditor, questions, handleSaveForm } = useCreateForm();
