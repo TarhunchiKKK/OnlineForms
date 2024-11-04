@@ -1,5 +1,8 @@
 import { TUser } from "@/entities/users";
+import { useSFModal } from "@/features/salesforce-integration";
 import { routes } from "@/shared/constants";
+import { Button } from "@/shared/ui";
+import { SalesForceModal } from "@/widgets/salesforce";
 import { useIntl } from "react-intl";
 
 export const renderUserData = (user: TUser) => {
@@ -26,4 +29,26 @@ export const useCreateTabs = () => {
             route: routes.CurrentUserForms,
         },
     ];
+};
+
+export const SalesForceContent = () => {
+    const sfModal = useSFModal();
+
+    const intl = useIntl();
+
+    return (
+        <>
+            {sfModal.isAvailable && (
+                <>
+                    <Button
+                        content={intl.formatMessage({ id: "create_sf_account" })}
+                        size="md"
+                        onClick={sfModal.open}
+                    />
+
+                    {sfModal.isOpen && <SalesForceModal onClose={sfModal.close} />}
+                </>
+            )}
+        </>
+    );
 };

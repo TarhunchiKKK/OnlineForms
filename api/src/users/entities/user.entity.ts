@@ -39,4 +39,7 @@ export class User {
 
     @ManyToMany(() => Template, (template) => template.likers)
     likedTemplates: Template[];
+
+    @Column({ nullable: true, default: null })
+    sfAccountId: string;
 }

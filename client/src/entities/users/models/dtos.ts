@@ -1,4 +1,5 @@
 import { UserRoles, UserStatuses } from "./enums";
+import { TUser } from "./user";
 
 export type TChangeUserStatusDto = {
     data: {
@@ -22,6 +23,12 @@ export type TChangeUserRoleDto = {
 
 export type TRemoveUserDto = {
     id: string;
+
+    authToken: string;
+};
+
+export type TUpdateUserDto = {
+    data: Partial<TUser>;
 
     authToken: string;
 };

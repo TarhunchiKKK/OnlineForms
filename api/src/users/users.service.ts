@@ -10,6 +10,7 @@ import { UserStatuses } from "./enums/user-statuses.enum";
 import { ChangeUserStatusDto } from "./dto/change-user-status.dto";
 import { UserNotFoundException } from "./exceptions/user-not-found.exception";
 import { ChangeUserRoleDto } from "./dto/change-user-role.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
 
 @Injectable()
 export class UsersService {
@@ -114,6 +115,20 @@ export class UsersService {
         user.role = dto.role;
 
         return await this.usersRepository.save(user);
+    }
+
+    public async update(userId: string, dto: UpdateUserDto) {
+        const user = await this.usersRepository.findOne({
+            where: {
+                id: userId,
+            },
+        });
+
+        if (!user) {
+            throw new UserNotFoundException(userId);
+        }
+
+        return await this.usersRepository.update(userId, dto);
     }
 
     public async remove(userId: string) {

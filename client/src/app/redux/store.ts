@@ -7,6 +7,7 @@ import { tagsApi } from "@/entities/tags";
 import { templatesApi } from "@/entities/templates";
 import { usersApi } from "@/entities/users";
 import { authApi } from "@/features/auth-with-api";
+import { sfApi } from "@/features/salesforce-integration";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const reduxStore = configureStore({
@@ -21,6 +22,7 @@ export const reduxStore = configureStore({
         [formsApi.reducerPath]: formsApi.reducer,
         [answersApi.reducerPath]: answersApi.reducer,
         [commentsApi.reducerPath]: commentsApi.reducer,
+        [sfApi.reducerPath]: sfApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({ serializableCheck: false })
@@ -32,5 +34,6 @@ export const reduxStore = configureStore({
             .concat(questionsApi.middleware)
             .concat(formsApi.middleware)
             .concat(answersApi.middleware)
-            .concat(commentsApi.middleware),
+            .concat(commentsApi.middleware)
+            .concat(sfApi.middleware),
 });
