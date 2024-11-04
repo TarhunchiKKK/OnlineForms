@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useCurrentUser } from "./useCurrentUser";
 import { Tabs } from "@/widgets/routing";
-import { renderUserData, useCreateTabs } from "./helpers";
+import { renderUserData, SalesForceContent, useCreateTabs } from "./helpers";
 import { Button } from "@/shared/ui";
 import { contentWrapperClassName } from "@/shared/constants";
 import { useIntl } from "react-intl";
@@ -22,11 +22,15 @@ export function CurrentUserLayout() {
                     >
                         {renderUserData(user)}
 
-                        <Button
-                            content={intl.formatMessage({ id: "sign_out" })}
-                            size="md"
-                            onClick={handleSignOut}
-                        />
+                        <div className="flex flex-col gap-4">
+                            <Button
+                                content={intl.formatMessage({ id: "sign_out" })}
+                                size="md"
+                                onClick={handleSignOut}
+                            />
+
+                            <SalesForceContent />
+                        </div>
                     </div>
                 )}
 

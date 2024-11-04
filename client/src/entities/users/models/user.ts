@@ -12,6 +12,8 @@ export type TUser = {
     role: UserRoles;
 
     status: UserStatuses;
+
+    sfAccountId: string | null;
 };
 
 export type TUserProfile = {

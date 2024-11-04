@@ -15,5 +15,8 @@ export function useCurrentUser() {
         navigate(routes.SignIn);
     };
 
-    return { user, handleSignOut };
+    return {
+        user,
+        handleSignOut,
+    };
 }

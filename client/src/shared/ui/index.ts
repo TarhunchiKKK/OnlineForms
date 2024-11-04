@@ -10,3 +10,4 @@ export { ImageInput } from "./ImageInput";
 export { AutocompletableInput } from "./AutocompletableInput";
 export { Gallery } from "./Gallery";
 export { Switch } from "./Switch";
+export { ModalOverlay } from "./ModalOverlay";

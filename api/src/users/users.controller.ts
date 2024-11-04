@@ -21,6 +21,7 @@ import { TAuthorizedRequest } from "src/auth/types/request";
 import { parseArrayParam } from "src/shared/helpers/http";
 import { EventEmitter2 } from "@nestjs/event-emitter";
 import { UserPermissionsChangeEvent } from "./events/user-permissions-change.event";
+import { UpdateUserDto } from "./dto/update-user.dto";
 
 @Controller("users")
 export class UsersController {
@@ -74,6 +75,12 @@ export class UsersController {
             UserPermissionsChangeEvent.EventName,
             new UserPermissionsChangeEvent(dto.id),
         );
+    }
+
+    @Patch(":id")
+    @UseGuards(JwtAuthGuard)
+    public async updateUser(@Param("id") userId: string, @Body() dto: UpdateUserDto) {
+        return await this.usersService.update(userId, dto);
     }
 
     @Delete(":userId")
