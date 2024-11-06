@@ -53,6 +53,12 @@ export class UsersController {
         return await this.usersService.findMe(request.user.id);
     }
 
+    @Patch()
+    @UseGuards(JwtAuthGuard)
+    public async updateUser(@Req() request: TAuthorizedRequest, @Body() dto: UpdateUserDto) {
+        return await this.usersService.update(request.user.id, dto);
+    }
+
     @Patch("/status")
     @ProvidesOperation(OperationsOnTheAccounts.ChangeUserStatus)
     @UseGuards(JwtAuthGuard, AccountOperationGuard)
@@ -75,12 +81,6 @@ export class UsersController {
             UserPermissionsChangeEvent.EventName,
             new UserPermissionsChangeEvent(dto.id),
         );
-    }
-
-    @Patch(":id")
-    @UseGuards(JwtAuthGuard)
-    public async updateUser(@Param("id") userId: string, @Body() dto: UpdateUserDto) {
-        return await this.usersService.update(userId, dto);
     }
 
     @Delete(":userId")
