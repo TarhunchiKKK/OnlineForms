@@ -48,24 +48,24 @@ export function useSalesForceForm(user: TUserData) {
     }, []);
 
     const handleSubmit = async () => {
-        const { data: account } = await createSFAccount({
+        const { data: response } = await createSFAccount({
             Name: user.username ?? user.email,
             BillingCountry: formState.country,
             BillingCity: formState.city,
             BillingStreet: formState.street,
         });
 
-        if (account) {
+        if (response && response.id) {
             await Promise.all([
                 createSFContact({
                     Phone: formState.phone,
-                    AccountId: account.Id,
+                    AccountId: response.id,
                     Email: user.email,
                     LastName: user.username ?? user.email,
                 }),
                 updateUser({
                     data: {
-                        sfAccountId: account.Id,
+                        sfAccountId: response.id,
                     },
                     authToken: authToken!,
                 }),

@@ -1,6 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { TCreateSFAccountDto, TCreateSFContactDto, TSFAccount, TSFContact } from "../types";
 import { createAuthHeaders } from "@/shared/helpers";
+import {
+    TCreateSFAccountDto,
+    TCreateSFAccountResponse,
+    TCreateSFContactDto,
+    TCreateSFContactResponse,
+} from "./types";
 
 export const sfApi = createApi({
     reducerPath: "sfApi",
@@ -10,7 +15,7 @@ export const sfApi = createApi({
     }),
 
     endpoints: (builder) => ({
-        creaetAccount: builder.mutation<TSFAccount, TCreateSFAccountDto>({
+        creaetAccount: builder.mutation<TCreateSFAccountResponse, TCreateSFAccountDto>({
             query: (dto: TCreateSFAccountDto) => ({
                 url: "/Account/",
                 method: "POST",
@@ -19,7 +24,7 @@ export const sfApi = createApi({
             }),
         }),
 
-        createContact: builder.mutation<TSFContact, TCreateSFContactDto>({
+        createContact: builder.mutation<TCreateSFContactResponse, TCreateSFContactDto>({
             query: (dto: TCreateSFContactDto) => ({
                 url: "/Contact/",
                 method: "POST",
