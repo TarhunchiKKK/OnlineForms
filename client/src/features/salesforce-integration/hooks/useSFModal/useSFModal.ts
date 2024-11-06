@@ -5,14 +5,17 @@ import { useState } from "react";
 export function useSFModal() {
     const authToken = localStorageService.auth.getAuthToken();
 
-    const { data: user } = usersApi.useFindMeQuery(authToken!);
+    const { data: user, refetch: refetchUser } = usersApi.useFindMeQuery(authToken!);
 
     const [isSFModalOpen, setIsSFModalOpen] = useState(false);
 
     return {
         isOpen: isSFModalOpen,
         open: () => setIsSFModalOpen(true),
-        close: () => setIsSFModalOpen(false),
+        close: () => {
+            setIsSFModalOpen(false);
+            refetchUser();
+        },
         isAvailable: user?.sfAccountId === null,
     };
 }
